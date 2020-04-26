@@ -1,2 +1,0 @@
-# nerdynikhil.github.io
-Portfolio
