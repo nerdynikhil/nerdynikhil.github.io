@@ -69,6 +69,7 @@ hr {
   overflow: visible; }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Sogoe UI, 'Trebuchet MS', sans-serif;
   margin-top: 0;
   margin-bottom: 0.5rem; }
 
@@ -9672,3 +9673,7 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+*{
+  filter: grayscale(0.25);
+}
