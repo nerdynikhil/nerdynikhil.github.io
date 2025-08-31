@@ -14,16 +14,11 @@ body {
 .grid {
   max-width: 960px;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
   padding: 10px;
+  justify-items: center;
 }
 
 .card {
@@ -51,9 +46,9 @@ body {
   }
   
   .grid {
+    grid-template-columns: repeat(4, 1fr);
     gap: 3px;
     padding: 5px;
-    justify-content: center;
   }
   
   .card {
@@ -79,6 +74,7 @@ body {
   }
   
   .grid {
+    grid-template-columns: repeat(4, 1fr);
     gap: 2px;
     padding: 2px;
   }
