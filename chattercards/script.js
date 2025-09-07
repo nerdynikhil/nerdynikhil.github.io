@@ -46,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const appStoreLink = document.getElementById('app-store-link');
     if (appStoreLink) {
         appStoreLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             // Track click
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'click', {
@@ -55,15 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     event_label: 'Download Button'
                 });
             }
-            
-            // Show feedback
-            this.textContent = 'App Store submission in progress!';
-            this.style.background = '#34c759';
-            
-            setTimeout(() => {
-                this.textContent = 'Coming Soon';
-                this.style.background = '#007aff';
-            }, 2000);
         });
     }
 });
