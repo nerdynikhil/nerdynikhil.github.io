@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: #ffffff;
+    color: #1d1d1f;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 20px 0 20px;
+    text-align: center;
+}
+
+
+h1 {
+    font-size: 72px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: #1d1d1f;
+    letter-spacing: -0.02em;
+}
+
+.word {
+    display: inline-block;
+    margin-right: 0.2em;
+    filter: blur(8px);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.word.visible {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.word em {
+    font-style: italic;
+    color: #007aff;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #6e6e73;
+    margin-bottom: 60px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+.center-image {
+    margin: 60px 0 0 0;
+}
+
+.center-logo {
+    max-width: 550px;
+    height: auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.center-logo.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.download-btn {
+    display: inline-block;
+    background: #007aff;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-top: 60px;
+}
+
+.download-btn:hover {
+    background: #0056cc;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 122, 255, 0.3);
+}
+
+footer {
+    background: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 1px solid #e5e5e7;
+}
+
+
+.disclaimer {
+    font-size: 12px;
+    color: #6e6e73;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 56px;
+    }
+    
+    .subtitle {
+        font-size: 18px;
+        margin-bottom: 60px;
+    }
+    
+    .container {
+        padding: 60px 20px;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 42px;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+    }
+    
+    .download-btn {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+    
+}
