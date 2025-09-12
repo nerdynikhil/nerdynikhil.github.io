@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fade in subtitle after title
     const subtitle = document.querySelector('.subtitle');
-    const centerLogo = document.querySelector('.center-logo');
+    const appScreenshot = document.querySelector('.app-screenshot');
     const downloadBtn = document.querySelector('.download-btn');
     
     if (subtitle) {
@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
     
-    // Center logo appears
-    if (centerLogo) {
+    // App screenshot appears
+    if (appScreenshot) {
         setTimeout(() => {
-            centerLogo.classList.add('visible');
+            appScreenshot.classList.add('visible');
         }, 2400);
     }
     
