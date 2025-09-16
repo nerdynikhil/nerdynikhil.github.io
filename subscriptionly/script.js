@@ -45,16 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // App Store link handling
     const appStoreLink = document.getElementById('app-store-link');
     if (appStoreLink) {
-        appStoreLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            // For now, just show an alert since the app isn't published yet
-            alert('Subscriptionly is coming soon to the App Store!');
-            
-            // Track click if analytics are available
+        // Track click if analytics are available
+        appStoreLink.addEventListener('click', function() {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'click', {
                     event_category: 'App Store',
-                    event_label: 'Coming Soon Button'
+                    event_label: 'App Store Download'
                 });
             }
         });
