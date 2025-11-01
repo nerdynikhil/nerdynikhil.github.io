@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="description" content="PRD: Increasing Zomato Text Reviews" />
+    <title>PRD: Increasing Zomato Text Reviews - nerdynikhil</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../assets/css/main.css" rel="stylesheet">
+
+    <link href="../assets/css/responsive.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,latin-ext,cyrillic'
+        rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" href="#">
+
+    <link rel="apple-touch-icon" href="#">
+    <link rel="apple-touch-icon" sizes="114x114" href="#">
+    <link rel="apple-touch-icon" sizes="72x72" href="#">
+    <link rel="apple-touch-icon" sizes="144x144" href="#">
+
+    <script src="../assets/js/modernizr.js"></script>
+
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            color: #777;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-content {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .article-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #000;
+        }
+
+        .article-content ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #777;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #000;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .article-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #f0f0f0;
+            color: #555;
+            font-size: 0.75rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .article-tag:hover {
+            background-color: #e0e0e0;
+            color: #000;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="decorative-shapes">
+        <div class="shape shape-teal"></div>
+        <div class="shape shape-orange"></div>
+        <div class="shape shape-purple"></div>
+        <div class="shape shape-blue"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="span2">
+                    <div id="logo">
+                        <a href="../index.html" title="NAME">nerdynikhil</a>
+                    </div>
+                </div>
+                <div class="span10">
+                    <nav id="menu">
+                        <ul id="menu-nav">
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../blog/index.html">Blog</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="article-container">
+        <article class="article-content">
+            <div class="article-header">
+                <h1>PRD: Increasing Zomato Text Reviews</h1>
+                <div class="article-meta">Product Requirements Document</div>
+            </div>
+
+            <h2>Overview</h2>
+            <p>This project tackles the challenge of boosting quality text reviews within Zomato's Food Delivery segment. Although a large portion of users rate orders, few leave descriptive text feedback—often because the process is lengthy and its value unclear.</p>
+
+            <h2>Goals</h2>
+            <ul>
+                <li><strong>Drive revenue via credible reviews:</strong> Increase review frequency from loyal users, and convert occasional reviewers by removing friction.</li>
+                <li><strong>Improve review quality:</strong> Specifically focus on relevance, recency, and depth.</li>
+            </ul>
+
+            <h2>Approach</h2>
+            <h3>User Segmentation</h3>
+            <p>Target frequent orderers (≥12 orders/3 months) who have previously left ratings/reviews.</p>
+
+            <h3>Problem Validation</h3>
+            <p>Surveys and interviews identified key blockers:</p>
+            <ul>
+                <li>Time consumption</li>
+                <li>Lack of perceived value</li>
+                <li>Poor recall</li>
+                <li>Inconvenience</li>
+            </ul>
+
+            <h2>Solution Ideation</h2>
+            <p>Three main ideas emerged:</p>
+
+            <h3>1. Lean Review with Speech-to-Text</h3>
+            <p>Users submit reviews via voice, aided by speech recognition. Eases friction and shortens review time.</p>
+
+            <h3>2. Keyword-Based AI Reviews</h3>
+            <p>Auto-generates category-specific keywords; users edit or approve AI-generated reviews.</p>
+
+            <h3>3. AI Review Assistant</h3>
+            <p>Populates editable default reviews using AI and previous feedback.</p>
+
+            <h2>Recommended Solution</h2>
+            <p>Speech-to-text reviews scored highest on reach, impact, confidence, and effort. The flow includes quick mic-based review input, tag selection for food aspects, and instant "thank you" feedback.</p>
+
+            <h2>Metrics & Outcomes</h2>
+            <ul>
+                <li>Monthly review volume</li>
+                <li>Active text reviewers</li>
+                <li>Orders featuring text reviews</li>
+                <li>Menu conversion rates</li>
+            </ul>
+
+            <h2>Future Directions</h2>
+            <p>Plan to automate moderation, support local dialects, AI summarization, and create top reviewer incentives.</p>
+
+            <div class="article-tags">
+                <span class="article-tag">PRD</span>
+                <span class="article-tag">Product Strategy</span>
+                <span class="article-tag">User Research</span>
+                <span class="article-tag">UX Design</span>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="../blog/index.html" class="back-link">← Back to Blog</a>
+            </div>
+        </article>
+    </section>
+
+    <footer class="footer-widgets">
+        <div class="container">
+            <div class="row">
+                <div class="span4 widget">
+                    <div class="about-widget">
+                        <h7>nerdynikhil@hotmail.com</h7>
+                    </div>
+                </div>
+                <div class="span8 widget">
+                    <div class="twitter-widget">
+                        <h7>
+
+                            <a href="https://www.linkedin.com/in/nerdynikhil/" target="_blank">linkedin</a>
+                            &nbsp; • &nbsp; <a href="https://github.com/nerdynikhil" target="_blank">github</a>
+                            • &nbsp; <a href="https://www.facebook.com/brilltwoant27/" target="_blank">facebook</a>
+                            &nbsp; •
+                            &nbsp; <a href="https://www.instagram.com/i.know.nothing_/" target="_blank">instagram</a>
+                            &nbsp; • &nbsp; <a href="https://twitter.com/nerdynikhil" target="_blank">twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+
