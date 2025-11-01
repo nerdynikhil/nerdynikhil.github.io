@@ -53,6 +53,7 @@
 	
 	header,
 	#intro-box,
+	#apps-section,
 	footer {
 		margin-left: -20px;
     	margin-right: -20px;
@@ -92,6 +93,17 @@
 		font-size: 28px;	
 	}
 	
+	/* Apps Section */
+	
+	.apps-grid {
+		gap: 30px;
+	}
+	
+	.app-logo {
+		width: 70px;
+		height: 70px;
+	}
+	
 	/* Footer Widgets */
 	
 	footer.footer-widgets .widget {
@@ -113,6 +125,7 @@
 	
 	header,
 	#intro-box,
+	#apps-section,
 	footer {
 		margin-left: -20px;
     	margin-right: -20px;
@@ -150,6 +163,21 @@
 	
 	#intro-box h3 {
 		font-size: 24px;	
+	}
+	
+	/* Apps Section */
+	
+	.apps-grid {
+		gap: 25px;
+	}
+	
+	.app-logo {
+		width: 60px;
+		height: 60px;
+	}
+	
+	.app-name {
+		font-size: 12px;
 	}
 	
 	/* Footer Widgets */
