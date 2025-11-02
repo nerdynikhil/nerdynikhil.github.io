@@ -1,0 +1,477 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1a1a1a;
+    --secondary: #666;
+    --border: #e0e0e0;
+    --background: #ffffff;
+    --background-alt: #f8f9fa;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: var(--background);
+    color: var(--primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-section .container {
+    max-width: 800px;
+}
+
+/* Header */
+header {
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+    opacity: 0.7;
+}
+
+/* Hero Section */
+.hero-section {
+    background: var(--background);
+    padding: 80px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin: 0 auto 2rem;
+    max-width: 600px;
+}
+
+/* Content Section - Two Column Layout */
+.content-section {
+    padding: 60px 0;
+    background: var(--background);
+}
+
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.left-column,
+.right-column {
+    min-width: 0;
+}
+
+.column-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.column-subtitle {
+    font-size: 0.95rem;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: var(--secondary);
+    text-align: center;
+    margin: 0 auto 3rem;
+    max-width: 600px;
+}
+
+/* Resource List */
+.resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.resource-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.resource-link:hover {
+    transform: translateY(-2px);
+}
+
+.resource-item {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--background);
+    transition: all 0.2s ease;
+}
+
+.resource-link:hover .resource-item {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.resource-item h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.resource-description {
+    margin: 0 0 0.75rem;
+    color: var(--secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.read-more {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.resource-link:hover .read-more {
+    opacity: 1;
+}
+
+/* Tool List */
+.tool-list {
+    margin: 1.5rem 0;
+}
+
+.tool-item {
+    margin-bottom: 1.5rem;
+}
+
+.tool-item h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tool-item p {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.closing-note {
+    padding: 1rem;
+    background: var(--background-alt);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Instagram Embed */
+.instagram-embed-container {
+    width: 100%;
+}
+
+.instagram-embed-container .instagram-media {
+    margin: 0 auto !important;
+}
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.instagram-link:hover {
+    background: var(--background-alt);
+}
+
+/* Footer */
+footer {
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.footer-text a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.footer-text a:hover {
+    text-decoration: underline;
+}
+
+/* Article Page Styles */
+.resource-article {
+    padding: 60px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.resource-article h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.article-intro {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.resource-article .tool-item {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.resource-article .tool-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.resource-article .tool-item h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+}
+
+.resource-article .tool-item p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--secondary);
+}
+
+.resource-article .closing-note {
+    background: var(--background-alt);
+    border-left: 3px solid var(--primary);
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-top: 3rem;
+}
+
+.resource-article .closing-note p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--secondary);
+    margin: 0;
+}
+
+.resource-article .closing-note strong {
+    color: var(--primary);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .left-column {
+        order: 2;
+    }
+    
+    .right-column {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.25rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .column-title {
+        font-size: 1.25rem;
+    }
+    
+    .resource-article h1 {
+        font-size: 2rem;
+    }
+    
+    .article-intro {
+        font-size: 1.1rem;
+    }
+    
+    .two-column-layout {
+        gap: 2rem;
+    }
+}
+
+.footer-text {
+    font-size: 16px;
+    color: #6e6e73;
+    margin-bottom: 16px;
+}
+
+.footer-text a {
+    color: #007aff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-text a:hover {
+    text-decoration: underline;
+}
+
+.footer-link {
+    margin-top: 20px;
+}
+
+.footer-link a {
+    color: #6e6e73;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-link a:hover {
+    color: #007aff;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 48px;
+    }
+    
+    .subtitle {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    
+    .hero-section {
+        padding: 80px 0 60px;
+    }
+    
+    .instagram-section,
+    .resources-section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 36px;
+    }
+    
+    .section-subtitle {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+    
+    .instagram-posts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .resource-card {
+        padding: 32px 24px;
+        margin: 0 20px;
+    }
+    
+    .resource-header h3 {
+        font-size: 24px;
+    }
+    
+    .intro-text {
+        font-size: 16px;
+    }
+    
+    .tool-item h4 {
+        font-size: 20px;
+    }
+    
+    .tool-item p {
+        font-size: 15px;
+    }
+    
+    .instagram-visit-btn {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+    }
+    
+    .instagram-link {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .resource-card {
+        padding: 24px 20px;
+        margin: 0 10px;
+    }
+    
+    .resource-header h3 {
+        font-size: 20px;
+    }
+}
+
