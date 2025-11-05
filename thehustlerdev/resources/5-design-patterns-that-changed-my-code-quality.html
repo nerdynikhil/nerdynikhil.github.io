@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Design Patterns That Changed My Code Quality - The Hustler Dev</title>
+    <meta name="description" content="Master these 5 essential design patterns to write cleaner, more maintainable, and scalable code. Learn the Observer, Factory, Singleton, Strategy, and Adapter patterns with practical JavaScript examples.">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .pattern-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #4a6ee0;
+        }
+        .pattern-card h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .pattern-card h3 {
+            margin-bottom: 1rem;
+            color: #4a6ee0;
+        }
+        .pattern-card pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .advantages, .disadvantages {
+            background: #f0f4f8;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        .advantages h4, .disadvantages h4 {
+            margin-top: 0;
+        }
+        .advantages ul, .disadvantages ul {
+            margin-bottom: 0;
+        }
+        .use-cases {
+            font-style: italic;
+            color: #555;
+        }
+        .quick-ref table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .quick-ref th, .quick-ref td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .quick-ref th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Resources</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="resource-article">
+            <div class="container">
+                <h1>5 Design Patterns That Changed My Code Quality</h1>
+                <p class="lead">Master these essential patterns to write cleaner, more maintainable, and scalable code.</p>
+                
+                <div class="pattern-card">
+                    <h2>1. Observer Pattern 👁️</h2>
+                    <p>Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified automatically.</p>
+                    
+                    <h3>When to Use</h3>
+                    <ul>
+                        <li>Event handling systems</li>
+                        <li>Data binding in UI frameworks</li>
+                        <li>Real-time notifications</li>
+                        <li>Pub/Sub messaging systems</li>
+                        <li>Model-View updates</li>
+                    </ul>
+                    
+                    <div class="advantages">
+                        <h4>Advantages</h4>
+                        <ul>
+                            <li><strong>Loose Coupling</strong>: Subject and observers are loosely coupled</li>
+                            <li><strong>Dynamic Relationships</strong>: Can add/remove observers at runtime</li>
+                            <li><strong>Broadcast Communication</strong>: One-to-many communication made easy</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="disadvantages">
+                        <h4>Disadvantages</h4>
+                        <ul>
+                            <li><strong>Memory Leaks</strong>: Observers not properly unsubscribed can cause leaks</li>
+                            <li><strong>Unexpected Updates</strong>: Can lead to cascading updates</li>
+                            <li><strong>Debugging Complexity</strong>: Hard to track the flow of notifications</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Code Example</h3>
+                    <pre><code>// Observer Pattern - Event System
+
+// Subject (Observable)
+class NewsAgency {
+  constructor() {
+    this.observers = [];
+    this.news = null;
+  }
+
+  attach(observer) {
+    this.observers.push(observer);
+  }
+
+  detach(observer) {
+    this.observers = this.observers.filter(obs => obs !== observer);
+  }
+
+  notify() {
+    this.observers.forEach(observer => observer.update(this.news));
+  }
+
+  setNews(news) {
+    this.news = news;
+    this.notify();
+  }
+}
+
+// Observers
+class NewsChannel {
+  constructor(name) {
+    this.name = name;
+  }
+
+  update(news) {
+    console.log(`${this.name} received: ${news}`);
+  }
+}
+
+// Usage
+const agency = new NewsAgency();
+const channel1 = new NewsChannel("CNN");
+const channel2 = new NewsChannel("BBC");
+
+agency.attach(channel1);
+agency.attach(channel2);
+
+agency.setNews("Breaking: Design Patterns are awesome!");</code></pre>
+                </div>
+
+                <!-- Factory Pattern -->
+                <div class="pattern-card">
+                    <h2>2. Factory Pattern 🏭</h2>
+                    <p>Define an interface for creating objects, but let subclasses decide which class to instantiate.</p>
+                    
+                    <h3>When to Use</h3>
+                    <ul>
+                        <li>Object creation without specifying exact class</li>
+                        <li>Complex initialization logic</li>
+                        <li>Creating different objects based on conditions</li>
+                        <li>Plugin architectures</li>
+                        <li>Managing object pools</li>
+                    </ul>
+                    
+                    <div class="advantages">
+                        <h4>Advantages</h4>
+                        <ul>
+                            <li><strong>Single Responsibility</strong>: Object creation logic is separated</li>
+                            <li><strong>Open/Closed Principle</strong>: Easy to add new types without modifying existing code</li>
+                            <li><strong>Decouples Code</strong>: Client code doesn't depend on concrete classes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="disadvantages">
+                        <h4>Disadvantages</h4>
+                        <ul>
+                            <li><strong>Added Complexity</strong>: Can make code more complex with extra classes</li>
+                            <li><strong>More Classes</strong>: Increases the number of classes to manage</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Code Example</h3>
+                    <pre><code>// Factory Pattern - Vehicle Factory
+
+class Vehicle {
+  constructor(model, type) {
+    this.model = model;
+    this.type = type;
+  }
+
+  displayInfo() {
+    return `${this.type}: ${this.model}`;
+  }
+}
+
+class Car extends Vehicle {
+  constructor(model) {
+    super(model, 'Car');
+    this.wheels = 4;
+  }
+
+  drive() {
+    return `Driving the ${this.model} car`;
+  }
+}
+
+class VehicleFactory {
+  static createVehicle(type, model) {
+    switch(type.toLowerCase()) {
+      case 'car':
+        return new Car(model);
+      case 'motorcycle':
+        return new Motorcycle(model);
+      case 'truck':
+        return new Truck(model);
+      default:
+        throw new Error('Unknown vehicle type');
+    }
+  }
+}
+
+// Usage
+const car = VehicleFactory.createVehicle('car', 'Tesla Model 3');
+console.log(car.drive()); // Driving the Tesla Model 3 car</code></pre>
+                </div>
+
+                <!-- Singleton Pattern -->
+                <div class="pattern-card">
+                    <h2>3. Singleton Pattern 🔐</h2>
+                    <p>Ensure a class has only one instance and provide a global point of access to it.</p>
+                    
+                    <h3>When to Use</h3>
+                    <ul>
+                        <li>Database connections</li>
+                        <li>Configuration managers</li>
+                        <li>Logging systems</li>
+                        <li>Caching mechanisms</li>
+                        <li>Thread pools</li>
+                        <li>Device drivers</li>
+                    </ul>
+                    
+                    <div class="advantages">
+                        <h4>Advantages</h4>
+                        <ul>
+                            <li><strong>Controlled Access</strong>: Single instance ensures controlled access</li>
+                            <li><strong>Reduced Namespace Pollution</strong>: No global variables needed</li>
+                            <li><strong>Lazy Initialization</strong>: Instance created only when needed</li>
+                            <li><strong>Consistent State</strong>: Shared state across application</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="disadvantages">
+                        <h4>Disadvantages</h4>
+                        <ul>
+                            <li><strong>Global State</strong>: Can introduce global state issues</li>
+                            <li><strong>Testing Difficulties</strong>: Hard to mock in unit tests</li>
+                            <li><strong>Hidden Dependencies</strong>: Dependencies are hidden in code</li>
+                            <li><strong>Concurrency Issues</strong>: Needs special handling in multi-threaded environments</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Code Example</h3>
+                    <pre><code>// Singleton Pattern - Database Connection
+
+class Database {
+  constructor() {
+    if (Database.instance) {
+      return Database.instance;
+    }
+
+    this.connection = null;
+    this.queries = 0;
+    Database.instance = this;
+  }
+
+  connect(connectionString) {
+    if (!this.connection) {
+      this.connection = connectionString;
+      console.log(`Connected to: ${connectionString}`);
+    }
+    return this.connection;
+  }
+
+  static getInstance() {
+    if (!Database.instance) {
+      Database.instance = new Database();
+    }
+    return Database.instance;
+  }
+}
+
+// Usage
+const db1 = new Database();
+db1.connect('mongodb://localhost:27017');
+
+const db2 = new Database();
+console.log(db1 === db2); // true</code></pre>
+                </div>
+
+                <!-- Strategy Pattern -->
+                <div class="pattern-card">
+                    <h2>4. Strategy Pattern 🎯</h2>
+                    <p>Define a family of algorithms, encapsulate each one, and make them interchangeable.</p>
+                    
+                    <h3>When to Use</h3>
+                    <ul>
+                        <li>Multiple payment methods</li>
+                        <li>Different sorting algorithms</li>
+                        <li>Various compression algorithms</li>
+                        <li>Validation rules</li>
+                        <li>Route planning algorithms</li>
+                        <li>Pricing strategies</li>
+                    </ul>
+                    
+                    <div class="advantages">
+                        <h4>Advantages</h4>
+                        <ul>
+                            <li><strong>Open/Closed Principle</strong>: Easy to add new strategies without modifying context</li>
+                            <li><strong>Runtime Switching</strong>: Can switch algorithms at runtime</li>
+                            <li><strong>Isolates Implementation</strong>: Algorithm details hidden from client</li>
+                            <li><strong>Eliminates Conditionals</strong>: Replaces large conditional statements</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="disadvantages">
+                        <h4>Disadvantages</h4>
+                        <ul>
+                            <li><strong>Client Awareness</strong>: Clients must be aware of different strategies</li>
+                            <li><strong>Increased Objects</strong>: More objects in the system</li>
+                            <li><strong>Communication Overhead</strong>: Context and strategy must communicate</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Code Example</h3>
+                    <pre><code>// Strategy Pattern - Payment Processing
+
+class PaymentStrategy {
+  pay(amount) {
+    throw new Error('pay() must be implemented');
+  }
+}
+
+class CreditCardPayment extends PaymentStrategy {
+  constructor(cardNumber) {
+    super();
+    this.cardNumber = cardNumber;
+  }
+
+  pay(amount) {
+    console.log(`Processing credit card payment...`);
+    return `Paid $${amount} with card ending in ${this.cardNumber.slice(-4)}`;
+  }
+}
+
+class ShoppingCart {
+  constructor() {
+    this.items = [];
+    this.paymentStrategy = null;
+  }
+
+  setPaymentStrategy(strategy) {
+    this.paymentStrategy = strategy;
+  }
+
+  checkout(amount) {
+    if (!this.paymentStrategy) {
+      throw new Error('Payment strategy not set');
+    }
+    return this.paymentStrategy.pay(amount);
+  }
+}
+
+// Usage
+const cart = new ShoppingCart();
+cart.setPaymentStrategy(new CreditCardPayment('1234567890123456'));
+console.log(cart.checkout(100)); // Paid $100 with card ending in 3456</code></pre>
+                </div>
+
+                <!-- Adapter Pattern -->
+                <div class="pattern-card">
+                    <h2>5. Adapter Pattern 🔌</h2>
+                    <p>Convert the interface of a class into another interface clients expect.</p>
+                    
+                    <h3>When to Use</h3>
+                    <ul>
+                        <li>Legacy code integration</li>
+                        <li>Third-party library integration</li>
+                        <li>API versioning</li>
+                        <li>Making incompatible interfaces work together</li>
+                        <li>Wrapping libraries for easier testing</li>
+                    </ul>
+                    
+                    <div class="advantages">
+                        <h4>Advantages</h4>
+                        <ul>
+                            <li><strong>Single Responsibility</strong>: Separation of interface conversion from business logic</li>
+                            <li><strong>Open/Closed Principle</strong>: Can introduce new adapters without changing existing code</li>
+                            <li><strong>Integrates Incompatible Interfaces</strong>: Makes incompatible classes work together</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="disadvantages">
+                        <h4>Disadvantages</h4>
+                        <ul>
+                            <li><strong>Increased Complexity</strong>: Adds additional layer of abstraction</li>
+                            <li><strong>Sometimes Simpler to Change Service</strong>: Might be easier to just update the original interface</li>
+                            <li><strong>Performance Overhead</strong>: Additional indirection can impact performance</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Code Example</h3>
+                    <pre><code>// Adapter Pattern - Payment Gateway Integration
+
+class OldPaymentGateway {
+  processOldPayment(accountNumber, amount) {
+    console.log(`[OLD SYSTEM] Processing $${amount} from account ${accountNumber}`);
+    return {
+      success: true,
+      transactionId: `OLD-${Date.now()}`
+    };
+  }
+}
+
+class NewPaymentProcessor {
+  pay(paymentDetails) {
+    throw new Error('pay() must be implemented');
+  }
+}
+
+class PaymentAdapter extends NewPaymentProcessor {
+  constructor(oldGateway) {
+    super();
+    this.oldGateway = oldGateway;
+  }
+
+  pay(paymentDetails) {
+    const result = this.oldGateway.processOldPayment(
+      paymentDetails.account, 
+      paymentDetails.amount
+    );
+    
+    return {
+      status: result.success ? 'completed' : 'failed',
+      transactionId: result.transactionId
+    };
+  }
+}
+
+// Usage
+const oldGateway = new OldPaymentGateway();
+const adapter = new PaymentAdapter(oldGateway);
+
+const result = adapter.pay({
+  account: '123456',
+  amount: 100,
+  email: 'customer@example.com'
+});
+
+console.log(`Payment status: ${result.status}`); // Payment status: completed</code></pre>
+                </div>
+
+                <div class="quick-ref">
+                    <h2>Quick Reference Table</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pattern</th>
+                                <th>Purpose</th>
+                                <th>Real-World Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Observer</strong></td>
+                                <td>One-to-many notification</td>
+                                <td>YouTube notifications when a channel uploads</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Factory</strong></td>
+                                <td>Object creation abstraction</td>
+                                <td>Document factory creating PDF, Word, or Excel files</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Singleton</strong></td>
+                                <td>Single instance guarantee</td>
+                                <td>App configuration settings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Strategy</strong></td>
+                                <td>Interchangeable algorithms</td>
+                                <td>Google Maps routing (fastest, shortest, avoid highways)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Adapter</strong></td>
+                                <td>Interface compatibility</td>
+                                <td>Power adapter for different outlets</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pro-tips">
+                    <h2>Pro Tips</h2>
+                    <ol>
+                        <li><strong>Start Simple</strong>: Begin with Observer and Factory - they're the most commonly used</li>
+                        <li><strong>Don't Over-Engineer</strong>: Use patterns when they solve a real problem, not just because you can</li>
+                        <li><strong>Combine Patterns</strong>: These patterns often work together (e.g., Factory + Singleton)</li>
+                        <li><strong>Practice</strong>: Refactor existing code to use these patterns to truly understand them</li>
+                        <li><strong>Know When Not to Use</strong>: Understanding when NOT to use a pattern is as important as knowing when to use it</li>
+                    </ol>
+                </div>
+
+                <div class="next-steps">
+                    <h2>Next Steps</h2>
+                    <ul>
+                        <li>Implement these patterns in your current projects</li>
+                        <li>Look for opportunities to refactor existing code</li>
+                        <li>Study other patterns: Decorator, Proxy, Command, Template Method</li>
+                        <li>Read "Design Patterns: Elements of Reusable Object-Oriented Software" (Gang of Four)</li>
+                    </ul>
+                    <p><em>Remember: Design patterns are tools, not rules. Use them wisely to improve code quality, not complicate it!</em></p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 The Hustler Dev. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
