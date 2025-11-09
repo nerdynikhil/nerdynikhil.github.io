@@ -75,6 +75,53 @@ h1 {
     max-width: 600px;
 }
 
+/* Desk Setup Section */
+.desk-setup-section {
+    padding: 60px 0;
+    background: var(--background-alt);
+    border-bottom: 1px solid var(--border);
+}
+
+.desk-setup-section .section-title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.desk-setup-section .section-subtitle {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.desk-setup-embed {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1000px;
+    overflow: hidden;
+}
+
+.desk-setup-description {
+    max-width: 700px;
+    margin: 2rem auto 0;
+    text-align: center;
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+.desk-setup-description p {
+    margin-bottom: 0;
+}
+
 /* Content Section - Two Column Layout */
 .content-section {
     padding: 60px 0;
