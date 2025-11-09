@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Stack Picker 2025 — The Hustler Dev Edition</title>
+    <meta name="description" content="Private checklist used by 200+ founders & CTOs to pick the perfect tech stack in 2025. Save 200+ hours of research.">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Base spacing */
+        h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        p, ul, ol, blockquote {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .stack-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .stack-table th, 
+        .stack-table td {
+            border: 1px solid #e2e8f0;
+            padding: 1rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .stack-table th {
+            background-color: #1e293b;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+
+        .stack-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .stack-table tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .flowchart {
+            background-color: #f8fafc;
+            border-left: 4px solid #0ea5e9;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'SF Mono', 'Roboto Mono', monospace;
+            white-space: pre-line;
+            line-height: 1.8;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95em;
+            color: #1e293b;
+        }
+
+        .salary-matrix {
+            margin: 2.5rem 0;
+        }
+
+        .salary-matrix td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .demand-fire {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .article-intro {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #334155;
+        }
+
+        blockquote {
+            background-color: #f8fafc;
+            border-left: 4px solid #0ea5e9;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        blockquote p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #1e293b;
+        }
+
+        .closing-note {
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1.5rem;
+            margin: 3rem 0 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .closing-note p {
+            margin-bottom: 1rem;
+        }
+
+        .closing-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .stack-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .stack-table th,
+            .stack-table td {
+                min-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Resources</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="resource-article">
+            <div class="container">
+                <h1>Tech Stack Picker 2025 — The Hustler Dev Edition</h1>
+                <p class="article-intro" style="margin-bottom: 0.5rem;"><strong>Private checklist used by 200+ founders & CTOs</strong><br>
+                <em>I've moved my Notion doc here for better accessibility. Saved me hours of research. Now yours for free.</em></p>
+                
+                <div class="meta-info" style="margin-bottom: 1.5rem; color: #64748b; font-size: 0.9em;">
+                    <span>Last updated: November 10, 2025</span>
+                    <span style="margin: 0 0.5rem;">•</span>
+                    <span>Reading time: 5 min</span>
+                </div>
+
+                <blockquote>
+                    <p><strong>Rule #1:</strong> Pick the stack that lets you ship to 1M users the <strong>fastest</strong> — NOT the one with the most GitHub stars.</p>
+                </blockquote>
+
+                <h2>1. What Are You Building? (Answer first → stack follows)</h2>
+
+                <table class="stack-table">
+                    <thead>
+                        <tr>
+                            <th>Project Type</th>
+                            <th>Recommended Stack (2025)</th>
+                            <th>Time to MVP</th>
+                            <th>Year-1 Cost</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SaaS / Web App</strong></td>
+                            <td>Next.js 15 + tRPC + Drizzle + PostgreSQL + Vercel</td>
+                            <td>3–7 days</td>
+                            <td>$0–$120</td>
+                            <td>95% of startups</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Product / Agent</strong></td>
+                            <td>Python + FastAPI + LangChain + Modal/RunPod</td>
+                            <td>2–5 days</td>
+                            <td>$50–$500</td>
+                            <td>LLM wrappers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile App</strong></td>
+                            <td>Flutter 3.24 + Riverpod + Supabase</td>
+                            <td>10–14 days</td>
+                            <td>$25–$200</td>
+                            <td>Cross-platform</td>
+                        </tr>
+                        <tr>
+                            <td><strong>E-commerce / Heavy SEO</strong></td>
+                            <td>Next.js 15 App Router + Shopify Hydrogen fallback</td>
+                            <td>5–10 days</td>
+                            <td>$29–$300</td>
+                            <td>Content + sales</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enterprise / Bank</strong></td>
+                            <td>Java 21 + Spring Boot 6 + Kotlin + Angular 19 + Kubernetes</td>
+                            <td>3–6 months</td>
+                            <td>$50k+</td>
+                            <td>Compliance & big teams</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Real-time / Gaming</strong></td>
+                            <td>Rust + Axum + WebSocket + Fly.io</td>
+                            <td>7–21 days</td>
+                            <td>$100–$800</td>
+                            <td>Low latency</td>
+                        </tr>
+                        <tr>
+                            <td><strong>No-code MVP</strong></td>
+                            <td>FlutterFlow + Supabase + Stripe</td>
+                            <td>1–3 days</td>
+                            <td>$0–$99</td>
+                            <td>Idea validation</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>2. 60-Second Flowchart</h2>
+                <div class="flowchart">
+Start → Is it a website?
+├─ Yes → Next.js 15 + Tailwind + Shadcn/ui → DONE
+└─ No → Talks to AI?
+   ├─ Yes → Python + FastAPI + LangChain → DONE
+   └─ No → Mobile?
+      ├─ Yes → Flutter (or SwiftUI if Apple-only)
+      └─ No → Need <10ms latency?
+         ├─ Yes → Rust or Go
+         └─ No → Enterprise? → Java Spring + Angular
+            └─ Anything else? → You're overthinking. Use Next.js.
+                </div>
+
+                <h2>3. Golden Rules (Never break these in 2025)</h2>
+                <ul>
+                    <li><strong>TypeScript everywhere</strong> — except AI scripts or Rust</li>
+                    <li><strong>PostgreSQL 17</strong> default DB (Supabase/Neon)</li>
+                    <li><strong>Vercel / Cloudflare</strong> = 30-second deploys</li>
+                    <li><strong>Drizzle ORM</strong> > Prisma (faster, zero runtime bugs)</li>
+                    <li><strong>tRPC</strong> for monorepos, simple <code>fetch</code> for everything else</li>
+                    <li><strong>Never use Redux</strong> — use Zustand / Jotai / TanStack Query</li>
+                    <li><strong>Cursor + Claude Code</strong> = your new IDE (Copilot is legacy)</li>
+                </ul>
+
+                <h2>4. Salary Multiplier Matrix (What to learn for $200k+ TC)</h2>
+                <table class="stack-table">
+                    <thead>
+                        <tr>
+                            <th>Combo</th>
+                            <th>Avg Total Comp (2025)</th>
+                            <th>Demand</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Next.js 15 + tRPC + Drizzle + Vercel</td>
+                            <td>$180k–$350k</td>
+                            <td class="demand-fire">🔥🔥🔥</td>
+                        </tr>
+                        <tr>
+                            <td>Rust + Axum + Tauri</td>
+                            <td>$220k–$450k</td>
+                            <td class="demand-fire">🔥🔥🔥</td>
+                        </tr>
+                        <tr>
+                            <td>Python + LangChain + Modal</td>
+                            <td>$200k–$400k</td>
+                            <td class="demand-fire">🔥🔥🔥</td>
+                        </tr>
+                        <tr>
+                            <td>Go + Kubernetes + OpenTelemetry</td>
+                            <td>$190k–$380k</td>
+                            <td class="demand-fire">🔥🔥</td>
+                        </tr>
+                        <tr>
+                            <td>Flutter + RevenueCat + Supabase</td>
+                            <td>$170k–$300k</td>
+                            <td class="demand-fire">🔥</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>5. One-Week Learning Paths (Ship MVP in 7 days)</h2>
+                
+                <div class="learning-path" style="background: #f8fafc; border-radius: 8px; padding: 1.5rem; margin: 2rem 0;">
+                    <h3>Path A – Next.js Full-Stack (most lucrative)</h3>
+                <p><strong>Day 1–2</strong> → Next.js 15 App Router + React 19<br>
+                <strong>Day 3–4</strong> → tRPC + Drizzle + PostgreSQL (Neon)<br>
+                <strong>Day 5</strong> → Tailwind + Shadcn/ui + Clerk Auth<br>
+                <strong>Day 6</strong> → Vercel + GitHub Actions + CI<br>
+                <strong>Day 7</strong> → Ship MVP → charge $5k–$20k</p>
+
+                </div>
+
+                <div class="learning-path" style="background: #f8fafc; border-radius: 8px; padding: 1.5rem; margin: 2rem 0 3rem;">
+                    <h3>Path B – AI Agent</h3>
+                <p><strong>Day 1–3</strong> → Python + FastAPI + LangChain<br>
+                <strong>Day 4–5</strong> → Modal.com or RunPod + Llama 3.2<br>
+                <strong>Day 6–7</strong> → Frontend in v0.dev → launch → $10k MRR</p>
+
+                </div>
+
+                <h2>6. Daily Tools (No BS, I actually use these)</h2>
+                <ul>
+                    <li><strong>Editor</strong> → Cursor + Claude Code (AI)</li>
+                    <li><strong>Terminal</strong> → Warp</li>
+                    <li><strong>Database</strong> → Neon / Supabase</li>
+                    <li><strong>Auth</strong> → Clerk (or Auth.js v5)</li>
+                    <li><strong>Forms</strong> → React Hook Form + Zod</li>
+                    <li><strong>Deploy</strong> → Vercel → Cloudflare → Fly.io</li>
+                    <li><strong>Monitoring</strong> → Sentry + OpenTelemetry + Grafana</li>
+                </ul>
+
+                <div class="closing-note">
+                    <p style="font-size: 1.2em; line-height: 1.6;"><strong>You now have the exact playbook I use with $1M+ startups.</strong></p>
+<p style="font-size: 1.3em; line-height: 1.6; margin: 1.5rem 0;">The stack doesn't matter.<br><strong>Shipping does.</strong></p>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; border: 1px solid #e2e8f0;">
+                        <p style="margin: 0; display: flex; align-items: center; gap: 0.75rem;">
+                            <span style="font-size: 1.1em;">Made with 💜 by</span>
+                            <a href="https://www.instagram.com/thehustlerdev/" target="_blank" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">@thehustlerdev</a>
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; font-size: 0.9em; color: #64748b;">
+                            <span style="background: #f1f5f9; padding: 0.25rem 0.75rem; border-radius: 9999px;">50+ stacks</span>
+                            <span style="background: #f1f5f9; padding: 0.25rem 0.75rem; border-radius: 9999px;">15+ products</span>
+                            <span style="background: #f1f5f9; padding: 0.25rem 0.75rem; border-radius: 9999px;">7-figure exits</span>
+                            <span style="background: #f1f5f9; padding: 0.25rem 0.75rem; border-radius: 9999px;">zero ego</span>
+                        </div>
+                    </div>
+                    <p>DM "STACK" on Instagram for monthly updates + new templates.</p>
+                    <p><em>Last updated: November 10, 2025<br>
+                    Next update: when Next.js 16 drops 🚀</em></p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">
+                Follow <a href="https://www.instagram.com/thehustlerdev/" target="_blank" rel="noopener noreferrer">@thehustlerdev</a> on Instagram for more tips and resources.
+            </p>
+            <p class="footer-link">
+                <a href="../index.html">← Back to Resources</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
