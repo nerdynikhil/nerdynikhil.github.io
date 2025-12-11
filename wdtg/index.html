@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDTG - Where Did The Time Go?</title>
+    <meta name="description" content="Track your time, visualize your life. Simple time tracking with beautiful charts and automatic iCloud sync.">
+    <meta name="keywords" content="time tracking, productivity, time management, hours tracker, daily tracking, icloud sync, ios app">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 20px 40px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 24px;
+            font-weight: 600;
+            color: #6366F1;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #6366F1;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #6366F1;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            background: #f9f9f9;
+            padding: 80px 40px;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Privacy Section */
+        .privacy-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .privacy-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .privacy-section p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .privacy-links {
+            margin-top: 40px;
+        }
+
+        .privacy-links a {
+            margin: 0 15px;
+            color: #6366F1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .privacy-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #6366F1;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .tagline {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand">WDTG</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#privacy">Privacy</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Where Did The Time Go?</h1>
+        <p class="tagline">Track your time. Visualize your life. Understand your patterns.</p>
+        <a href="#" class="cta-button">📱 Download on App Store</a>
+        <p style="margin-top: 20px; color: #999;">Coming Soon</p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <h2 class="section-title">Simple. Beautiful. Powerful.</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Simple Time Logging</h3>
+                    <p>Log activities in seconds. Choose from smart defaults or create custom categories. Track your time effortlessly.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Beautiful Visualizations</h3>
+                    <p>Interactive pie charts and year dots reveal your patterns. See where your time goes at a glance.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">☁️</div>
+                    <h3>iCloud Sync</h3>
+                    <p>Automatic sync across all your devices. Your data follows you everywhere, always up to date.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>Insights & Trends</h3>
+                    <p>View daily, weekly, monthly, or yearly patterns. Understand your time allocation and build better habits.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Your data stays private in your iCloud. No tracking, no analytics, no data collection. Just you and your time.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Smart Categories</h3>
+                    <p>8 thoughtful defaults plus unlimited custom categories. Organize your time the way you want.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy" class="privacy-section">
+        <h2>Your Data, Your Control</h2>
+        <p>All your time entries are stored securely in your private iCloud. We never see, collect, or share your data.</p>
+        <p>No accounts. No tracking. No analytics. Just simple, private time tracking.</p>
+        <div class="privacy-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ by <a href="https://nerdynikhil.com" target="_blank">Nikhil Barik</a></p>
+        <p style="margin-top: 10px; font-size: 14px; color: #999;">© 2024 Nikhil Barik. All rights reserved.</p>
+        <p style="margin-top: 20px;">
+            <a href="mailto:hello@nerdynikhil.com">Contact</a>
+        </p>
+    </footer>
+</body>
+</html>
