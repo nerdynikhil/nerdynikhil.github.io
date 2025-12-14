@@ -1,583 +1,415 @@
-
-/* ==================================================
-   Basic Styles
-================================================== */
-
-html{
-	width:100%;
-	font-size: 100%; 
-	-webkit-text-size-adjust: 100%; 
-	-ms-text-size-adjust: 100%;
-	height: 100%;
-	overflow: hidden;
+:root {
+    --bg-color: #0c0c0c;
+    --text-primary: #cccccc;
+    --text-secondary: #888888;
+    --accent-color: #00ff41; /* Hacker Green */
+    --accent-hover: #00cc33;
+    --error-color: #ff3333;
+    --border-color: #333333;
+    --font-mono: 'Courier New', Courier, monospace;
+    --terminal-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
 }
 
-body{
-	background:#fff;
-	color:#000;
-	font-weight:400;
-	font-size:1rem;
-	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	line-height:1.875rem;
-	letter-spacing: 0.0125rem;
-	height: 100vh;
-	overflow-y: auto;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	overflow-x: hidden;
-}
-
-
-a{
-	color:#777;
-	font-weight: 400;
-	text-decoration: none;
-	cursor: pointer;
-	
-	-webkit-transition: color 0.15s ease-in-out 0s;	
-	   -moz-transition: color 0.15s ease-in-out 0s;
-		 -o-transition: color 0.15s ease-in-out 0s;
-		    transition: color 0.15s ease-in-out 0s;
-}
-
-a:hover,
-a:active,
-a:focus{
-	outline: 0;
-	color:#000;
-	text-decoration:none;
-}
-
-a img {
-	border: none;
-}
-
-a > img {
-	vertical-align: bottom;	
-}
-
-img {
-	max-width: none;	
-}
-
-p {
-	margin: 0 0 1.875rem;
-}
-
-ul {
-    margin: 0 0 1.25rem 0;
+* {
+    box-sizing: border-box;
+    margin: 0;
     padding: 0;
 }
 
-ul {
-	list-style: circle inside;
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding: 20px;
 }
 
-li {
-	line-height: 1.875rem;
+/* CRT Scanline Effect */
+body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
 }
 
-input::input-placeholder,
-textarea::input-placeholder {
-	color: #BCBCC4;
-	opacity: 1;
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    border-bottom: 1px dashed var(--text-secondary);
 }
 
-/* ==================================================
-   Typography
-================================================== */
-
-h3,
-h6{
-	margin:0 0 1.25rem 0;
-	color:#000;
-	font-weight:400;
-	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	line-height:1.5em;
+a:hover {
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
 }
 
-h3{
-	font-size:1.25rem;
-	color:#000;
-	letter-spacing: 0.0375rem;
-	text-align:center;
-	font-weight:400;
-	margin: 0 0 0.9375rem 0;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3; /* Above CRT effect */
 }
 
-h6{
-	font-size:0.8125rem;
-	font-weight:400;
-	line-height:1em;
-	color:#B5B5B5;
-	text-align:center;
-	letter-spacing: 0.03125rem;
-	padding-top: 0.3125rem;
-	
+/* Typography & Terminal Elements */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
 }
 
-
-
-h7{
-	font-size:0.875rem;
-	font-weight:400;
-	letter-spacing: 0.0625rem;
-	color:#000;
-	letter-spacing: 0.03125rem;
-	text-align:center;
-	line-height:1.6em;
-	
+.prompt {
+    color: var(--accent-color);
+    margin-right: 10px;
 }
 
-
-/* ==================================================
-   Margin Bottom Sets
-================================================== */
-
-.margin-0{
-	margin-bottom:0 !important;
+.prompt::before {
+    content: "guest@nerdynikhil:~$ ";
 }
 
-
-/* ==================================================
-   Header
-================================================== */
-
-header {
-	background:transparent;
-	position: relative;
-	width: 100%;
-	height: 3.75rem;
-	z-index: 1001;
-	padding-top: 0.9375rem;
-	padding-bottom: 0.9375rem;
-	flex-shrink: 0;
+/* Header */
+.site-header {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 40px;
 }
 
-header #logo a {
-	color: #000;
-	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 1.25rem;
-	font-weight: 500;
-	line-height: 3.75rem;
-	letter-spacing: 0.125rem;
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header #logo a:hover {
-	color: #777;	
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
 }
 
-
-
-/* Navigation */
-
-nav#menu {
-	float: right;
+.logo::before {
+    content: "./";
+    color: var(--text-secondary);
 }
 
-nav#menu #menu-nav {
-	margin: 0;
-	padding: 0;
-}
-
-nav#menu #menu-nav li {
-	position: relative;	
+.nav-list {
 	list-style: none;
-	float: left;
-	padding: 0 1.875rem;
-	
+    display: flex;
+    gap: 20px;
 }
 
-nav#menu #menu-nav li a {
-	color: #000;
-	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 1rem;
-	font-weight: 500;
-	line-height: 3.75rem;
-	display: block;
-	letter-spacing: 0.0125rem;
+.nav-list a {
+    font-size: 0.9rem;
+    border: none;
 }
 
-nav#menu #menu-nav li:last-child {
-	padding-right: 0;
+.nav-list a::before {
+    content: "[";
+    color: var(--text-secondary);
+    margin-right: 5px;
 }
 
-nav#menu #menu-nav li a:hover {
-	color: #777;
+.nav-list a::after {
+    content: "]";
+    color: var(--text-secondary);
+    margin-left: 5px;
 }
 
-/* ==================================================
-   Intro Box
-================================================== */
-
-#intro-box {
-	position: relative;
-	background:transparent;
-	padding: 1.25rem 0 1.5625rem;
-	text-align:center;
-	flex-shrink: 0;
-	z-index: 1;
+.nav-list a:hover::before,
+.nav-list a:hover::after {
+    color: var(--accent-color);
 }
 
-#intro-box .container {
+/* Intro Section */
+.section-intro {
+    padding: 40px 0;
+    text-align: left; /* CLI is usually left-aligned */
+}
+
+.intro-content {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+    flex-direction: row; /* Side by side for CLI look usually looks better, but stacking is fine */
+    align-items: flex-start;
+    gap: 40px;
 }
 
-#intro-box .row {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-#intro-box .span12 {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-#intro-box h3 {
-	color: #000;
-	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 1.5rem;
-    font-weight: 400;
-	line-height: 1.4;
-	letter-spacing: 0.03125rem;
-	text-align: center;
-	margin: 0 0 0.625rem 0;
-}
-
-.main-heading {
-	position: relative;
-	display: inline-block;
-}
-
-.heading-line {
-	display: block;
-	font-weight: 700;
-	font-size: 2.5rem;
-	letter-spacing: -0.02em;
-	color: #000;
-	text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-}
-
-.decorative-line-white {
-	position: absolute;
-	bottom: -0.5rem;
-	left: 0;
-	width: 3rem;
-	height: 0.125rem;
-	background: #000;
-	border-radius: 0.0625rem;
-}
-
-.decorative-line-pink {
-	position: absolute;
-	bottom: -0.75rem;
-	left: 3.5rem;
-	width: 2.5rem;
-	height: 0.125rem;
-	background: #ff1493;
-	border-radius: 0.0625rem;
-	animation: wave 3s ease-in-out infinite;
-}
-
-@keyframes wave {
-	0%, 100% {
-		transform: translateY(0) scaleY(1);
-		opacity: 1;
-	}
-	50% {
-		transform: translateY(-0.125rem) scaleY(1.2);
-		opacity: 0.8;
-	}
-}
-
-/* Decorative 3D Translucent Shapes */
-.decorative-shapes {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	pointer-events: none;
-	z-index: 0;
-	overflow: hidden;
-}
-
-.shape {
-	position: absolute;
-	border-radius: 50%;
-	filter: blur(3rem);
-	opacity: 0.4;
-	animation: float 20s ease-in-out infinite;
-	mix-blend-mode: multiply;
-}
-
-.shape-teal {
-	width: 35rem;
-	height: 35rem;
-	background: radial-gradient(circle at 30% 30%, rgba(0, 255, 209, 0.8), rgba(0, 204, 170, 0.6));
-	top: -10rem;
-	left: -10rem;
-	animation-delay: 0s;
-	border-radius: 60% 40% 50% 70%;
-}
-
-.shape-orange {
-	width: 40rem;
-	height: 40rem;
-	background: radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.7), rgba(255, 140, 66, 0.5));
-	top: 30%;
-	left: 50%;
-	transform: translateX(-50%);
-	animation-delay: -5s;
-	border-radius: 30% 70% 40% 60%;
-}
-
-.shape-purple {
-	width: 32rem;
-	height: 32rem;
-	background: radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.7), rgba(147, 51, 234, 0.5));
-	top: -8rem;
-	right: -8rem;
-	animation-delay: -10s;
-	border-radius: 50% 30% 60% 40%;
-}
-
-.shape-blue {
-	width: 22rem;
-	height: 22rem;
-	background: radial-gradient(circle at center, rgba(59, 130, 246, 0.8), rgba(37, 99, 235, 0.6));
-	bottom: 10%;
-	right: 5%;
-	animation-delay: -15s;
-	box-shadow: 0 0 3rem rgba(59, 130, 246, 0.4);
-	border-radius: 50%;
-}
-
-@keyframes float {
-	0%, 100% {
-		transform: translate(0, 0) rotate(0deg);
-	}
-	25% {
-		transform: translate(2rem, -2rem) rotate(5deg);
-	}
-	50% {
-		transform: translate(-1.5rem, 1.5rem) rotate(-5deg);
-	}
-	75% {
-		transform: translate(1rem, 2rem) rotate(3deg);
-	}
-}
-
-
-.intro-list {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.3125rem;
-	margin-top: 0.5rem;
-}
-
-.intro-item {
-	color: #000;
-	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	letter-spacing: 0.03125rem;
-	text-align: center;
-	line-height: 1.6;
-}
-
-#intro-box p {
-	text-align: start;
-}
-
-#intro-box .center {
-	text-align: center;
-}
-
-/* ==================================================
-   Team People / Single Team
-================================================== */
-
-/* Single Team Page */
-
-#single-team .team-img {
-	margin-bottom: 1.875rem;	
-}
-
-#single-team .team-img img {
-	width: 100%;
-}
-
-
-/* ==================================================
-   Portfolio
-================================================== */
-
-#portfolio img {
-	width: 100%;	
-}
-
-#projects {
-	margin: 0;
-	padding: 0;
-}
-
-#projects li {
-	list-style: none;
-	margin-bottom: 1.875rem;
-}
-
-.item-project {
-	position: relative;
-	overflow: hidden;	
-}
-
-.item-project:hover img,
-.item-project:active img {
-	opacity:.55
-}
-
-/* ==================================================
-   Footer
-================================================== */
-
-footer {
-	position: relative;
-	background: transparent;	
-	padding: 0.9375rem 0;
-	margin-bottom: 0;
-	flex-shrink: 0;
-	z-index: 1;
-}
-
-footer .container {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-footer .row {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-/* ==================================================
-   Footer Widgets
-================================================== */
-
-footer.footer-widgets .widget {
-	margin-bottom: 0;	
-}
-
-footer.footer-widgets {
-	color: #777;
-	font-size: 20x;
-}
-
-footer.footer-widgets a {
-	color: #777;	
-}
-
-footer.footer-widgets a:hover {
-	color: #000;
+.avatar-container {
+    flex-shrink: 0;
 }
 
 .avatar {
-    width: 9.375rem;
-    height: 9.375rem;
-    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 5px; /* Square/slightly rounded for retro feel */
+    border: 2px solid var(--accent-color);
+    filter: grayscale(100%) contrast(1.2);
     object-fit: cover;
 }
 
-/* ==================================================
-   Apps Section
-================================================== */
-
-#apps-section {
-    position: relative;
-    background: transparent;
-    padding: 1.25rem 0 1.5625rem;
-    text-align: center;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
-    z-index: 1;
+.avatar:hover {
+    filter: none;
 }
 
-#apps-section .container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
+.intro-text .greeting {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
 }
 
-#apps-section .row {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.intro-text .greeting .wave {
+    display: none; /* Waves don't fit CLI well */
 }
 
-#apps-section .span12 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.intro-command {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    display: block;
+    font-size: 0.9rem;
 }
 
-#apps-section h3 {
-    margin-bottom: 1.875rem;
+.roles {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.role::before {
+    content: "> ";
+    color: var(--accent-color);
+}
+
+.separator {
+    display: none;
+}
+
+.current-focus {
+    margin-top: 20px;
+    border: 1px dashed var(--border-color);
+    padding: 10px;
+    display: inline-block;
+}
+
+/* Apps Section (Directory Listing Style) */
+.section-apps {
+    padding: 40px 0;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.section-title::before {
+    content: "ls -la ./apps/";
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    font-weight: normal;
 }
 
 .apps-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5625rem;
-    max-width: 50rem;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-.app-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #000;
-    transition: opacity 0.2s ease-in-out;
+.app-card {
+	display: flex;
+    align-items: center; /* Row layout for file listing look */
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-left: 2px solid var(--border-color);
+    transition: all 0.2s;
 }
 
-.app-item:hover {
-    opacity: 0.6;
-    color: #000;
-    text-decoration: none;
+.app-card:hover {
+    background-color: rgba(0, 255, 65, 0.05);
+    border-left: 2px solid var(--accent-color);
+    transform: translateX(5px);
 }
 
-.app-logo {
-    width: 3.75rem;
-    height: 3.75rem;
-    border-radius: 0.875rem;
+.app-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.app-card:hover .app-icon-wrapper {
+    box-shadow: none;
+    border-color: var(--accent-color);
+}
+
+.app-icon {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: 0.5rem;
     display: block;
 }
 
 .app-name {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+/* Blog Section */
+.section-blog {
+    padding: 40px 0;
+    background: transparent;
+    text-align: left;
+}
+
+.section-blog .section-title::before {
+    content: "cat ./latest_thoughts.txt";
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    font-weight: normal;
+    border-radius: 0;
+}
+
+.btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    transform: none;
+}
+
+/* Footer */
+.site-footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+    background: transparent;
+    margin-top: 40px;
+}
+
+.footer-content {
+    align-items: flex-start;
+}
+
+.footer-contact::before {
+    content: "echo ";
+    color: var(--text-secondary);
+}
+
+.footer-social {
+    margin-top: 10px;
+}
+
+.footer-social a {
+    border: none;
+}
+
+.footer-social a::before {
+    content: "<";
+    color: var(--text-secondary);
+}
+
+.footer-social a::after {
+    content: ">";
+    color: var(--text-secondary);
+}
+
+/* Typing Animation Cursor */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background-color: var(--accent-color);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Blog Page Specifics */
+.blog-list {
+    display: block; /* Stack them like log entries */
+}
+
+.blog-article-card {
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--border-color);
+    padding: 15px 0 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 0;
+}
+
+.blog-article-card:hover {
+    border-left: 3px solid var(--accent-color);
+    box-shadow: none;
+    transform: translateX(5px);
+}
+
+.blog-article-meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.blog-article-meta::before {
+    content: "[LOG]: ";
+}
+
+.article-tags {
+    margin-top: 10px;
+}
+
+.article-tag {
+    background: transparent;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    padding: 2px 8px;
     font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.03125rem;
-    color: #000;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 0;
+}
+
+.article-tag:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .intro-content {
+    flex-direction: column;
+    align-items: center;
+        text-align: center;
+    }
+    
+    .section-title {
+        text-align: center;
+    }
+    
+    .app-card {
+        justify-content: center;
+    }
 }
