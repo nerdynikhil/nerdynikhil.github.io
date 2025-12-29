@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ETA Tube</title>
+    <meta name="description" content="Privacy Policy for ETA Tube Chrome Extension - A simple, privacy-focused extension with zero tracking.">
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --radius: 0.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            border-bottom: 1px solid hsl(var(--border));
+            background: hsl(var(--background));
+        }
+
+        .header-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: hsl(var(--foreground));
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: hsl(var(--foreground));
+        }
+
+        main {
+            flex: 1;
+            padding: 4rem 1.5rem;
+        }
+
+        .privacy-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: hsl(var(--foreground));
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-info {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid hsl(var(--border));
+            padding-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem 0;
+            color: hsl(var(--foreground));
+        }
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: hsl(var(--foreground));
+        }
+
+        p, li {
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background-color: hsl(var(--secondary));
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            margin-top: 0;
+        }
+
+        .contact-info {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-info h3 {
+            color: hsl(var(--primary-foreground));
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            color: hsl(var(--primary-foreground));
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        footer {
+            border-top: 1px solid hsl(var(--border));
+            padding: 2rem 1.5rem;
+            text-align: center;
+            background: hsl(var(--background));
+        }
+
+        .footer-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    ETA Tube
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="privacy-container">
+                <a href="index.html" class="back-link">← Back to Home</a>
+
+                <h1>Privacy Policy</h1>
+                <div class="meta-info">
+                    <p>Effective Date: December 2025 • Last Updated: December 2025</p>
+                </div>
+
+                <div class="content">
+                    <p>ETA Tube ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how our Chrome browser extension ETA Tube (the "Extension") handles information when you use it.</p>
+
+                    <h2>Information We Collect</h2>
+
+                    <div class="highlight-box">
+                        <h3>The Short Answer: We Don't Collect Anything</h3>
+                        <p>ETA Tube is a completely local extension. Everything happens in your browser. Nothing is sent anywhere.</p>
+                    </div>
+
+                    <h3>Information We DO NOT Collect</h3>
+                    <ul>
+                        <li>Personal information (name, email, phone number, address)</li>
+                        <li>Browsing history or website activity</li>
+                        <li>Video viewing data or watch history</li>
+                        <li>Usage analytics, statistics, or telemetry</li>
+                        <li>Playback preferences or settings</li>
+                        <li>Any information transmitted to external servers</li>
+                        <li>Location data or device information</li>
+                        <li>Cookies or tracking identifiers</li>
+                    </ul>
+
+                    <h3>Information Stored Locally</h3>
+                    <p>ETA Tube uses Chrome's local storage API to temporarily cache calculation data:</p>
+                    <ul>
+                        <li>Current video timestamp and playback speed (to calculate ETA)</li>
+                        <li>This data is stored only in your browser's memory</li>
+                        <li>Data is cleared when you close the video or tab</li>
+                        <li>No data persists between browser sessions</li>
+                        <li>Data never leaves your device</li>
+                    </ul>
+
+                    <h2>Permissions Explained</h2>
+                    <p>ETA Tube requests the following Chrome permissions:</p>
+
+                    <h3>Storage Permission</h3>
+                    <p>Used to temporarily store calculation data in your browser's local memory. This allows the extension to track video progress and calculate the estimated completion time. All data is local and temporary.</p>
+
+                    <h3>YouTube Access</h3>
+                    <p>The extension only runs on YouTube.com pages to access video player information (current time, duration, playback speed) needed to calculate when the video will end. This data is processed locally and never transmitted anywhere.</p>
+
+                    <h2>How We Use Information</h2>
+                    <p>The locally stored data is used exclusively to:</p>
+                    <ul>
+                        <li>Calculate the estimated time your video will finish</li>
+                        <li>Update the displayed ETA as you change playback speed</li>
+                        <li>Adjust calculations when you skip forward or backward in the video</li>
+                    </ul>
+                    <p>That's it. Nothing else.</p>
+
+                    <h2>Data Storage and Security</h2>
+                    <ul>
+                        <li>All calculations happen locally in your browser</li>
+                        <li>No data is transmitted to any external servers or third parties</li>
+                        <li>The extension does not make any network requests</li>
+                        <li>All data is automatically cleared when you close the video</li>
+                        <li>Uninstalling the extension removes all traces of data</li>
+                    </ul>
+
+                    <h2>Third-Party Services</h2>
+                    <p>ETA Tube does not integrate with any third-party services, analytics platforms, advertising networks, or data collection tools. The extension operates in complete isolation and does not communicate with any external servers.</p>
+
+                    <h2>Changes to This Policy</h2>
+                    <p>If we make any changes to this privacy policy, we'll update the "Last Updated" date at the top of this page. Since the extension doesn't collect data, any changes would likely be clarifications rather than fundamental shifts in how we handle information.</p>
+
+                    <div class="contact-info">
+                        <h3>Questions?</h3>
+                        <p>If you have any questions about this Privacy Policy or ETA Tube, feel free to reach out:</p>
+                        <p><strong>Email:</strong> <a href="mailto:nikhilbarik@icloud.com">nikhilbarik@icloud.com</a></p>
+                        <p><strong>GitHub:</strong> <a href="https://github.com/nerdynikhil/TubeETA" target="_blank">github.com/nerdynikhil/TubeETA</a></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 ETA Tube. Built by nerdynikhil.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
