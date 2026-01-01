@@ -1,0 +1,14 @@
+# robots.txt for https://nerdynikhil.github.io/
+
+User-agent: *
+Allow: /
+
+# Disallow private or sensitive directories
+Disallow: /assets/js/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://nerdynikhil.github.io/sitemap.xml
+
+# Crawl delay (optional - helps prevent overloading)
+# Crawl-delay: 1
