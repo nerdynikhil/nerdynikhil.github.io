@@ -1,6 +1,1 @@
-<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="200" height="60" rx="12" fill="black"/>
-<text x="20" y="20" fill="white" font-family="SF Pro Text, -apple-system, sans-serif" font-size="10" font-weight="400">Download on the</text>
-<text x="20" y="40" fill="white" font-family="SF Pro Display, -apple-system, sans-serif" font-size="20" font-weight="500">App Store</text>
-<path d="M165 15L170 20L165 25M155 15L150 20L155 25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" fill="none" viewBox="0 0 200 60"><rect width="200" height="60" fill="#000" rx="12"/><text x="20" y="20" fill="#fff" font-family="SF Pro Text, -apple-system, sans-serif" font-size="10" font-weight="400">Download on the</text><text x="20" y="40" fill="#fff" font-family="SF Pro Display, -apple-system, sans-serif" font-size="20" font-weight="500">App Store</text><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M165 15L170 20L165 25M155 15L150 20L155 25"/></svg>
