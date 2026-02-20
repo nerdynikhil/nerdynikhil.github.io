@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - WDTG</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #6366F1;
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin-top: 36px;
+            margin-bottom: 12px;
+            color: #444;
+        }
+        .back-link {
+            color: #6366F1;
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 17px;
+        }
+        .contact-card {
+            background: #f5f5ff;
+            border: 1px solid #e0e0ff;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .contact-card a {
+            color: #6366F1;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        details {
+            border-bottom: 1px solid #eee;
+            padding: 14px 0;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #1a1a1a;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: "+";
+            font-size: 20px;
+            color: #6366F1;
+        }
+        details[open] summary::after {
+            content: "−";
+        }
+        details p {
+            margin: 12px 0 4px 0;
+            color: #555;
+        }
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #999;
+        }
+        footer a {
+            color: #6366F1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a class="back-link" href="index.html">← Back to WDTG</a>
+
+    <h1>Support</h1>
+    <p class="subtitle">Need help with Where Did The Time Go? We're here for you.</p>
+
+    <div class="contact-card">
+        <strong>Email Support</strong><br>
+        For questions, feedback, or bug reports, reach out directly:<br><br>
+        <a href="mailto:hello@nerdynikhil.com?subject=WDTG%20Support">hello@nerdynikhil.com</a><br><br>
+        We typically respond within 1–2 business days.
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+        <summary>How do I log a time entry?</summary>
+        <p>Tap the <strong>Add</strong> tab (+ icon) at the bottom of the screen. Select a category, set the duration using hours and minutes, and tap Save.</p>
+    </details>
+
+    <details>
+        <summary>Where is my data stored?</summary>
+        <p>All your time entries and categories are stored locally on your device using SwiftData. No data is sent to external servers. Your data stays private.</p>
+    </details>
+
+    <details>
+        <summary>Can I edit or delete a time entry?</summary>
+        <p>Yes. Go to the <strong>History</strong> tab, find the entry you want to change, and swipe left to delete or tap to edit.</p>
+    </details>
+
+    <details>
+        <summary>What is the backfill feature?</summary>
+        <p>After logging at least one day of data, WDTG can estimate and fill in historical days based on your averages. This helps populate the Year Dots view. Backfilled entries are marked as estimated and can be removed at any time from Settings.</p>
+    </details>
+
+    <details>
+        <summary>How do I create a custom category?</summary>
+        <p>Go to the <strong>Categories</strong> tab and tap the + button in the top right. Give your category a name, pick a color, and choose an icon.</p>
+    </details>
+
+    <details>
+        <summary>The app crashed or isn't working as expected.</summary>
+        <p>Try force-quitting the app and reopening it. If the problem persists, please email us at <a href="mailto:hello@nerdynikhil.com?subject=WDTG%20Bug%20Report">hello@nerdynikhil.com</a> with a description of what happened and your iOS version.</p>
+    </details>
+
+    <details>
+        <summary>How do I delete all my data?</summary>
+        <p>Go to <strong>Settings → Delete All Data</strong>. This permanently removes all time entries and resets categories to defaults.</p>
+    </details>
+
+    <footer>
+        <p>WDTG &mdash; Where Did The Time Go? &nbsp;|&nbsp;
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="terms.html">Terms of Service</a></p>
+        <p>&copy; 2025 Nikhil Barik</p>
+    </footer>
+</body>
+</html>
