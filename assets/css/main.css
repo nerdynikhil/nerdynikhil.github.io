@@ -314,6 +314,21 @@ h1, h2, h3, h4, h5, h6 {
     gap: 20px;
 }
 
+/* Developer Tools Section */
+.section-devtools {
+    padding: 40px 0;
+}
+
+.section-devtools .section-title::before {
+    content: "npx skills find ./";
+}
+
+.devtools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
 /* Blog Section */
 .section-blog {
     padding: 40px 0;
