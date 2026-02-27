@@ -314,6 +314,21 @@ h1, h2, h3, h4, h5, h6 {
     gap: 20px;
 }
 
+/* VS Code Extensions Section */
+.section-vscode {
+    padding: 40px 0;
+}
+
+.section-vscode .section-title::before {
+    content: "code --list-extensions";
+}
+
+.vscode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
 /* Developer Tools Section */
 .section-devtools {
     padding: 40px 0;
