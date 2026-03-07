@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>claude-narrator — Real-time narration for Claude Code</title>
+    <meta name="description" content="A Claude Code plugin that narrates what Claude is doing in real-time with emoji console output and optional text-to-speech.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nerdynikhil.me/claude-narrator/">
+    <meta property="og:title" content="claude-narrator — Real-time narration for Claude Code">
+    <meta property="og:description" content="Hear and see what Claude Code is doing as it works. Hooks into tool use, session events, and more.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@nerdynikhil">
+    <meta name="twitter:title" content="claude-narrator — Real-time narration for Claude Code">
+    <meta name="twitter:description" content="Hear and see what Claude Code is doing as it works. Hooks into tool use, session events, and more.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TFC52PTNS1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TFC52PTNS1');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">nerdynikhil</a>
+            <nav class="site-nav">
+                <a href="https://github.com/nerdynikhil/claude-narrator" target="_blank" class="nav-link">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="badge">Claude Code Plugin</div>
+                <h1>claude-narrator</h1>
+                <p class="tagline">Hear and see what Claude Code is doing — in real time.</p>
+
+                <div class="terminal">
+                    <div class="terminal-bar">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="terminal-title">claude-narrator</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="line" data-delay="0">
+                            <span class="prompt">$</span> claude
+                        </div>
+                        <div class="line output" data-delay="800">
+                            <span class="emoji">🚀</span> Claude session started. Let's go.
+                        </div>
+                        <div class="line output" data-delay="1800">
+                            <span class="emoji">🔊</span> About to read package.json
+                        </div>
+                        <div class="line output" data-delay="2600">
+                            <span class="emoji">✅</span> Done reading package.json
+                        </div>
+                        <div class="line output" data-delay="3400">
+                            <span class="emoji">🔊</span> About to edit index.ts
+                        </div>
+                        <div class="line output" data-delay="4200">
+                            <span class="emoji">✅</span> Edited index.ts
+                        </div>
+                        <div class="line output" data-delay="5000">
+                            <span class="emoji">🔊</span> About to run command: npm test
+                        </div>
+                        <div class="line output" data-delay="6000">
+                            <span class="emoji">✅</span> Command finished
+                        </div>
+                        <div class="line output" data-delay="7000">
+                            <span class="emoji">🏁</span> Task complete, awaiting your input
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="install-section">
+            <div class="container">
+                <h2>Install</h2>
+
+                <div class="install-option">
+                    <h3>Plugin marketplace</h3>
+                    <div class="code-block">
+                        <code>/plugin marketplace add nerdynikhil/claude-narrator</code>
+                        <button class="copy-btn" data-text="/plugin marketplace add nerdynikhil/claude-narrator">copy</button>
+                    </div>
+                    <div class="code-block">
+                        <code>/plugin install claude-narrator@nerdynikhil-claude-narrator</code>
+                        <button class="copy-btn" data-text="/plugin install claude-narrator@nerdynikhil-claude-narrator">copy</button>
+                    </div>
+                </div>
+
+                <div class="install-option">
+                    <h3>Or clone manually</h3>
+                    <div class="code-block">
+                        <code>git clone https://github.com/nerdynikhil/claude-narrator.git && cd claude-narrator && ./install.sh</code>
+                        <button class="copy-btn" data-text="git clone https://github.com/nerdynikhil/claude-narrator.git && cd claude-narrator && ./install.sh">copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hooks-section">
+            <div class="container">
+                <h2>Four hooks, full coverage</h2>
+                <div class="hooks-grid">
+                    <div class="hook-card">
+                        <span class="hook-emoji">🚀</span>
+                        <h3>SessionStart</h3>
+                        <p>Announces startup, resume, clear, and compact events</p>
+                    </div>
+                    <div class="hook-card">
+                        <span class="hook-emoji">🔊</span>
+                        <h3>PreToolUse</h3>
+                        <p>Context-aware tool announcements — filenames, commands, search patterns</p>
+                    </div>
+                    <div class="hook-card">
+                        <span class="hook-emoji">✅</span>
+                        <h3>PostToolUse</h3>
+                        <p>Confirms what just happened after each tool finishes</p>
+                    </div>
+                    <div class="hook-card">
+                        <span class="hook-emoji">🏁</span>
+                        <h3>Stop</h3>
+                        <p>Notifies when Claude is done and waiting for your next prompt</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li><span class="check">&#10003;</span> Text-to-speech via <code>say</code> (macOS) or <code>espeak</code> (Linux)</li>
+                    <li><span class="check">&#10003;</span> Configurable voice with <code>NARRATOR_VOICE</code> env var</li>
+                    <li><span class="check">&#10003;</span> Disable TTS with <code>NARRATOR_TTS=0</code> — emoji output stays</li>
+                    <li><span class="check">&#10003;</span> Optional timestamped logging to file</li>
+                    <li><span class="check">&#10003;</span> All output to stderr — never interferes with Claude</li>
+                    <li><span class="check">&#10003;</span> TTS runs in background — never blocks tool execution</li>
+                    <li><span class="check">&#10003;</span> Graceful fallback when no TTS engine is available</li>
+                    <li><span class="check">&#10003;</span> Clean uninstall with <code>./install.sh --uninstall</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <a href="https://github.com/nerdynikhil/claude-narrator" target="_blank" class="cta-btn">View on GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Built by <a href="https://nerdynikhil.me">nerdynikhil</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Animate terminal lines
+        document.addEventListener('DOMContentLoaded', () => {
+            const lines = document.querySelectorAll('.terminal-body .line');
+            lines.forEach(line => {
+                const delay = parseInt(line.dataset.delay, 10);
+                setTimeout(() => {
+                    line.classList.add('visible');
+                }, delay);
+            });
+        });
+
+        // Copy buttons
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                navigator.clipboard.writeText(btn.dataset.text);
+                btn.textContent = 'copied!';
+                setTimeout(() => { btn.textContent = 'copy'; }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
