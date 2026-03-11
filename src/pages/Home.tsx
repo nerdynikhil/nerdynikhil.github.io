@@ -26,7 +26,7 @@ const saasProjects = [
   },
   {
     name: 'EasyYClaw',
-    url: 'https://easyyclaw.cloud/',
+    url: 'https://easyclaw.cloud/',
     description: 'Monitor Y Combinator companies & jobs effortlessly.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -181,14 +181,12 @@ export default function Home() {
             </p>
             <p className="text-[var(--text-secondary)] text-sm">
               Currently working on:{' '}
-              <a
-                href="https://mvpfy.com"
+                Building <a
+                href="https://theaibuildrs.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--accent-color)]"
-              >
-                Building MVPFy
-              </a>
+              >TheAiBuildrs</a>
             </p>
           </div>
         </section>
