@@ -1,5 +1,7 @@
 import { useState } from "react"
+import React from "react"
 import { useNavigate } from "react-router-dom"
+import { useDesktop } from "./DesktopContext"
 
 // --- Types ---
 
@@ -11,11 +13,7 @@ type CategoryId =
   | "vscode-claude"
   | "blog"
 
-interface SidebarItem {
-  id: CategoryId
-  label: string
-  icon: string
-}
+type ViewMode = "grid" | "list"
 
 interface PortfolioItem {
   name: string
@@ -26,15 +24,20 @@ interface PortfolioItem {
   target: string
 }
 
-// --- Sidebar categories ---
+// --- Sidebar structure ---
 
-const SIDEBAR_ITEMS: SidebarItem[] = [
-  { id: "all", label: "All Projects", icon: "\uD83D\uDCC1" },
-  { id: "saas", label: "SaaS Products", icon: "\uD83D\uDE80" },
-  { id: "ios", label: "iOS Apps", icon: "\uD83D\uDCF1" },
-  { id: "chrome", label: "Chrome Extensions", icon: "\uD83E\uDDE9" },
-  { id: "vscode-claude", label: "VS Code & Claude", icon: "\uD83D\uDD27" },
-  { id: "blog", label: "Blog", icon: "\uD83D\uDCDD" },
+const FAVOURITES: { id: CategoryId; label: string }[] = [
+  { id: "saas", label: "SaaS Products" },
+  { id: "ios", label: "iOS Apps" },
+  { id: "chrome", label: "Chrome Extensions" },
+  { id: "vscode-claude", label: "VS Code & Claude" },
+  { id: "blog", label: "Blog" },
+]
+
+const LOCATIONS: { label: string; href: string; icon: "github" | "globe" | "person" }[] = [
+  { label: "GitHub", href: "https://github.com/nerdynikhil", icon: "github" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/nerdynikhil", icon: "person" },
+  { label: "nerdynikhil.github.io", href: "/", icon: "globe" },
 ]
 
 // --- Portfolio items ---
@@ -58,12 +61,12 @@ const ITEMS: PortfolioItem[] = [
     target: "https://easyn8n.online/",
   },
   {
-    name: "EasyYClaw",
+    name: "EasyClaw",
     description: "Monitor YC companies & jobs",
     category: "saas",
     icon: "\uD83D\uDD0D",
     action: "external",
-    target: "https://easyclaw.cloud/",
+    target: "https://easyyclaw.cloud/",
   },
   {
     name: "PetrolheadX",
@@ -266,6 +269,17 @@ const ITEMS: PortfolioItem[] = [
   },
 ]
 
+// --- Category → kind label ---
+
+const KIND_LABELS: Record<CategoryId, string> = {
+  all: "Project",
+  saas: "SaaS Product",
+  ios: "iOS App",
+  chrome: "Chrome Extension",
+  "vscode-claude": "Extension",
+  blog: "Blog Post",
+}
+
 // --- Emoji background colors for non-image icons ---
 
 const EMOJI_BG_COLORS: Record<string, string> = {
@@ -286,7 +300,101 @@ const EMOJI_BG_COLORS: Record<string, string> = {
   "\uD83C\uDF71": "bg-emerald-500/20",
 }
 
-// --- Sidebar component (exported for Window to use as sidebar prop) ---
+// --- Sidebar SVG icons ---
+
+function IcoRecents({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="8" cy="8" r="6" />
+      <polyline points="8,4.5 8,8 10.5,10" />
+    </svg>
+  )
+}
+
+function IcoFolder({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 13" fill="currentColor" aria-hidden>
+      <path d="M0 3.5A2.5 2.5 0 012.5 1h2.25c.464 0 .91.184 1.238.513L7.12 2.633A.5.5 0 007.474 2.8H13.5A2.5 2.5 0 0116 5.3v5.2A2.5 2.5 0 0113.5 13h-11A2.5 2.5 0 010 10.5V3.5z" />
+    </svg>
+  )
+}
+
+function IcoPhone({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <rect x="4" y="1" width="8" height="14" rx="2" />
+      <circle cx="8" cy="12.5" r="0.7" fill="currentColor" />
+    </svg>
+  )
+}
+
+function IcoPuzzle({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M6 2h4v2.5c.6-.4 1.5-.4 1.5.8S10.6 7 10 6.5V9H7.5c.4-.6.4-1.5-.8-1.5S5 8.4 5.5 9H3V6c-.6.4-1.5.4-1.5-.8S2.4 3.5 3 4V2h3z" />
+    </svg>
+  )
+}
+
+function IcoCode({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <polyline points="5,4 1.5,8 5,12" />
+      <polyline points="11,4 14.5,8 11,12" />
+      <line x1="9.5" y1="3" x2="6.5" y2="13" />
+    </svg>
+  )
+}
+
+function IcoDoc({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 14 16" fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M2 1h7l3 3v11H2V1z" />
+      <polyline points="9,1 9,4 12,4" />
+      <line x1="4" y1="7" x2="10" y2="7" />
+      <line x1="4" y1="10" x2="8" y2="10" />
+    </svg>
+  )
+}
+
+function IcoGlobe({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.3} strokeLinecap="round" aria-hidden>
+      <circle cx="8" cy="8" r="6" />
+      <ellipse cx="8" cy="8" rx="2.5" ry="6" />
+      <line x1="2" y1="8" x2="14" y2="8" />
+    </svg>
+  )
+}
+
+function IcoPerson({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" aria-hidden>
+      <circle cx="8" cy="5.5" r="2.5" />
+      <path d="M2.5 14.5c0-2.761 2.462-5 5.5-5s5.5 2.239 5.5 5" />
+    </svg>
+  )
+}
+
+function IcoGitHub({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="currentColor" aria-hidden>
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+    </svg>
+  )
+}
+
+function IcoTrash({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <line x1="3" y1="4" x2="13" y2="4" />
+      <path d="M5 4V2.5A.5.5 0 015.5 2h5a.5.5 0 01.5.5V4" />
+      <path d="M4 4l.667 9.333A1 1 0 005.662 14h4.676a1 1 0 00.995-.667L12 4" />
+    </svg>
+  )
+}
+
+// --- Sidebar component ---
 
 export function FinderSidebar({
   selectedCategory,
@@ -295,27 +403,97 @@ export function FinderSidebar({
   selectedCategory: CategoryId
   onSelectCategory: (id: CategoryId) => void
 }) {
-  return (
-    <nav className="flex flex-col py-2 text-[13px]">
-      <div className="px-4 py-1 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-500">
-        Favorites
+  function rowClass(active: boolean) {
+    return [
+      "flex items-center gap-2 w-[calc(100%-8px)] mx-1 px-2 py-[3px] rounded-md",
+      "text-left cursor-default transition-colors duration-100 text-[13px]",
+      active
+        ? "bg-blue-500 text-white"
+        : "text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5",
+    ].join(" ")
+  }
+
+  function iconClass(active: boolean) {
+    return ["w-4 h-4 flex-shrink-0", active ? "text-white" : ""].join(" ")
+  }
+
+  function sectionHeader(label: string) {
+    return (
+      <div className="px-3 pt-3 pb-0.5 select-none">
+        <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-500">
+          {label}
+        </span>
       </div>
-      {SIDEBAR_ITEMS.map((item) => (
+    )
+  }
+
+  const favIcons: Record<string, (p: { className?: string }) => React.ReactElement> = {
+    saas: IcoFolder,
+    ios: IcoPhone,
+    chrome: IcoPuzzle,
+    "vscode-claude": IcoCode,
+    blog: IcoDoc,
+  }
+
+  return (
+    <nav className="flex flex-col py-1 h-full overflow-y-auto">
+      {/* Top item — no section header, like macOS "Recents" */}
+      <div className="pt-1 pb-1">
         <button
-          key={item.id}
           type="button"
-          onClick={() => onSelectCategory(item.id)}
-          className={[
-            "flex items-center gap-2 px-4 py-1.5 text-left transition-colors cursor-default",
-            selectedCategory === item.id
-              ? "bg-blue-500/90 text-white rounded-md mx-2 px-2"
-              : "text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5",
-          ].join(" ")}
+          onClick={() => onSelectCategory("all")}
+          className={rowClass(selectedCategory === "all")}
         >
-          <span className="text-sm leading-none">{item.icon}</span>
-          <span className="truncate">{item.label}</span>
+          <IcoRecents className={[iconClass(selectedCategory === "all"), selectedCategory === "all" ? "" : "text-blue-500 dark:text-blue-400"].join(" ")} />
+          <span className="truncate">Recents</span>
         </button>
-      ))}
+      </div>
+
+      {/* Favourites */}
+      {sectionHeader("Favourites")}
+      <div className="pb-1">
+        {FAVOURITES.map((item) => {
+          const active = selectedCategory === item.id
+          const Icon = favIcons[item.id] ?? IcoFolder
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => onSelectCategory(item.id)}
+              className={rowClass(active)}
+            >
+              <Icon className={[iconClass(active), active ? "" : "text-blue-500 dark:text-blue-400"].join(" ")} />
+              <span className="truncate">{item.label}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Locations */}
+      {sectionHeader("Locations")}
+      <div className="pb-1">
+        {LOCATIONS.map((loc) => {
+          const Icon = loc.icon === "github" ? IcoGitHub : loc.icon === "person" ? IcoPerson : IcoGlobe
+          return (
+            <button
+              key={loc.label}
+              type="button"
+              onClick={() => window.open(loc.href, "_blank")}
+              className={rowClass(false)}
+            >
+              <Icon className="w-4 h-4 flex-shrink-0 text-gray-500 dark:text-gray-400" />
+              <span className="truncate">{loc.label}</span>
+            </button>
+          )
+        })}
+        <button type="button" className={rowClass(false)} disabled>
+          <IcoTrash className="w-4 h-4 flex-shrink-0 text-gray-500 dark:text-gray-400" />
+          <span className="truncate text-gray-600 dark:text-gray-400">Bin</span>
+        </button>
+      </div>
+
+      {/* Tags */}
+      {sectionHeader("Tags")}
     </nav>
   )
 }
@@ -369,13 +547,68 @@ function FinderItem({
   )
 }
 
+// --- List view row ---
+
+function FinderListRow({
+  item,
+  onActivate,
+}: {
+  item: PortfolioItem
+  onActivate: () => void
+}) {
+  const isImage = typeof item.icon === "object" && item.icon.type === "image"
+
+  return (
+    <button
+      type="button"
+      onClick={onActivate}
+      className={[
+        "w-full flex items-center px-3 py-1 text-left cursor-default group",
+        "border-b border-gray-100 dark:border-white/5",
+        "hover:bg-blue-500 focus:outline-none focus-visible:bg-blue-500",
+      ].join(" ")}
+    >
+      {/* Icon */}
+      <div className="w-5 h-5 flex-shrink-0 mr-2.5">
+        {isImage ? (
+          <img
+            src={(item.icon as { type: "image"; src: string }).src}
+            alt={item.name}
+            className="w-full h-full rounded object-cover"
+            draggable={false}
+          />
+        ) : (
+          <span className="text-sm leading-none">{item.icon as string}</span>
+        )}
+      </div>
+
+      {/* Name */}
+      <span className="flex-1 text-[13px] text-gray-800 dark:text-gray-200 group-hover:text-white truncate">
+        {item.name}
+      </span>
+
+      {/* Description */}
+      <span className="w-52 text-[12px] text-gray-500 dark:text-gray-400 group-hover:text-white/80 truncate mr-4 hidden sm:block">
+        {item.description}
+      </span>
+
+      {/* Kind */}
+      <span className="w-36 text-[12px] text-gray-500 dark:text-gray-400 group-hover:text-white/80 truncate">
+        {KIND_LABELS[item.category]}
+      </span>
+    </button>
+  )
+}
+
 // --- Main content component ---
 // Self-contained Finder layout with sidebar + main content.
 // The FinderSidebar is also exported separately if Window wants to pass it as a sidebar prop.
 
 export default function FinderContent() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>("all")
+  const [viewMode, setViewMode] = useState<ViewMode>("list")
   const navigate = useNavigate()
+  const { openWindow, navigateSafari } = useDesktop()
 
   const filteredItems =
     selectedCategory === "all"
@@ -386,7 +619,8 @@ export default function FinderContent() {
     if (item.action === "navigate") {
       navigate(item.target)
     } else {
-      window.open(item.target, "_blank")
+      navigateSafari({ url: item.target, title: item.name, description: item.description })
+      openWindow("safari")
     }
   }
 
@@ -450,58 +684,98 @@ export default function FinderContent() {
 
           {/* Title */}
           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            {SIDEBAR_ITEMS.find((s) => s.id === selectedCategory)?.label ||
-              "All Projects"}
+            {selectedCategory === "all"
+              ? "Recents"
+              : FAVOURITES.find((s) => s.id === selectedCategory)?.label ||
+                "All Projects"}
           </span>
 
           <div className="flex-1" />
 
-          {/* View toggle icons (decorative) */}
+          {/* View toggle icons */}
           <div className="flex gap-0.5">
-            <div className="w-7 h-7 rounded flex items-center justify-center bg-gray-200/70 dark:bg-white/10">
-              <svg
-                className="w-4 h-4 text-gray-600 dark:text-gray-300"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
+            <button
+              type="button"
+              onClick={() => setViewMode("grid")}
+              className={[
+                "w-7 h-7 rounded flex items-center justify-center",
+                viewMode === "grid"
+                  ? "bg-gray-200/70 dark:bg-white/10 text-gray-700 dark:text-gray-200"
+                  : "text-gray-400 dark:text-gray-500 hover:bg-gray-200/50 dark:hover:bg-white/5",
+              ].join(" ")}
+              aria-label="Grid view"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
                 <rect x="1" y="1" width="6" height="6" rx="1" />
                 <rect x="9" y="1" width="6" height="6" rx="1" />
                 <rect x="1" y="9" width="6" height="6" rx="1" />
                 <rect x="9" y="9" width="6" height="6" rx="1" />
               </svg>
-            </div>
-            <div className="w-7 h-7 rounded flex items-center justify-center text-gray-400 dark:text-gray-500">
-              <svg
-                className="w-4 h-4"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode("list")}
+              className={[
+                "w-7 h-7 rounded flex items-center justify-center",
+                viewMode === "list"
+                  ? "bg-gray-200/70 dark:bg-white/10 text-gray-700 dark:text-gray-200"
+                  : "text-gray-400 dark:text-gray-500 hover:bg-gray-200/50 dark:hover:bg-white/5",
+              ].join(" ")}
+              aria-label="List view"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
                 <rect x="1" y="2" width="14" height="2" rx="0.5" />
                 <rect x="1" y="7" width="14" height="2" rx="0.5" />
                 <rect x="1" y="12" width="14" height="2" rx="0.5" />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
 
-        {/* Grid content */}
-        <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900/50">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-6">
+        {/* Content area */}
+        {viewMode === "list" ? (
+          <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900/50">
+            {/* Column headers */}
+            <div className="sticky top-0 flex items-center px-3 py-1 border-b border-gray-200 dark:border-white/10 bg-gray-50/90 dark:bg-gray-800/90 text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide select-none">
+              <div className="w-5 mr-2.5" />
+              <span className="flex-1">Name</span>
+              <span className="w-52 mr-4 hidden sm:block">Description</span>
+              <span className="w-36">Kind</span>
+            </div>
+
             {filteredItems.map((item) => (
-              <FinderItem
+              <FinderListRow
                 key={item.name}
                 item={item}
                 onActivate={() => handleItemActivate(item)}
               />
             ))}
-          </div>
 
-          {filteredItems.length === 0 && (
-            <div className="flex items-center justify-center h-40 text-sm text-gray-400 dark:text-gray-500">
-              No items in this category
+            {filteredItems.length === 0 && (
+              <div className="flex items-center justify-center h-40 text-sm text-gray-400 dark:text-gray-500">
+                No items in this category
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900/50">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-6">
+              {filteredItems.map((item) => (
+                <FinderItem
+                  key={item.name}
+                  item={item}
+                  onActivate={() => handleItemActivate(item)}
+                />
+              ))}
             </div>
-          )}
-        </div>
+
+            {filteredItems.length === 0 && (
+              <div className="flex items-center justify-center h-40 text-sm text-gray-400 dark:text-gray-500">
+                No items in this category
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Status bar */}
         <div className="flex items-center px-4 py-1.5 border-t border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/3 text-[11px] text-gray-500 dark:text-gray-500">

@@ -256,7 +256,10 @@ export default function Dock() {
         <img
           src={item.icon.src}
           alt={item.label}
-          className="w-full h-full rounded-xl object-cover"
+          className={[
+            "w-full h-full rounded-xl object-cover",
+            item.id === "phone" ? "scale-90" : "",
+          ].join(" ")}
           draggable={false}
         />
       )

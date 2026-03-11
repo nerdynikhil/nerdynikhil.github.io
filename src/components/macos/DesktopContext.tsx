@@ -23,6 +23,7 @@ export interface DesktopState {
   windows: WindowState[]
   activeWindowId: string | null
   isDarkMode: boolean
+  safariUrl: { url: string; title: string; description: string } | null
   toggleDarkMode: () => void
   openWindow: (id: string) => void
   closeWindow: (id: string) => void
@@ -33,6 +34,7 @@ export interface DesktopState {
     id: string,
     position: { x: number; y: number },
   ) => void
+  navigateSafari: (site: { url: string; title: string; description: string } | null) => void
 }
 
 const DEFAULT_WINDOWS: WindowState[] = [
@@ -84,6 +86,11 @@ export function DesktopProvider({ children }: { children: ReactNode }) {
   const [windows, setWindows] = useState<WindowState[]>(DEFAULT_WINDOWS)
   const [activeWindowId, setActiveWindowId] = useState<string | null>("finder")
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const [safariUrl, setSafariUrl] = useState<{ url: string; title: string; description: string } | null>(null)
+
+  const navigateSafari = useCallback((site: { url: string; title: string; description: string } | null) => {
+    setSafariUrl(site)
+  }, [])
 
   const toggleDarkMode = useCallback(() => {
     setIsDarkMode((prev) => !prev)
@@ -154,6 +161,7 @@ export function DesktopProvider({ children }: { children: ReactNode }) {
         windows,
         activeWindowId,
         isDarkMode,
+        safariUrl,
         toggleDarkMode,
         openWindow,
         closeWindow,
@@ -161,6 +169,7 @@ export function DesktopProvider({ children }: { children: ReactNode }) {
         toggleFullscreen,
         focusWindow,
         updateWindowPosition,
+        navigateSafari,
       }}
     >
       {children}
