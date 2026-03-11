@@ -44,9 +44,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 function Loading() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#0c0c0c', color: '#00ff41', fontFamily: 'monospace' }}>
-      Loading...
-    </div>
+    <div style={{ minHeight: '100vh', background: '#0c0c0c' }} />
   )
 }
 

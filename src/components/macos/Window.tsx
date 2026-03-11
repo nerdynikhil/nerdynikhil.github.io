@@ -234,7 +234,7 @@ export default function Window({ id, children, sidebar }: WindowProps) {
           >
             <TrafficButton
               color={isFocused ? "#FF5F57" : "#CDCDCD"}
-              hoverSymbol="\u00D7"
+              icon="close"
               showSymbol={trafficHover && isFocused}
               onClick={(e) => {
                 e.stopPropagation()
@@ -243,7 +243,7 @@ export default function Window({ id, children, sidebar }: WindowProps) {
             />
             <TrafficButton
               color={isFocused ? "#FFBD2E" : "#CDCDCD"}
-              hoverSymbol="\u2212"
+              icon="minimize"
               showSymbol={trafficHover && isFocused}
               onClick={(e) => {
                 e.stopPropagation()
@@ -252,7 +252,7 @@ export default function Window({ id, children, sidebar }: WindowProps) {
             />
             <TrafficButton
               color={isFocused ? "#28C840" : "#CDCDCD"}
-              hoverSymbol="\u2197"
+              icon="fullscreen"
               showSymbol={trafficHover && isFocused}
               onClick={(e) => {
                 e.stopPropagation()
@@ -297,14 +297,14 @@ export default function Window({ id, children, sidebar }: WindowProps) {
 
 interface TrafficButtonProps {
   color: string
-  hoverSymbol: string
+  icon: "close" | "minimize" | "fullscreen"
   showSymbol: boolean
   onClick: (e: ReactMouseEvent<HTMLButtonElement>) => void
 }
 
 function TrafficButton({
   color,
-  hoverSymbol,
+  icon,
   showSymbol,
   onClick,
 }: TrafficButtonProps) {
@@ -312,13 +312,28 @@ function TrafficButton({
     <button
       data-traffic-light
       onClick={onClick}
-      className="flex h-3 w-3 items-center justify-center rounded-full text-[9px] font-bold leading-none text-black/0 transition-colors hover:brightness-90 focus:outline-none"
-      style={{
-        backgroundColor: color,
-        color: showSymbol ? "rgba(0,0,0,0.55)" : "transparent",
-      }}
+      className="flex h-3 w-3 items-center justify-center overflow-hidden rounded-full transition-colors hover:brightness-90 focus:outline-none"
+      style={{ backgroundColor: color }}
     >
-      {hoverSymbol}
+      {showSymbol && (
+        <svg className="h-[6px] w-[6px]" viewBox="0 0 10 10" fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="2" strokeLinecap="round">
+          {icon === "close" && (
+            <>
+              <line x1="2" y1="2" x2="8" y2="8" />
+              <line x1="8" y1="2" x2="2" y2="8" />
+            </>
+          )}
+          {icon === "minimize" && (
+            <line x1="1" y1="5" x2="9" y2="5" />
+          )}
+          {icon === "fullscreen" && (
+            <>
+              <polyline points="1,5 1,1 5,1" />
+              <polyline points="9,5 9,9 5,9" />
+            </>
+          )}
+        </svg>
+      )}
     </button>
   )
 }
