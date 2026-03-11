@@ -4,7 +4,7 @@ import SEO from '../components/SEO'
 const saasProjects = [
   {
     name: 'QuickDevTools',
-    url: 'https://quickdevtools.com',
+    url: 'https://quickdevtools.online/',
     description: 'Fast, free developer utilities — JSON, Base64, JWT & more.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -14,7 +14,7 @@ const saasProjects = [
   },
   {
     name: 'EasyN8N',
-    url: 'https://easyn8n.com',
+    url: 'https://easyn8n.online/',
     description: 'Deploy n8n in one click — no DevOps needed.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -26,7 +26,7 @@ const saasProjects = [
   },
   {
     name: 'EasyYClaw',
-    url: 'https://easyyclaw.com',
+    url: 'https://easyyclaw.cloud/',
     description: 'Monitor Y Combinator companies & jobs effortlessly.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -37,7 +37,7 @@ const saasProjects = [
   },
   {
     name: 'PetrolheadX',
-    url: 'https://petrolheadx.com',
+    url: 'https://petrolheadx.com/',
     description: 'The ultimate car enthusiast community & marketplace.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -49,7 +49,7 @@ const saasProjects = [
   },
   {
     name: 'Postrr',
-    url: 'https://postrr.com',
+    url: 'https://postrr.online/',
     description: 'Beautiful social media post generator for developers.',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -103,13 +103,13 @@ const chromeExtensions = [
   },
   {
     name: 'Faster Udemy',
-    url: 'https://chromewebstore.google.com/detail/faster-udemy/pjieandepjpjmlbomkmlbchiafcblfig',
+    url: 'https://chromewebstore.google.com/category/extensions',
     description: 'Speed up Udemy videos beyond 2x.',
     icon: 'https://github.com/nerdynikhil/faster-udemy/blob/main/faster-udemy-128.png?raw=true',
   },
   {
     name: 'ETA Tube',
-    url: 'https://chromewebstore.google.com/detail/eta-tube/kaeamhgoiipmkbhhjcopginimaedlapo',
+    url: 'https://chromewebstore.google.com/detail/eta-tube/labblkecjdmhohoionjhcbjohjnpifck',
     description: 'See remaining time for YouTube playlists.',
     icon: '/images/eta-tube/store-icon-128x128.png',
   },

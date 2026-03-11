@@ -39,7 +39,7 @@ export default function FasterUdemy() {
             Stop wasting time on slow explanations. Adjust Udemy playback speed from 0.25x up to 5x with a simple, private extension.
           </p>
           <a
-            href="https://chromewebstore.google.com/detail/faster-udemy/cdaafpdkepilnomcboomglcnbfkdfppd"
+            href="https://chromewebstore.google.com/category/extensions"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-lg text-base font-medium h-12 px-8 bg-gray-900 text-gray-100 no-underline hover:opacity-90 transition-opacity shadow-md"

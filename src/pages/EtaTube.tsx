@@ -35,7 +35,7 @@ export default function EtaTube() {
           video will finish. No tracking, no bloat.
         </p>
         <a
-          href="https://chromewebstore.google.com/detail/etatube-youtube-end-time/keompfncibldnpadbidjnlkbkfgaghkf"
+          href="https://chromewebstore.google.com/detail/eta-tube/labblkecjdmhohoionjhcbjohjnpifck"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-gray-900 text-white font-semibold text-lg px-10 py-4 rounded-full hover:bg-gray-800 transition-colors shadow-lg"
