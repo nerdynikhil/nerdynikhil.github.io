@@ -1,5 +1,5 @@
 {
-  "name": "nerdynikhil.com",
+  "name": "nikhil-augen-portfolio-tmp",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.35.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-helmet-async": "^3.0.0",
-    "react-router-dom": "^7.13.1"
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
