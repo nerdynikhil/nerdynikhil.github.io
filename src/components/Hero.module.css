@@ -1,0 +1,111 @@
+.hero {
+  position: relative;
+  padding-top: 180px;
+  padding-bottom: 120px;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Ambient blur orbs */
+.orbA {
+  position: absolute;
+  top: -60px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--orb-accent) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  animation: floatOrb 8s ease-in-out infinite;
+  transition: background 0.3s ease;
+}
+
+.orbB {
+  position: absolute;
+  bottom: -100px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--orb-neutral) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  animation: floatOrb 10s ease-in-out infinite reverse;
+  transition: background 0.3s ease;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -15px) scale(1.05); }
+}
+
+/* Profile picture */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+/* Greeting — Neue Montreal Regular */
+.greeting {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+/* Title — Neue Montreal Medium, tight tracking */
+.title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin-bottom: 32px;
+}
+
+/* Subtitle — Neue Montreal Light */
+.sub {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 480px;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 140px;
+    padding-bottom: 80px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .orbA {
+    width: 280px;
+    height: 280px;
+    right: -80px;
+  }
+
+  .orbB {
+    width: 200px;
+    height: 200px;
+  }
+}

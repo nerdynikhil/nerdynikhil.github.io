@@ -1,7 +1,0 @@
-# robots.txt for https://www.nerdynikhil.com/
-
-User-agent: *
-Allow: /
-
-# Sitemap location
-Sitemap: https://www.nerdynikhil.com/sitemap.xml
