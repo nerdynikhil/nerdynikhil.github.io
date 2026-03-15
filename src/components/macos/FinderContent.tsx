@@ -84,6 +84,22 @@ const ITEMS: PortfolioItem[] = [
     action: "external",
     target: "https://postrr.online/",
   },
+  {
+    name: "ResizeForForms",
+    description: "Resize images for forms",
+    category: "saas",
+    icon: "\uD83D\uDCD0",
+    action: "external",
+    target: "https://resizeforforms.online/",
+  },
+  {
+    name: "EraseMyBackground",
+    description: "Remove image backgrounds",
+    category: "saas",
+    icon: "\uD83C\uDFA8",
+    action: "external",
+    target: "https://erasemybackground.online/",
+  },
 
   // iOS Apps
   {
@@ -288,6 +304,8 @@ const EMOJI_BG_COLORS: Record<string, string> = {
   "\uD83D\uDD0D": "bg-purple-500/20",
   "\uD83D\uDE97": "bg-red-500/20",
   "\uD83D\uDDBC\uFE0F": "bg-pink-500/20",
+  "\uD83D\uDCD0": "bg-cyan-500/20",
+  "\uD83C\uDFA8": "bg-violet-500/20",
   "\u23F0": "bg-yellow-500/20",
   "\uD83D\uDD14": "bg-amber-500/20",
   "\uD83C\uDF99\uFE0F": "bg-indigo-500/20",
