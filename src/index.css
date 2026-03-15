@@ -1,170 +1,104 @@
 @import "tailwindcss";
 
-/* Google Fonts loaded via <link> in index.html */
+/* ==========================================================
+   Augen Design System — Global Styles
+   Font: Neue Montreal (Fontshare) → Inter → system-ui
+   ========================================================== */
 
-/* ===== Terminal / Hacker Theme (Homepage + Blog) ===== */
-.terminal-theme {
-  --bg-color: #0c0c0c;
-  --text-primary: #cccccc;
-  --text-secondary: #888888;
-  --accent-color: #00ff41;
-  --accent-hover: #00cc33;
-  --error-color: #ff3333;
-  --border-color: #333333;
-  --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
-  --terminal-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  background-color: var(--bg-color);
+/* ---- Light (default) ---- */
+:root {
+  --bg: #FFFFFF;
+  --bg-elevated: #FAFAFA;
+  --text-primary: #111111;
+  --text-secondary: #86868B;
+  --accent: #007AFF;
+  --border: #E5E5E5;
+  --glass-bg: rgba(235, 235, 235, 0.55);
+  --glass-hover: rgba(255, 255, 255, 0.65);
+  --card-hover: rgba(250, 250, 250, 0.8);
+  --orb-accent: rgba(0, 122, 255, 0.08);
+  --orb-neutral: rgba(134, 134, 139, 0.06);
+  --font: 'Neue Montreal', 'Inter', system-ui, sans-serif;
+}
+
+/* ---- Dark ---- */
+[data-theme="dark"] {
+  --bg: #0A0A0A;
+  --bg-elevated: #141414;
+  --text-primary: #F5F5F7;
+  --text-secondary: #86868B;
+  --accent: #0A84FF;
+  --border: #222222;
+  --glass-bg: rgba(30, 30, 30, 0.65);
+  --glass-hover: rgba(50, 50, 50, 0.65);
+  --card-hover: rgba(25, 25, 25, 0.8);
+  --orb-accent: rgba(10, 132, 255, 0.1);
+  --orb-neutral: rgba(134, 134, 139, 0.08);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  font-weight: 400;
+  background: var(--bg);
   color: var(--text-primary);
-  font-family: var(--font-mono);
   line-height: 1.6;
   overflow-x: hidden;
-  padding: 20px;
-  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* CRT Scanline Effect */
-.terminal-theme::before {
-  content: " ";
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  z-index: 2;
-  background-size: 100% 2px, 3px 100%;
-  pointer-events: none;
-}
-
-.terminal-theme a {
-  text-decoration: none;
+a {
   color: inherit;
-  transition: all 0.2s ease;
-  border-bottom: 1px dashed var(--text-secondary);
-}
-
-.terminal-theme a:hover {
-  color: var(--accent-color);
-  border-bottom: 1px solid var(--accent-color);
-  text-shadow: 0 0 5px var(--accent-color);
-}
-
-.terminal-container {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 3;
-}
-
-.terminal-theme h1,
-.terminal-theme h2,
-.terminal-theme h3,
-.terminal-theme h4,
-.terminal-theme h5,
-.terminal-theme h6 {
-  font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 1rem;
-}
-
-/* Typing Animation Cursor */
-.cursor {
-  display: inline-block;
-  width: 10px;
-  height: 1.2em;
-  background-color: #00ff41;
-  animation: blink 1s step-end infinite;
-  vertical-align: text-bottom;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* ===== Article styles for blog posts ===== */
-.article-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 0;
-  position: relative;
-  z-index: 3;
-}
-
-.article-content {
-  line-height: 1.8;
-}
-
-.article-content h1 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-
-.article-content h2 {
-  font-size: 1.3rem;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px dashed var(--border-color);
-}
-
-.article-content h3 {
-  font-size: 1.1rem;
-  margin-top: 1.5rem;
-}
-
-.article-content p {
-  margin: 1rem 0;
-  color: var(--text-primary);
-}
-
-.article-content ul,
-.article-content ol {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-}
-
-.article-content li {
-  margin: 0.5rem 0;
-}
-
-.article-content strong {
-  color: var(--accent-color);
-}
-
-.article-header {
-  margin-bottom: 2rem;
-}
-
-.article-meta {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
-
-.article-meta::before {
-  content: "[LOG]: ";
-}
-
-.article-tags {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.article-tag {
-  background: transparent;
-  border: 1px solid var(--text-secondary);
-  color: var(--text-secondary);
-  padding: 2px 8px;
-  font-size: 0.75rem;
-  border-radius: 0;
   text-decoration: none;
 }
 
-.article-tag:hover {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-  background: transparent;
+/* Global micro-transitions */
+a, button {
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+/* Shared entrance keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 122, 255, 0.12);
+  color: var(--text-primary);
 }
