@@ -27,7 +27,7 @@ const PROJECTS: Project[] = [
   { name: 'QuickDevTools', description: 'Fast, free developer utilities', category: 'saas', icon: '🔧', href: 'https://quickdevtools.online/', external: true },
   { name: 'EasyN8N', description: 'Deploy n8n in one click', category: 'saas', icon: '💻', href: 'https://easyn8n.online/', external: true },
   { name: 'EasyClaw', description: 'Monitor YC companies & jobs', category: 'saas', icon: '🔍', href: 'https://easyyclaw.cloud/', external: true },
-  { name: 'PetrolheadX', description: 'Car enthusiast community', category: 'saas', icon: '🚗', href: 'https://petrolheadx.com/', external: true },
+  { name: 'PetrolheadX', description: 'Car enthusiast community', category: 'saas', icon: '🚗', href: 'http://petrolheadx.autos/', external: true },
   { name: 'Postrr', description: 'Social media post generator', category: 'saas', icon: '🖼️', href: 'https://postrr.online/', external: true },
   { name: 'ResizeForForms', description: 'Resize images for forms', category: 'saas', icon: '📐', href: 'https://resizeforforms.online/', external: true },
   { name: 'EraseMyBackground', description: 'Remove image backgrounds', category: 'saas', icon: '🎨', href: 'https://erasemybackground.online/', external: true },
@@ -44,7 +44,7 @@ const PROJECTS: Project[] = [
   { name: 'ETA Tube', description: 'YouTube playlist time remaining', category: 'chrome', icon: { src: '/images/eta-tube/store-icon-128x128.png' }, href: '/eta-tube', external: false },
   // Claude
   { name: 'Meme Sounds', description: 'Play meme sounds while coding', category: 'claude', icon: { src: '/images/meme-sounds.png' }, href: 'https://marketplace.visualstudio.com/items?itemName=nerdynikhil.meme-sounds', external: true },
-  { name: 'claude-ping-me', description: 'Notify when Claude is waiting', category: 'claude', icon: '🔔', href: 'https://skills.sh/skill/claude-ping-me', external: true },
+  { name: 'claude-ping-me', description: 'Notify when Claude is waiting', category: 'claude', icon: '🔔', href: 'https://skills.sh/nerdynikhil/claude-ping-me/claude-ping-me', external: true },
   { name: 'Claude Narrator', description: 'Narrates Claude Code actions', category: 'claude', icon: '🎙️', href: '/claude-narrator', external: false },
 ]
 
