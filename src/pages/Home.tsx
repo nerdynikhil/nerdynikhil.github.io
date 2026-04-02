@@ -1,5 +1,5 @@
 import SEO from '../components/SEO'
-import Desktop from '../components/macos/Desktop'
+import Portfolio from '../components/portfolio/Portfolio'
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -15,20 +15,19 @@ const personJsonLd = {
     'https://www.instagram.com/i.know.nothing_/',
   ],
   jobTitle: 'Developer',
-  description:
-    'Developer, Builder, Creator. Building TheAiBuildrs.',
+  description: 'Developer, Builder, Creator. Shipping iOS apps, web tools, Chrome extensions, and AI utilities.',
 }
 
 export default function Home() {
   return (
     <>
       <SEO
-        title="Nikhil Barik - Developer, Builder, Creator"
-        description="Portfolio of Nikhil Barik (nerdynikhil) — Developer, Builder, Creator. iOS apps, Chrome extensions, SaaS products, and more."
+        title="Nikhil Barik — Developer, Builder, Creator"
+        description="Portfolio of Nikhil Barik (nerdynikhil) — Developer, Builder, Creator. iOS apps, Chrome extensions, SaaS products, and AI tools."
         url="https://www.nerdynikhil.com/"
         jsonLd={personJsonLd}
       />
-      <Desktop />
+      <Portfolio />
     </>
   )
 }
