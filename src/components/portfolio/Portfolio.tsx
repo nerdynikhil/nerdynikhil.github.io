@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Spinner } from '@/components/ui/spinner'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -112,8 +113,15 @@ function ProjectCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false)
   const isImageIcon = typeof project.icon === 'object' && 'src' in project.icon
   const badge = BADGE[project.category]
+  const [iframeLoaded, setIframeLoaded] = useState(false)
   const showThumb = project.category === 'saas'
-  const thumbUrl = `https://s0.wp.com/mshots/v1/${encodeURIComponent(project.href)}?w=460&h=280`
+
+  // iframe rendered at 4× then scaled down to fit the 232px tooltip
+  const SCALE = 0.25
+  const DISPLAY_W = 232
+  const DISPLAY_H = 145
+  const IFRAME_W = DISPLAY_W / SCALE   // 928px — real desktop width
+  const IFRAME_H = DISPLAY_H / SCALE   // 580px
 
   return (
     <div
@@ -121,7 +129,7 @@ function ProjectCard({ project }: { project: Project }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* ── Website thumbnail tooltip ── */}
+      {/* ── iframe thumbnail tooltip ── */}
       {showThumb && (
         <div
           style={{
@@ -130,24 +138,66 @@ function ProjectCard({ project }: { project: Project }) {
             left: '50%',
             transform: hovered
               ? 'translateX(-50%) translateY(0)'
-              : 'translateX(-50%) translateY(8px)',
-            width: '230px',
+              : 'translateX(-50%) translateY(10px)',
+            width: `${DISPLAY_W}px`,
             borderRadius: '8px',
             overflow: 'hidden',
             border: '1px solid var(--border-dark)',
-            boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
+            boxShadow: '0 20px 48px rgba(0,0,0,0.7)',
             zIndex: 200,
             pointerEvents: 'none',
             opacity: hovered ? 1 : 0,
-            transition: 'opacity 0.2s ease, transform 0.2s ease',
+            transition: 'opacity 0.25s ease, transform 0.25s ease',
           }}
         >
-          <img
-            src={thumbUrl}
-            alt={`${project.name} preview`}
-            style={{ width: '100%', display: 'block' }}
-            loading="lazy"
-          />
+          {/* Iframe viewport */}
+          <div
+            style={{
+              width: DISPLAY_W,
+              height: DISPLAY_H,
+              position: 'relative',
+              overflow: 'hidden',
+              background: '#0f0f0f',
+            }}
+          >
+            {/* Spinner shown until iframe fires onLoad */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#0f0f0f',
+                zIndex: 1,
+                opacity: iframeLoaded ? 0 : 1,
+                transition: 'opacity 0.3s ease',
+                pointerEvents: 'none',
+              }}
+            >
+              <Spinner size="md" style={{ color: 'var(--accent)' }} />
+            </div>
+
+            {/* Scaled-down iframe */}
+            <iframe
+              src={hovered ? project.href : undefined}
+              title={`${project.name} preview`}
+              style={{
+                width: IFRAME_W,
+                height: IFRAME_H,
+                transform: `scale(${SCALE})`,
+                transformOrigin: 'top left',
+                border: 'none',
+                pointerEvents: 'none',
+                opacity: iframeLoaded ? 1 : 0,
+                transition: 'opacity 0.3s ease',
+              }}
+              sandbox="allow-scripts allow-same-origin"
+              onLoad={() => setIframeLoaded(true)}
+            />
+          </div>
+
+          {/* Domain strip */}
           <div
             style={{
               padding: '5px 8px',
