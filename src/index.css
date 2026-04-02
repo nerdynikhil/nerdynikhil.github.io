@@ -1,5 +1,44 @@
 @import "tailwindcss";
 
+/* ===== Portfolio Design Tokens ===== */
+:root {
+  --accent: #aaff3c;
+  --accent-dim: rgba(170, 255, 60, 0.1);
+  --bg-dark: #080808;
+  --surface: #0f0f0f;
+  --surface-2: #161616;
+  --border-dark: #1e1e1e;
+  --text-primary: #f0f0f0;
+  --text-muted: #666666;
+  --font-bebas: 'Bebas Neue', Impact, sans-serif;
+  --font-space: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+}
+
+/* ===== Portfolio hover states ===== */
+.project-card:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 20px rgba(170, 255, 60, 0.07);
+  transform: translateY(-2px);
+}
+
+.blog-row:hover {
+  background: #141414 !important;
+}
+
+.blog-row:hover .blog-arrow {
+  color: var(--accent) !important;
+}
+
+.nav-link:hover {
+  color: var(--text-primary) !important;
+}
+
+.connect-btn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
 /* Google Fonts loaded via <link> in index.html */
 
 /* ===== Terminal / Hacker Theme (Homepage + Blog) ===== */
