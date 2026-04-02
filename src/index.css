@@ -13,6 +13,7 @@
   --font-bebas: 'Bebas Neue', Impact, sans-serif;
   --font-space: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   --font-mono: 'Fira Code', 'Courier New', monospace;
+  --font-serif: 'Instrument Serif', 'Instrument Serif Fallback', Georgia, serif;
 }
 
 /* ===== Portfolio hover states ===== */
@@ -35,6 +36,11 @@
 }
 
 .connect-btn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+.social-pill:hover {
   border-color: var(--accent) !important;
   color: var(--accent) !important;
 }

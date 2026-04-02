@@ -231,8 +231,9 @@ function SectionHeader({ label, heading, sub }: { label: string; heading: string
       </h2>
       <p
         style={{
-          fontFamily: 'var(--font-space)',
-          fontSize: '0.88rem',
+          fontFamily: 'var(--font-serif)',
+          fontStyle: 'italic',
+          fontSize: '0.95rem',
           color: 'var(--text-muted)',
           margin: 0,
         }}
@@ -345,131 +346,127 @@ export default function Portfolio() {
         style={{
           maxWidth: '1100px',
           margin: '0 auto',
-          padding: '5rem 1.5rem 6.5rem',
-          minHeight: '88vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
+          padding: '3.5rem 1.5rem 3.5rem',
         }}
       >
-        {/* Eyebrow */}
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.72rem',
-            color: 'var(--accent)',
-            letterSpacing: '0.12em',
-            marginBottom: '1.5rem',
-          }}
-        >
-          // PLAYER_ONE
-        </div>
-
-        {/* Name */}
-        <h1
-          style={{
-            fontFamily: 'var(--font-bebas)',
-            fontSize: 'clamp(4rem, 14vw, 11rem)',
-            lineHeight: 0.88,
-            letterSpacing: '0.01em',
-            color: 'var(--text-primary)',
-            margin: '0 0 1.75rem 0',
-          }}
-        >
-          NIKHIL
-          <br />
-          BARIK
-        </h1>
-
-        {/* Rule */}
-        <div
-          style={{
-            height: '2px',
-            background: 'var(--border-dark)',
-            maxWidth: '560px',
-            marginBottom: '1.75rem',
-          }}
-        />
-
-        {/* Tagline */}
-        <p
-          style={{
-            fontFamily: 'var(--font-space)',
-            fontSize: 'clamp(1rem, 2.2vw, 1.2rem)',
-            color: '#888',
-            lineHeight: 1.65,
-            maxWidth: '500px',
-            margin: '0 0 2.75rem 0',
-          }}
-        >
-          Developer. Builder. Creator.
-          <br />I ship things people actually use — iOS apps, web tools,
-          Chrome extensions, and AI utilities.
-        </p>
-
-        {/* Stats */}
         <div
           style={{
             display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
             gap: '2.5rem',
-            marginBottom: '3rem',
             flexWrap: 'wrap',
           }}
         >
-          {[
-            { value: '20+', label: 'Products Shipped' },
-            { value: 'iOS · Web · Chrome · AI', label: 'Platforms' },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <div
-                style={{
-                  fontFamily: 'var(--font-bebas)',
-                  fontSize: '1.85rem',
-                  color: 'var(--accent)',
-                  letterSpacing: '0.02em',
-                  lineHeight: 1,
-                }}
-              >
-                {stat.value}
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.6rem',
-                  color: '#444',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  marginTop: '0.25rem',
-                }}
-              >
-                {stat.label}
-              </div>
+          {/* Left column */}
+          <div style={{ flex: '1', minWidth: '260px' }}>
+            {/* Eyebrow */}
+            <div
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.7rem',
+                color: 'var(--accent)',
+                letterSpacing: '0.12em',
+                marginBottom: '1.25rem',
+              }}
+            >
+              // PLAYER_ONE
             </div>
-          ))}
-        </div>
 
-        {/* CTA */}
-        <div>
-          <a
-            href="#builds"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.7rem 1.6rem',
-              background: 'var(--accent)',
-              color: '#080808',
-              fontFamily: 'var(--font-space)',
-              fontWeight: 700,
-              fontSize: '0.85rem',
-              borderRadius: '6px',
-              textDecoration: 'none',
-              letterSpacing: '0.02em',
-              transition: 'opacity 0.15s',
-            }}
-          >
-            See the Build Log ↓
-          </a>
+            {/* Name */}
+            <h1
+              style={{
+                fontFamily: 'var(--font-bebas)',
+                fontSize: 'clamp(3.75rem, 10vw, 8rem)',
+                lineHeight: 0.88,
+                letterSpacing: '0.01em',
+                color: 'var(--text-primary)',
+                margin: '0 0 1.25rem 0',
+              }}
+            >
+              NIKHIL
+              <br />
+              BARIK
+            </h1>
+
+            {/* Rule */}
+            <div
+              style={{
+                height: '1px',
+                background: 'var(--border-dark)',
+                maxWidth: '400px',
+                marginBottom: '1.25rem',
+              }}
+            />
+
+            {/* Tagline — Instrument Serif italic */}
+            <p
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontStyle: 'italic',
+                fontSize: 'clamp(1rem, 2vw, 1.15rem)',
+                color: '#999',
+                lineHeight: 1.65,
+                maxWidth: '420px',
+                margin: '0 0 1.75rem 0',
+              }}
+            >
+              Developer. Builder. Creator. I ship things people actually
+              use — iOS apps, web tools, Chrome extensions, and AI
+              utilities.
+            </p>
+
+            {/* Inline social links */}
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {[
+                { label: 'GitHub', href: 'https://github.com/nerdynikhil' },
+                { label: 'LinkedIn', href: 'https://linkedin.com/in/nerdynikhil' },
+                { label: 'Twitter', href: 'https://twitter.com/nerdynikhil' },
+                { label: 'Instagram', href: 'https://www.instagram.com/thehustlerdev/' },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-pill"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '0.35rem 0.875rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.67rem',
+                    fontWeight: 600,
+                    color: '#777',
+                    background: 'var(--surface)',
+                    border: '1px solid var(--border-dark)',
+                    borderRadius: '20px',
+                    textDecoration: 'none',
+                    letterSpacing: '0.04em',
+                    transition: 'border-color 0.15s, color 0.15s',
+                  }}
+                >
+                  {link.label} ↗
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Right column — profile photo */}
+          <div style={{ flexShrink: 0 }}>
+            <img
+              src="/images/profilepic.png"
+              alt="Nikhil Barik"
+              style={{
+                width: '160px',
+                height: '160px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: '2px solid var(--border-dark)',
+                display: 'block',
+              }}
+            />
+          </div>
         </div>
       </section>
 
@@ -616,7 +613,7 @@ export default function Portfolio() {
             { label: 'GitHub', href: 'https://github.com/nerdynikhil' },
             { label: 'LinkedIn', href: 'https://linkedin.com/in/nerdynikhil' },
             { label: 'Twitter', href: 'https://twitter.com/nerdynikhil' },
-            { label: 'Instagram', href: 'https://www.instagram.com/i.know.nothing_/' },
+            { label: 'Instagram', href: 'https://www.instagram.com/thehustlerdev/' },
           ].map((link) => (
             <a
               key={link.label}
