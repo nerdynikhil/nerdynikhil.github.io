@@ -109,10 +109,63 @@ function ProjectLink({
 // ─── Project Card ─────────────────────────────────────────────────────────────
 
 function ProjectCard({ project }: { project: Project }) {
+  const [hovered, setHovered] = useState(false)
   const isImageIcon = typeof project.icon === 'object' && 'src' in project.icon
   const badge = BADGE[project.category]
+  const showThumb = project.category === 'saas'
+  const thumbUrl = `https://image.thum.io/get/width/400/crop/220/noanimate/${project.href}`
 
   return (
+    <div
+      style={{ position: 'relative', zIndex: hovered ? 10 : 'auto' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* ── Website thumbnail tooltip ── */}
+      {showThumb && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 'calc(100% + 10px)',
+            left: '50%',
+            transform: hovered
+              ? 'translateX(-50%) translateY(0)'
+              : 'translateX(-50%) translateY(8px)',
+            width: '230px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            border: '1px solid var(--border-dark)',
+            boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
+            zIndex: 200,
+            pointerEvents: 'none',
+            opacity: hovered ? 1 : 0,
+            transition: 'opacity 0.2s ease, transform 0.2s ease',
+          }}
+        >
+          <img
+            src={thumbUrl}
+            alt={`${project.name} preview`}
+            style={{ width: '100%', display: 'block' }}
+            loading="lazy"
+          />
+          <div
+            style={{
+              padding: '5px 8px',
+              background: '#0a0a0a',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.58rem',
+              color: '#444',
+              borderTop: '1px solid var(--border-dark)',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {project.href.replace(/https?:\/\//, '').replace(/\/$/, '')}
+          </div>
+        </div>
+      )}
+
     <ProjectLink
       project={project}
       style={{
@@ -197,6 +250,7 @@ function ProjectCard({ project }: { project: Project }) {
         {project.external ? 'VISIT →' : 'VIEW →'}
       </div>
     </ProjectLink>
+    </div>
   )
 }
 
