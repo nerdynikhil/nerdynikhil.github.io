@@ -113,7 +113,7 @@ function ProjectCard({ project }: { project: Project }) {
   const isImageIcon = typeof project.icon === 'object' && 'src' in project.icon
   const badge = BADGE[project.category]
   const showThumb = project.category === 'saas'
-  const thumbUrl = `https://image.thum.io/get/width/400/crop/220/noanimate/${project.href}`
+  const thumbUrl = `https://s0.wp.com/mshots/v1/${encodeURIComponent(project.href)}?w=460&h=280`
 
   return (
     <div
