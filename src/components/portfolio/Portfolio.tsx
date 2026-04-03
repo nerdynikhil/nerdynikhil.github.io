@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Spinner } from '@/components/ui/spinner'
+import { Tweet } from 'react-tweet'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -359,6 +360,18 @@ const SECTION_STYLE: React.CSSProperties = {
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<Category>('all')
 
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://w.behold.so/widget.js'
+    script.type = 'module'
+    document.body.appendChild(script)
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [])
+
   const filteredProjects =
     activeTab === 'all' ? PROJECTS : PROJECTS.filter((p) => p.category === activeTab)
 
@@ -404,6 +417,7 @@ export default function Portfolio() {
             {[
               { label: 'builds', href: '#builds', external: false },
               { label: 'notes', href: '#notes', external: false },
+              { label: 'activity', href: '#activity', external: false },
               { label: 'github', href: 'https://github.com/nerdynikhil', external: true },
               { label: 'connect', href: '#connect', external: false },
             ].map((link) =>
@@ -701,6 +715,87 @@ export default function Portfolio() {
               </span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* ── Activity Feed ── */}
+      <section id="activity" style={SECTION_STYLE}>
+        <SectionHeader
+          label="// ACTIVITY_FEED"
+          heading="ACTIVITY FEED"
+          sub="Recent updates, thoughts, and behind-the-scenes."
+        />
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '2rem',
+            alignItems: 'start',
+          }}
+        >
+          {/* Twitter / X Feed */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <h3
+              style={{
+                fontFamily: 'var(--font-space)',
+                fontSize: '1.2rem',
+                color: 'var(--text-primary)',
+                marginBottom: '0.5rem',
+              }}
+            >
+              Latest on X
+            </h3>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                height: '700px',
+                overflowY: 'auto',
+                paddingRight: '10px',
+              }}
+            >
+              {[
+                '2033295611467034829',
+                '2007933833954652456',
+                '2035759121442721831',
+                '2035752805512946139',
+                '2035344623405854958',
+                '2034294493055447054',
+                '2033453219964150260',
+                '2030392612050645145',
+              ].map((id) => (
+                <div key={id} className="dark">
+                  <Tweet id={id} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Instagram Column (Behold.so) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <h3
+              style={{
+                fontFamily: 'var(--font-space)',
+                fontSize: '1.2rem',
+                color: 'var(--text-primary)',
+                marginBottom: '0.5rem',
+              }}
+            >
+              Instagram Feed
+            </h3>
+            
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+              }}
+            >
+              <figure data-behold-id="tmMPJq7BrnHtNOTFTouD"></figure>
+            </div>
+          </div>
         </div>
       </section>
 
