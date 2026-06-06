@@ -1,9 +1,22 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Spinner } from '@/components/ui/spinner'
 import { Tweet } from 'react-tweet'
+import { FlipWords } from '@/components/ui/flip-words'
 
-// ─── Types ──────────────────────────────────────────────────────────────────
+class TweetErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() { return { hasError: true } }
+  render() {
+    if (this.state.hasError) return null
+    return this.props.children
+  }
+}
+
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 type Category = 'all' | 'saas' | 'ios' | 'chrome' | 'claude'
 
@@ -70,39 +83,50 @@ const TABS: { id: Category; label: string }[] = [
   { id: 'claude', label: 'Claude' },
 ]
 
-const BADGE: Record<Exclude<Category, 'all'>, { bg: string; color: string; label: string }> = {
-  saas:   { bg: 'rgba(59,130,246,0.12)',  color: '#60a5fa', label: 'SAAS' },
-  ios:    { bg: 'rgba(16,185,129,0.12)',  color: '#34d399', label: 'iOS' },
-  chrome: { bg: 'rgba(245,158,11,0.12)',  color: '#fbbf24', label: 'CHROME' },
-  claude: { bg: 'rgba(139,92,246,0.12)',  color: '#a78bfa', label: 'CLAUDE' },
+const BADGE_LABEL: Record<Exclude<Category, 'all'>, string> = {
+  saas: 'SaaS',
+  ios: 'iOS',
+  chrome: 'Chrome',
+  claude: 'Claude',
 }
+
+// ─── Fonts ────────────────────────────────────────────────────────────────────
+
+const F_DISPLAY = "'Inter Tight', 'Inter', system-ui, sans-serif"
+const F_EDITORIAL = "'Newsreader', Georgia, serif"
+const F_CODE = "'JetBrains Mono', 'Fira Code', monospace"
 
 // ─── Link wrapper ─────────────────────────────────────────────────────────────
 
-function ProjectLink({
-  project,
-  children,
-  style,
-}: {
-  project: Project
-  children: React.ReactNode
-  style?: React.CSSProperties
-}) {
+function ProjectLink({ project, children }: { project: Project; children: React.ReactNode }) {
+  const base: React.CSSProperties = {
+    display: 'block',
+    textDecoration: 'none',
+    border: '1px solid rgba(255,255,255,0.08)',
+    transition: 'border-color 0.2s ease, background 0.2s ease',
+    cursor: 'pointer',
+  }
   if (project.external) {
     return (
       <a
         href={project.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="project-card"
-        style={style}
+        style={base}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.22)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.025)' }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}
       >
         {children}
       </a>
     )
   }
   return (
-    <Link to={project.href} className="project-card" style={style}>
+    <Link
+      to={project.href}
+      style={base}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.22)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.025)' }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+    >
       {children}
     </Link>
   )
@@ -112,17 +136,15 @@ function ProjectLink({
 
 function ProjectCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false)
-  const isImageIcon = typeof project.icon === 'object' && 'src' in project.icon
-  const badge = BADGE[project.category]
   const [iframeLoaded, setIframeLoaded] = useState(false)
+  const isImageIcon = typeof project.icon === 'object' && 'src' in project.icon
   const showThumb = project.category === 'saas'
 
-  // iframe rendered at 4× then scaled down to fit the 232px tooltip
   const SCALE = 0.25
   const DISPLAY_W = 232
   const DISPLAY_H = 145
-  const IFRAME_W = DISPLAY_W / SCALE   // 928px — real desktop width
-  const IFRAME_H = DISPLAY_H / SCALE   // 580px
+  const IFRAME_W = DISPLAY_W / SCALE
+  const IFRAME_H = DISPLAY_H / SCALE
 
   return (
     <div
@@ -130,232 +152,101 @@ function ProjectCard({ project }: { project: Project }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* ── iframe thumbnail tooltip ── */}
+      {/* iframe thumbnail tooltip */}
       {showThumb && (
         <div
           style={{
             position: 'absolute',
-            bottom: 'calc(100% + 10px)',
+            bottom: 'calc(100% + 8px)',
             left: '50%',
-            transform: hovered
-              ? 'translateX(-50%) translateY(0)'
-              : 'translateX(-50%) translateY(10px)',
+            transform: hovered ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(8px)',
             width: `${DISPLAY_W}px`,
-            borderRadius: '8px',
             overflow: 'hidden',
-            border: '1px solid var(--border-dark)',
-            boxShadow: '0 20px 48px rgba(0,0,0,0.7)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            boxShadow: '0 24px 64px rgba(0,0,0,0.85)',
             zIndex: 200,
             pointerEvents: 'none',
             opacity: hovered ? 1 : 0,
-            transition: 'opacity 0.25s ease, transform 0.25s ease',
+            transition: 'opacity 0.2s ease, transform 0.2s ease',
           }}
         >
-          {/* Iframe viewport */}
-          <div
-            style={{
-              width: DISPLAY_W,
-              height: DISPLAY_H,
-              position: 'relative',
-              overflow: 'hidden',
-              background: '#0f0f0f',
-            }}
-          >
-            {/* Spinner shown until iframe fires onLoad */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: '#0f0f0f',
-                zIndex: 1,
-                opacity: iframeLoaded ? 0 : 1,
-                transition: 'opacity 0.3s ease',
-                pointerEvents: 'none',
-              }}
-            >
-              <Spinner size="md" style={{ color: 'var(--accent)' }} />
+          <div style={{ width: DISPLAY_W, height: DISPLAY_H, position: 'relative', overflow: 'hidden', background: '#080808' }}>
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#080808', zIndex: 1, opacity: iframeLoaded ? 0 : 1, transition: 'opacity 0.3s ease', pointerEvents: 'none' }}>
+              <Spinner size="md" style={{ color: 'rgba(255,255,255,0.25)' }} />
             </div>
-
-            {/* Scaled-down iframe */}
             <iframe
               src={hovered ? project.href : undefined}
               title={`${project.name} preview`}
-              style={{
-                width: IFRAME_W,
-                height: IFRAME_H,
-                transform: `scale(${SCALE})`,
-                transformOrigin: 'top left',
-                border: 'none',
-                pointerEvents: 'none',
-                opacity: iframeLoaded ? 1 : 0,
-                transition: 'opacity 0.3s ease',
-              }}
+              style={{ width: IFRAME_W, height: IFRAME_H, transform: `scale(${SCALE})`, transformOrigin: 'top left', border: 'none', pointerEvents: 'none', opacity: iframeLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
               sandbox="allow-scripts allow-same-origin"
               onLoad={() => setIframeLoaded(true)}
             />
           </div>
-
-          {/* Domain strip */}
-          <div
-            style={{
-              padding: '5px 8px',
-              background: '#0a0a0a',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.58rem',
-              color: '#444',
-              borderTop: '1px solid var(--border-dark)',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            }}
-          >
+          <div style={{ padding: '5px 8px', background: '#050505', fontFamily: F_CODE, fontSize: '0.57rem', color: 'rgba(255,255,255,0.2)', borderTop: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {project.href.replace(/https?:\/\//, '').replace(/\/$/, '')}
           </div>
         </div>
       )}
 
-    <ProjectLink
-      project={project}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.875rem',
-        padding: '1.25rem',
-        background: 'var(--surface)',
-        border: '1px solid var(--border-dark)',
-        borderRadius: '8px',
-        textDecoration: 'none',
-        transition: 'border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease',
-        cursor: 'pointer',
-      }}
-    >
-      {/* Icon + badge row */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
-        {isImageIcon ? (
-          <img
-            src={(project.icon as { src: string }).src}
-            alt={project.name}
-            style={{ width: '2.5rem', height: '2.5rem', borderRadius: '8px', objectFit: 'cover', flexShrink: 0 }}
-          />
-        ) : (
-          <span style={{ fontSize: '1.75rem', lineHeight: 1, flexShrink: 0 }}>
-            {project.icon as string}
+      <ProjectLink project={project}>
+        <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+          {/* Icon + badge */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            {isImageIcon ? (
+              <img
+                src={(project.icon as { src: string }).src}
+                alt={project.name}
+                style={{ width: '2.25rem', height: '2.25rem', objectFit: 'cover', flexShrink: 0 }}
+              />
+            ) : (
+              <span style={{ fontSize: '1.6rem', lineHeight: 1, flexShrink: 0 }}>{project.icon as string}</span>
+            )}
+            <span style={{ fontFamily: F_CODE, fontSize: '0.57rem', letterSpacing: '0.12em', padding: '2px 6px', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.25)', flexShrink: 0 }}>
+              {BADGE_LABEL[project.category]}
+            </span>
+          </div>
+          {/* Name */}
+          <p style={{ fontFamily: F_DISPLAY, fontWeight: 400, fontSize: '0.9rem', color: 'rgba(255,255,255,0.88)', lineHeight: 1.25, margin: 0 }}>
+            {project.name}
+          </p>
+          {/* Description */}
+          <p style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '0.78rem', color: 'rgba(255,255,255,0.38)', lineHeight: 1.55, flex: 1, margin: 0 }}>
+            {project.description}
+          </p>
+          {/* CTA */}
+          <span style={{ fontFamily: F_CODE, fontSize: '0.62rem', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.28)' }}>
+            {project.external ? 'VISIT →' : 'VIEW →'}
           </span>
-        )}
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.58rem',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            padding: '2px 7px',
-            borderRadius: '3px',
-            background: badge.bg,
-            color: badge.color,
-            flexShrink: 0,
-            marginTop: '3px',
-          }}
-        >
-          {badge.label}
-        </span>
-      </div>
-
-      {/* Name */}
-      <div
-        style={{
-          fontFamily: 'var(--font-space)',
-          fontWeight: 600,
-          fontSize: '0.95rem',
-          color: 'var(--text-primary)',
-          lineHeight: 1.2,
-        }}
-      >
-        {project.name}
-      </div>
-
-      {/* Description */}
-      <div
-        style={{
-          fontFamily: 'var(--font-space)',
-          fontSize: '0.8rem',
-          color: 'var(--text-muted)',
-          lineHeight: 1.5,
-          flex: 1,
-        }}
-      >
-        {project.description}
-      </div>
-
-      {/* CTA */}
-      <div
-        style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.65rem',
-          color: 'var(--accent)',
-          letterSpacing: '0.08em',
-        }}
-      >
-        {project.external ? 'VISIT →' : 'VIEW →'}
-      </div>
-    </ProjectLink>
+        </div>
+      </ProjectLink>
     </div>
   )
 }
 
-// ─── Section header ───────────────────────────────────────────────────────────
+// ─── Section Header ───────────────────────────────────────────────────────────
 
-function SectionHeader({ label, heading, sub }: { label: string; heading: string; sub: string }) {
+function SectionHeader({ label, heading, italic, sub }: { label: string; heading: string; italic: string; sub: string }) {
   return (
-    <div style={{ marginBottom: '2rem' }}>
-      <div
-        style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.72rem',
-          color: 'var(--accent)',
-          letterSpacing: '0.08em',
-          marginBottom: '0.5rem',
-        }}
-      >
-        {label}
+    <div style={{ marginBottom: '3.5rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+        <span style={{ display: 'inline-block', width: '2rem', height: '1px', background: 'rgba(255,255,255,0.2)' }} />
+        <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>
+          {label}
+        </span>
       </div>
-      <div style={{ height: '1px', background: 'var(--border-dark)', marginBottom: '1.25rem' }} />
-      <h2
-        style={{
-          fontFamily: 'var(--font-bebas)',
-          fontSize: 'clamp(2.25rem, 5vw, 3.75rem)',
-          color: 'var(--text-primary)',
-          letterSpacing: '0.02em',
-          margin: '0 0 0.5rem 0',
-          lineHeight: 1,
-        }}
-      >
-        {heading}
+      <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '1.5rem' }} />
+      <h2 style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: 'clamp(2.25rem, 5vw, 3.75rem)', color: '#ffffff', lineHeight: 1.06, letterSpacing: '-0.025em', margin: '0 0 0.5rem 0' }}>
+        {heading}{' '}
+        <em style={{ fontFamily: F_EDITORIAL, fontStyle: 'italic', fontWeight: 400 }}>{italic}</em>
       </h2>
-      <p
-        style={{
-          fontFamily: 'var(--font-serif)',
-          fontStyle: 'italic',
-          fontSize: '0.95rem',
-          color: 'var(--text-muted)',
-          margin: 0,
-        }}
-      >
+      <p style={{ fontFamily: F_EDITORIAL, fontStyle: 'italic', fontSize: '0.95rem', color: 'rgba(255,255,255,0.38)', margin: 0 }}>
         {sub}
       </p>
     </div>
   )
 }
 
-// ─── Main Portfolio ───────────────────────────────────────────────────────────
-
-const SECTION_STYLE: React.CSSProperties = {
-  maxWidth: '1100px',
-  margin: '0 auto',
-  padding: '5.5rem 1.5rem',
-}
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<Category>('all')
@@ -366,53 +257,28 @@ export default function Portfolio() {
     script.type = 'module'
     document.body.appendChild(script)
     return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
+      if (document.body.contains(script)) document.body.removeChild(script)
     }
   }, [])
 
-  const filteredProjects =
-    activeTab === 'all' ? PROJECTS : PROJECTS.filter((p) => p.category === activeTab)
+  const filteredProjects = activeTab === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === activeTab)
+
+  const sectionStyle: React.CSSProperties = {
+    maxWidth: '1100px',
+    margin: '0 auto',
+    padding: '5rem 1.5rem',
+    borderTop: '1px solid rgba(255,255,255,0.07)',
+  }
 
   return (
-    <div style={{ background: 'var(--bg-dark)', minHeight: '100vh', color: 'var(--text-primary)' }}>
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff', fontFamily: F_DISPLAY }}>
 
       {/* ── Nav ── */}
-      <nav
-        style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 50,
-          borderBottom: '1px solid var(--border-dark)',
-          background: 'rgba(8,8,8,0.88)',
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
-        }}
-      >
-        <div
-          style={{
-            maxWidth: '1100px',
-            margin: '0 auto',
-            padding: '0 1.5rem',
-            height: '52px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.82rem',
-              color: 'var(--accent)',
-              fontWeight: 600,
-              letterSpacing: '0.03em',
-            }}
-          >
+      <nav style={{ position: 'sticky', top: 0, zIndex: 50, borderBottom: '1px solid rgba(255,255,255,0.08)', background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <span style={{ fontFamily: F_CODE, fontSize: '0.8rem', color: 'rgba(255,255,255,0.75)', fontWeight: 500, letterSpacing: '0.02em' }}>
             nerdynikhil
           </span>
-
           <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
             {[
               { label: 'builds', href: '#builds', external: false },
@@ -420,36 +286,20 @@ export default function Portfolio() {
               { label: 'activity', href: '#activity', external: false },
               { label: 'github', href: 'https://github.com/nerdynikhil', external: true },
               { label: 'connect', href: '#connect', external: false },
-            ].map((link) =>
+            ].map(link =>
               link.external ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-link"
-                  style={{
-                    fontFamily: 'var(--font-space)',
-                    fontSize: '0.82rem',
-                    color: '#666',
-                    textDecoration: 'none',
-                    transition: 'color 0.15s',
-                  }}
+                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
+                  style={{ fontFamily: F_CODE, fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)', textDecoration: 'none', transition: 'color 0.15s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.3)')}
                 >
                   {link.label}
                 </a>
               ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="nav-link"
-                  style={{
-                    fontFamily: 'var(--font-space)',
-                    fontSize: '0.82rem',
-                    color: '#666',
-                    textDecoration: 'none',
-                    transition: 'color 0.15s',
-                  }}
+                <a key={link.label} href={link.href}
+                  style={{ fontFamily: F_CODE, fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)', textDecoration: 'none', transition: 'color 0.15s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.3)')}
                 >
                   {link.label}
                 </a>
@@ -460,109 +310,50 @@ export default function Portfolio() {
       </nav>
 
       {/* ── Hero ── */}
-      <section
-        style={{
-          maxWidth: '1100px',
-          margin: '0 auto',
-          padding: '3.5rem 1.5rem 3.5rem',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            gap: '2.5rem',
-            flexWrap: 'wrap',
-          }}
-        >
-          {/* Left column */}
-          <div style={{ flex: '1', minWidth: '260px' }}>
-            {/* Eyebrow */}
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.7rem',
-                color: 'var(--accent)',
-                letterSpacing: '0.12em',
-                marginBottom: '1.25rem',
-              }}
-            >
-              // PLAYER_ONE
+      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '4.5rem 1.5rem 5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '3rem', alignItems: 'flex-start' }}>
+
+          {/* Left */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
+              <span style={{ display: 'inline-block', width: '2rem', height: '1px', background: 'rgba(255,255,255,0.2)' }} />
+              <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
+                Developer · Builder · Creator
+              </span>
             </div>
 
-            {/* Name */}
-            <h1
-              style={{
-                fontFamily: 'var(--font-bebas)',
-                fontSize: 'clamp(3.75rem, 10vw, 8rem)',
-                lineHeight: 0.88,
-                letterSpacing: '0.01em',
-                color: 'var(--text-primary)',
-                margin: '0 0 1.25rem 0',
-              }}
-            >
-              NIKHIL
-              <br />
-              BARIK
+            <h1 style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: 'clamp(3.5rem, 9vw, 7rem)', lineHeight: 0.92, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 1.5rem 0' }}>
+              Nikhil<br />
+              <em style={{ fontFamily: F_EDITORIAL, fontStyle: 'italic', fontWeight: 400 }}>Barik</em>
             </h1>
 
-            {/* Rule */}
-            <div
-              style={{
-                height: '1px',
-                background: 'var(--border-dark)',
-                maxWidth: '400px',
-                marginBottom: '1.25rem',
-              }}
-            />
+            <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', maxWidth: '380px', marginBottom: '1.5rem' }} />
 
-            {/* Tagline — Instrument Serif italic */}
-            <p
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontStyle: 'italic',
-                fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-                color: '#999',
-                lineHeight: 1.65,
-                maxWidth: '420px',
-                margin: '0 0 1.75rem 0',
-              }}
-            >
-              Developer. Builder. Creator. I ship things people actually
-              use — iOS apps, web tools, Chrome extensions, and AI
-              utilities.
-            </p>
+            <div style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '1rem', color: 'rgba(255,255,255,0.48)', lineHeight: 1.7, maxWidth: '440px', margin: '0 0 2rem 0', position: 'relative' }}>
+              I build
+              <FlipWords
+                words={["iOS apps,", "web tools,", "Chrome extensions,", "AI utilities,"]}
+                duration={2500}
+                className="!px-2 font-light text-white/80"
+              />
+              that people actually use.
+            </div>
 
-            {/* Inline social links */}
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               {[
                 { label: 'GitHub', href: 'https://github.com/nerdynikhil' },
                 { label: 'LinkedIn', href: 'https://linkedin.com/in/nerdynikhil' },
                 { label: 'Twitter', href: 'https://twitter.com/nerdynikhil' },
                 { label: 'Instagram', href: 'https://www.instagram.com/thehustlerdev/' },
-              ].map((link) => (
+              ].map(link => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-pill"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    padding: '0.35rem 0.875rem',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.67rem',
-                    fontWeight: 600,
-                    color: '#777',
-                    background: 'var(--surface)',
-                    border: '1px solid var(--border-dark)',
-                    borderRadius: '20px',
-                    textDecoration: 'none',
-                    letterSpacing: '0.04em',
-                    transition: 'border-color 0.15s, color 0.15s',
-                  }}
+                  style={{ display: 'inline-flex', alignItems: 'center', padding: '0.4rem 0.9rem', fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.1)', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.75)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.4)' }}
                 >
                   {link.label} ↗
                 </a>
@@ -570,192 +361,105 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Right column — profile photo */}
+          {/* Right — profile photo */}
           <div style={{ flexShrink: 0 }}>
-            <img
-              src="/images/profilepic.png"
-              alt="Nikhil Barik"
-              style={{
-                width: '160px',
-                height: '160px',
-                borderRadius: '50%',
-                objectFit: 'cover',
-                border: '2px solid var(--border-dark)',
-                display: 'block',
-              }}
-            />
+            <div style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
+              <img
+                src="/images/profilepic.png"
+                alt="Nikhil Barik"
+                style={{ width: '160px', height: '160px', objectFit: 'cover', display: 'block' }}
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── Build Log ── */}
-      <section id="builds" style={SECTION_STYLE}>
-        <SectionHeader
-          label="// BUILD_LOG"
-          heading="BUILD LOG"
-          sub="The full archive. Everything shipped."
-        />
+      <section id="builds" style={sectionStyle}>
+        <SectionHeader label="Build Log" heading="Build" italic="Log" sub="The full archive. Everything shipped." />
 
         {/* Filter tabs */}
-        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-          {TABS.map((tab) => {
+        <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
+          {TABS.map(tab => {
             const isActive = activeTab === tab.id
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 style={{
-                  padding: '0.38rem 0.9rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  borderRadius: '4px',
-                  border: `1px solid ${isActive ? 'var(--accent)' : '#2a2a2a'}`,
-                  background: isActive ? 'var(--accent-dim)' : 'transparent',
-                  color: isActive ? 'var(--accent)' : '#555',
+                  padding: '0.35rem 0.85rem',
+                  fontFamily: F_CODE,
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  border: isActive ? '1px solid rgba(255,255,255,0.4)' : '1px solid rgba(255,255,255,0.1)',
+                  background: isActive ? 'rgba(255,255,255,0.06)' : 'transparent',
+                  color: isActive ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
               >
-                {tab.label.toUpperCase()}
+                {tab.label}
               </button>
             )
           })}
         </div>
 
-        {/* Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-            gap: '0.875rem',
-          }}
-        >
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+        {/* Grid — gap-px technique from theaibuildrs */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.07)' }}>
+          {filteredProjects.map(project => (
+            <div key={project.name} style={{ background: '#000' }}>
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
       </section>
 
       {/* ── Field Notes ── */}
-      <section id="notes" style={SECTION_STYLE}>
-        <SectionHeader
-          label="// FIELD_NOTES"
-          heading="FIELD NOTES"
-          sub="Product thinking. Teardowns. Strategy."
-        />
+      <section id="notes" style={sectionStyle}>
+        <SectionHeader label="Field Notes" heading="Field" italic="Notes" sub="Product thinking. Teardowns. Strategy." />
 
-        <div
-          style={{
-            border: '1px solid var(--border-dark)',
-            borderRadius: '8px',
-            overflow: 'hidden',
-          }}
-        >
+        <div style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
           {BLOG_POSTS.map((post, i) => (
             <Link
               key={post.href}
               to={post.href}
-              className="blog-row"
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1rem',
-                padding: '0.9rem 1.25rem',
-                background: 'var(--surface)',
-                borderBottom: i < BLOG_POSTS.length - 1 ? '1px solid var(--border-dark)' : 'none',
+                padding: '0.875rem 1.25rem',
+                borderBottom: i < BLOG_POSTS.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
                 textDecoration: 'none',
                 transition: 'background 0.15s ease',
+                background: 'transparent',
               }}
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.025)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
             >
-              {/* Type badge */}
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.58rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  padding: '3px 7px',
-                  borderRadius: '3px',
-                  background: 'var(--surface-2)',
-                  color: '#444',
-                  flexShrink: 0,
-                  minWidth: '5.5rem',
-                  textAlign: 'center',
-                }}
-              >
-                {post.type.toUpperCase()}
+              <span style={{ fontFamily: F_CODE, fontSize: '0.57rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '3px 7px', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.22)', flexShrink: 0, minWidth: '5.5rem', textAlign: 'center' }}>
+                {post.type}
               </span>
-
-              {/* Title */}
-              <span
-                style={{
-                  fontFamily: 'var(--font-space)',
-                  fontSize: '0.88rem',
-                  color: '#bbb',
-                  flex: 1,
-                }}
-              >
+              <span style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '0.88rem', color: 'rgba(255,255,255,0.58)', flex: 1 }}>
                 {post.title}
               </span>
-
-              {/* Arrow */}
-              <span
-                className="blog-arrow"
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  color: '#333',
-                  flexShrink: 0,
-                  transition: 'color 0.15s',
-                }}
-              >
-                →
-              </span>
+              <span style={{ fontFamily: F_CODE, fontSize: '0.7rem', color: 'rgba(255,255,255,0.2)', flexShrink: 0 }}>→</span>
             </Link>
           ))}
         </div>
       </section>
 
       {/* ── Activity Feed ── */}
-      <section id="activity" style={SECTION_STYLE}>
-        <SectionHeader
-          label="// ACTIVITY_FEED"
-          heading="ACTIVITY FEED"
-          sub="Recent updates, thoughts, and behind-the-scenes."
-        />
+      <section id="activity" style={sectionStyle}>
+        <SectionHeader label="Activity Feed" heading="Activity" italic="Feed" sub="Recent updates, thoughts, and behind-the-scenes." />
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '2rem',
-            alignItems: 'start',
-          }}
-        >
-          {/* Twitter / X Feed */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3
-              style={{
-                fontFamily: 'var(--font-space)',
-                fontSize: '1.2rem',
-                color: 'var(--text-primary)',
-                marginBottom: '0.5rem',
-              }}
-            >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'start' }}>
+          {/* Twitter / X */}
+          <div>
+            <p style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '1.25rem' }}>
               Latest on X
-            </h3>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem',
-                height: '700px',
-                overflowY: 'auto',
-                paddingRight: '10px',
-              }}
-            >
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '700px', overflowY: 'auto', paddingRight: '8px' }}>
               {[
                 '2033295611467034829',
                 '2007933833954652456',
@@ -765,77 +469,45 @@ export default function Portfolio() {
                 '2034294493055447054',
                 '2033453219964150260',
                 '2030392612050645145',
-              ].map((id) => (
-                <div key={id} className="dark">
-                  <Tweet id={id} />
-                </div>
+              ].map(id => (
+                <TweetErrorBoundary key={id}>
+                  <div className="dark">
+                    <Tweet id={id} />
+                  </div>
+                </TweetErrorBoundary>
               ))}
             </div>
           </div>
 
-          {/* Instagram Column (Behold.so) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3
-              style={{
-                fontFamily: 'var(--font-space)',
-                fontSize: '1.2rem',
-                color: 'var(--text-primary)',
-                marginBottom: '0.5rem',
-              }}
-            >
+          {/* Instagram (Behold.so) */}
+          <div>
+            <p style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '1.25rem' }}>
               Instagram Feed
-            </h3>
-            
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '100%',
-              }}
-            >
-              <figure data-behold-id="tmMPJq7BrnHtNOTFTouD"></figure>
-            </div>
+            </p>
+            <figure data-behold-id="tmMPJq7BrnHtNOTFTouD"></figure>
           </div>
         </div>
       </section>
 
-      {/* ── Spawn Point ── */}
-      <section id="connect" style={{ ...SECTION_STYLE, paddingBottom: '8rem' }}>
-        <SectionHeader
-          label="// SPAWN_POINT"
-          heading="LET'S CONNECT"
-          sub="Find me on the internet."
-        />
+      {/* ── Connect ── */}
+      <section id="connect" style={{ ...sectionStyle, paddingBottom: '8rem' }}>
+        <SectionHeader label="Connect" heading="Let's" italic="Connect" sub="Find me on the internet." />
 
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.625rem', flexWrap: 'wrap' }}>
           {[
             { label: 'GitHub', href: 'https://github.com/nerdynikhil' },
             { label: 'LinkedIn', href: 'https://linkedin.com/in/nerdynikhil' },
             { label: 'Twitter', href: 'https://twitter.com/nerdynikhil' },
             { label: 'Instagram', href: 'https://www.instagram.com/thehustlerdev/' },
-          ].map((link) => (
+          ].map(link => (
             <a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="connect-btn"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.6rem 1.25rem',
-                fontFamily: 'var(--font-space)',
-                fontWeight: 600,
-                fontSize: '0.82rem',
-                color: 'var(--text-primary)',
-                background: 'var(--surface)',
-                border: '1px solid #2a2a2a',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                letterSpacing: '0.02em',
-                transition: 'border-color 0.15s, color 0.15s',
-              }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.6rem 1.5rem', fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '0.85rem', color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.1)', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.85)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)' }}
             >
               {link.label} ↗
             </a>
@@ -844,26 +516,13 @@ export default function Portfolio() {
       </section>
 
       {/* ── Footer ── */}
-      <footer style={{ borderTop: '1px solid var(--border-dark)', padding: '1.5rem' }}>
-        <div
-          style={{
-            maxWidth: '1100px',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '0.5rem',
-          }}
-        >
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: '#2a2a2a' }}>
-            nerdynikhil.com
-          </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: '#2a2a2a' }}>
-            built with ♥ + claude
-          </span>
+      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', color: 'rgba(255,255,255,0.15)', letterSpacing: '0.08em' }}>nerdynikhil.com</span>
+          <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)', letterSpacing: '0.08em' }}>built with ♥ + claude</span>
         </div>
       </footer>
+
     </div>
   )
 }

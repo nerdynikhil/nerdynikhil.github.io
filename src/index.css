@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@theme {
+  --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  --font-editorial: 'Newsreader', Georgia, serif;
+  --font-code: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Prevent white flash before React renders */
+html, body {
+  background: #000;
+  color: #fff;
+}
+
 /* ===== Portfolio Design Tokens ===== */
 :root {
   --accent: #aaff3c;
