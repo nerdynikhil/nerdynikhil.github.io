@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Spinner } from '@/components/ui/spinner'
 import { Tweet } from 'react-tweet'
 import { FlipWords } from '@/components/ui/flip-words'
+import { DottedSurface } from '@/components/ui/dotted-surface'
+import { SpotlightCursor } from '@/components/ui/spotlight-cursor'
 
 class TweetErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -271,7 +273,8 @@ export default function Portfolio() {
   }
 
   return (
-    <div style={{ background: '#000', minHeight: '100vh', color: '#fff', fontFamily: F_DISPLAY }}>
+    <div style={{ minHeight: '100vh', color: '#fff', fontFamily: F_DISPLAY }}>
+      <SpotlightCursor />
 
       {/* ── Nav ── */}
       <nav style={{ position: 'sticky', top: 0, zIndex: 50, borderBottom: '1px solid rgba(255,255,255,0.08)', background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
@@ -310,7 +313,9 @@ export default function Portfolio() {
       </nav>
 
       {/* ── Hero ── */}
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '4.5rem 1.5rem 5rem' }}>
+      <div style={{ position: 'relative', overflow: 'hidden' }}>
+      <DottedSurface className="!absolute" />
+      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '4.5rem 1.5rem 5rem', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '3rem', alignItems: 'flex-start' }}>
 
           {/* Left */}
@@ -373,6 +378,7 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* ── Build Log ── */}
       <section id="builds" style={sectionStyle}>
