@@ -78,135 +78,64 @@ const articles = [
 
 export default function BlogIndex() {
   return (
-    <div className="terminal-theme">
+    <div className="editorial-theme">
       <SEO
         title="Blog - nerdynikhil"
         description="Blog articles by Nikhil Barik - Product Design, UX, Case Studies"
         url="https://www.nerdynikhil.com/blog"
       />
 
-      <div className="terminal-container">
-        {/* Header */}
-        <header className="flex items-center justify-between py-6 border-b border-[var(--border-color)] mb-12">
-          <Link
-            to="/"
-            className="text-xl font-semibold text-[var(--accent-color)] !border-b-0"
-          >
-            <span className="text-[var(--text-secondary)]">./</span>nerdynikhil
+      <header style={{ borderBottom: '1px solid var(--border)', padding: '0 1.5rem', background: 'var(--cream)' }}>
+        <div style={{ maxWidth: '720px', margin: '0 auto', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Link to="/" style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', textDecoration: 'none', color: 'var(--text-muted)' }}>
+            nerdynikhil
           </Link>
-          <nav className="flex gap-6 text-sm">
-            <Link to="/" className="!border-b-0 hover:text-[var(--accent-color)]">
-              <span className="text-[var(--text-secondary)]">[</span>
-              Home
-              <span className="text-[var(--text-secondary)]">]</span>
-            </Link>
-            <Link to="/blog" className="!border-b-0 hover:text-[var(--accent-color)]">
-              <span className="text-[var(--text-secondary)]">[</span>
-              Blog
-              <span className="text-[var(--text-secondary)]">]</span>
-            </Link>
+          <nav style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'var(--text-faint)' }}>Home</Link>
+            <Link to="/blog" style={{ textDecoration: 'none', color: 'var(--text-muted)' }}>Blog</Link>
           </nav>
-        </header>
-
-        {/* Blog Page Header */}
-        <div className="mb-10">
-          <h1 className="text-2xl font-bold text-[var(--accent-color)] mb-2">Blog</h1>
-          <p className="text-[var(--text-secondary)]">
-            Articles on product design, user experience, and case studies
-          </p>
         </div>
+      </header>
 
-        {/* Blog List */}
-        <div className="flex flex-col gap-8 mb-12">
+      <div className="editorial-container">
+        <p className="section-label" style={{ marginBottom: '0.75rem' }}>Field Notes</p>
+        <h1 style={{ marginBottom: '0.5rem' }}>Product thinking</h1>
+        <p style={{ color: 'var(--text-faint)', marginBottom: '2.5rem', fontSize: '0.9375rem' }}>
+          Articles on product design, user experience, and case studies
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
           {articles.map((article) => (
             <article
               key={article.slug}
-              className="border-b border-[var(--border-color)] pb-8"
+              style={{ borderBottom: '1px solid var(--border)', padding: '1.5rem 0' }}
             >
-              <h4 className="text-base font-semibold mb-1">
-                <Link
-                  to={`/blog/${article.slug}`}
-                  className="text-[var(--accent-color)] hover:text-[var(--accent-hover)]"
-                >
+              <h2 style={{ fontSize: '1.25rem', margin: '0 0 0.375rem', border: 'none', padding: 0 }}>
+                <Link to={`/blog/${article.slug}`} style={{ textDecoration: 'none', color: 'var(--text-muted)' }}>
                   {article.title}
                 </Link>
-              </h4>
+              </h2>
               <div className="article-meta">{article.meta}</div>
-              <p className="text-[var(--text-primary)] mt-2 mb-3 text-sm leading-relaxed">
-                {article.excerpt}
-              </p>
+              <p style={{ marginTop: '0.75rem', marginBottom: '0.75rem' }}>{article.excerpt}</p>
               <div className="article-tags">
                 {article.tags.map((tag) => (
-                  <span key={tag} className="article-tag">
-                    {tag}
-                  </span>
+                  <span key={tag} className="article-tag">{tag}</span>
                 ))}
               </div>
             </article>
           ))}
         </div>
 
-        {/* Back Link */}
-        <div className="text-center mb-12">
-          <Link
-            to="/"
-            className="text-[var(--text-secondary)] hover:text-[var(--accent-color)] text-sm"
-          >
-            &larr; Back to Home
+        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+          <Link to="/" style={{ fontSize: '0.875rem', color: 'var(--text-faint)' }}>
+            ← Back to Home
           </Link>
         </div>
-
-        {/* Footer */}
-        <footer className="border-t border-[var(--border-color)] pt-8 pb-12 text-sm text-[var(--text-secondary)]">
-          <div className="mb-4">
-            <span className="text-[var(--text-secondary)]">echo </span>
-            <a
-              href="mailto:nerdynikhil@outlook.com"
-              className="text-[var(--text-primary)]"
-            >
-              nerdynikhil@outlook.com
-            </a>
-          </div>
-          <div className="flex gap-6">
-            <a
-              href="https://linkedin.com/in/nerdynikhil"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="text-[var(--text-secondary)]">&lt;</span>
-              LinkedIn
-              <span className="text-[var(--text-secondary)]">&gt;</span>
-            </a>
-            <a
-              href="https://github.com/nerdynikhil"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="text-[var(--text-secondary)]">&lt;</span>
-              GitHub
-              <span className="text-[var(--text-secondary)]">&gt;</span>
-            </a>
-            <a
-              href="https://twitter.com/nerdynikhil"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="text-[var(--text-secondary)]">&lt;</span>
-              Twitter
-              <span className="text-[var(--text-secondary)]">&gt;</span>
-            </a>
-            <a
-              href="https://instagram.com/nerdynikhil"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="text-[var(--text-secondary)]">&lt;</span>
-              Instagram
-              <span className="text-[var(--text-secondary)]">&gt;</span>
-            </a>
-          </div>
-        </footer>
       </div>
+
+      <footer style={{ borderTop: '1px solid var(--border)', padding: '2rem 1.5rem', textAlign: 'center', fontSize: '0.8125rem', color: 'var(--text-faint)' }}>
+        <a href="mailto:nerdynikhil@outlook.com" style={{ color: 'var(--text-muted)' }}>nerdynikhil@outlook.com</a>
+      </footer>
     </div>
   )
 }

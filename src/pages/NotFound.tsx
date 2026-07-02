@@ -3,27 +3,36 @@ import SEO from '../components/SEO'
 
 export default function NotFound() {
   return (
-    <div className="terminal-theme">
+    <div className="editorial-theme" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <SEO
         title="404 — Page Not Found | nerdynikhil"
         description="The page you are looking for does not exist."
       />
 
-      <div className="terminal-container flex flex-col items-center justify-center min-h-[80vh] text-center">
-        <h1 className="text-6xl font-bold text-[var(--accent-color)] mb-4">
-          404
-        </h1>
-        <p className="text-[var(--text-secondary)] mb-2 text-lg">
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
+        <p className="section-label" style={{ marginBottom: '1rem' }}>404</p>
+        <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 400, color: 'var(--text-muted)', margin: '0 0 0.75rem' }}>
           Page not found
-        </p>
-        <p className="text-[var(--text-secondary)] text-sm mb-8">
-          bash: page: command not found
+        </h1>
+        <p style={{ color: 'var(--text-faint)', marginBottom: '2rem', fontSize: '0.9375rem' }}>
+          The page you're looking for doesn't exist or has moved.
         </p>
         <Link
           to="/"
-          className="inline-block text-[var(--accent-color)] border border-[var(--accent-color)] px-6 py-2 text-sm hover:bg-[var(--accent-color)] hover:text-[var(--bg-color)] transition-colors !border-b-[var(--accent-color)]"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: '0.625rem 1.25rem',
+            fontSize: '0.875rem',
+            fontWeight: 500,
+            color: 'var(--text-muted)',
+            background: '#fff',
+            border: '1px solid var(--border-strong)',
+            borderRadius: 'var(--radius-btn)',
+            textDecoration: 'none',
+          }}
         >
-          cd ~/ &rarr;
+          Back to home →
         </Link>
       </div>
     </div>

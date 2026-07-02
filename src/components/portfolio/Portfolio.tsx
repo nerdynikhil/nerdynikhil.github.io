@@ -2,9 +2,6 @@ import React, { useState, useEffect, Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Spinner } from '@/components/ui/spinner'
 import { Tweet } from 'react-tweet'
-import { FlipWords } from '@/components/ui/flip-words'
-import { DottedSurface } from '@/components/ui/dotted-surface'
-import { SpotlightCursor } from '@/components/ui/spotlight-cursor'
 
 class TweetErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -17,8 +14,6 @@ class TweetErrorBoundary extends Component<{ children: React.ReactNode }, { hasE
     return this.props.children
   }
 }
-
-// ─── Types ───────────────────────────────────────────────────────────────────
 
 type Category = 'all' | 'saas' | 'ios' | 'chrome' | 'claude'
 
@@ -37,32 +32,26 @@ interface BlogPost {
   href: string
 }
 
-// ─── Data ────────────────────────────────────────────────────────────────────
-
 const PROJECTS: Project[] = [
-  // SaaS
-  { name: 'QuickDevTools', description: 'Fast, free developer utilities', category: 'saas', icon: '🔧', href: 'https://quickdevtools.online/', external: true },
-  { name: 'EasyN8N', description: 'Deploy n8n in one click', category: 'saas', icon: '💻', href: 'https://easyn8n.online/', external: true },
-  { name: 'EasyClaw', description: 'Monitor YC companies & jobs', category: 'saas', icon: '🔍', href: 'https://easyyclaw.cloud/', external: true },
+  { name: 'QuickDevTools', description: 'Free dev utilities — no signup, no nonsense', category: 'saas', icon: '🔧', href: 'https://quickdevtools.online/', external: true },
+  { name: 'EasyN8N', description: 'Self-host n8n workflows in one click', category: 'saas', icon: '💻', href: 'https://easyn8n.online/', external: true },
+  { name: 'EasyClaw', description: 'Track YC companies and open roles in real time', category: 'saas', icon: '🔍', href: 'https://easyyclaw.cloud/', external: true },
   { name: 'PetrolheadX', description: 'Car enthusiast community', category: 'saas', icon: '🚗', href: 'http://petrolheadx.autos/', external: true },
   { name: 'Postrr', description: 'Social media post generator', category: 'saas', icon: '🖼️', href: 'https://postrr.online/', external: true },
   { name: 'ResizeForForms', description: 'Resize images for forms', category: 'saas', icon: '📐', href: 'https://resizeforforms.online/', external: true },
   { name: 'EraseMyBackground', description: 'Remove image backgrounds', category: 'saas', icon: '🎨', href: 'https://erasemybackground.online/', external: true },
-  // iOS
-  { name: 'ChatterCards', description: 'AI conversation starter cards', category: 'ios', icon: { src: '/images/chattercards/app-icon.webp' }, href: '/chattercards', external: false },
-  { name: 'LingoDuel', description: 'Competitive language learning', category: 'ios', icon: { src: '/images/lingoduel/lingoduel-logo.png' }, href: '/lingoduel', external: false },
+  { name: 'ChatterCards', description: 'AI-powered cards that kill awkward silences', category: 'ios', icon: { src: '/images/chattercards/app-icon.webp' }, href: '/chattercards', external: false },
+  { name: 'LingoDuel', description: 'Language learning, but make it competitive', category: 'ios', icon: { src: '/images/lingoduel/lingoduel-logo.png' }, href: '/lingoduel', external: false },
   { name: 'Serenight', description: 'Calm mind with ambient sounds', category: 'ios', icon: { src: '/images/serenight/logo.png' }, href: '/serenight', external: false },
   { name: 'TrueHue', description: 'Test your color perception', category: 'ios', icon: { src: '/images/truehue/TrueHue.png' }, href: '/truehue', external: false },
   { name: 'Subscriptionly', description: 'Track all your subscriptions', category: 'ios', icon: { src: '/images/subscriptionly/360x360ia.png' }, href: '/subscriptionly', external: false },
   { name: 'WDTG', description: "What Did That Guy say?", category: 'ios', icon: '⏰', href: '/wdtg', external: false },
-  // Chrome
   { name: 'Behance2PDF', description: 'Export Behance projects as PDF', category: 'chrome', icon: { src: 'https://github.com/nerdynikhil/Behance2PDF/blob/main/assets/icons/icon1024.png?raw=true' }, href: '/behance2pdf', external: false },
   { name: 'Faster Udemy', description: 'Speed up Udemy videos beyond 2x', category: 'chrome', icon: { src: 'https://github.com/nerdynikhil/faster-udemy/blob/main/faster-udemy-128.png?raw=true' }, href: '/faster-udemy', external: false },
   { name: 'ETA Tube', description: 'YouTube playlist time remaining', category: 'chrome', icon: { src: '/images/eta-tube/store-icon-128x128.png' }, href: '/eta-tube', external: false },
-  // Claude
   { name: 'Meme Sounds', description: 'Play meme sounds while coding', category: 'claude', icon: { src: '/images/meme-sounds.png' }, href: 'https://marketplace.visualstudio.com/items?itemName=nerdynikhil.meme-sounds', external: true },
   { name: 'claude-ping-me', description: 'Notify when Claude is waiting', category: 'claude', icon: '🔔', href: 'https://skills.sh/nerdynikhil/claude-ping-me/claude-ping-me', external: true },
-  { name: 'Claude Narrator', description: 'Narrates Claude Code actions', category: 'claude', icon: '🎙️', href: '/claude-narrator', external: false },
+  { name: 'Claude Narrator', description: 'Hear what Claude Code is doing — out loud', category: 'claude', icon: '🎙️', href: '/claude-narrator', external: false },
 ]
 
 const BLOG_POSTS: BlogPost[] = [
@@ -92,49 +81,52 @@ const BADGE_LABEL: Record<Exclude<Category, 'all'>, string> = {
   claude: 'Claude',
 }
 
-// ─── Fonts ────────────────────────────────────────────────────────────────────
+const FAQ = [
+  {
+    q: 'What kind of work do you do?',
+    a: 'I build and ship products — iOS apps, web tools, Chrome extensions, and AI utilities. Idea to App Store, solo. 18+ shipped and counting.',
+  },
+  {
+    q: 'Are you available for freelance or collabs?',
+    a: 'Yes — especially for founders who need a builder, not a team. If you have something worth shipping fast, I\'m interested.',
+  },
+  {
+    q: 'What\'s your edge over an agency?',
+    a: 'One person, full stack, zero handoffs. I design, code, ship, and iterate. You talk to the person actually building your product.',
+  },
+]
 
-const F_DISPLAY = "'Inter Tight', 'Inter', system-ui, sans-serif"
-const F_EDITORIAL = "'Newsreader', Georgia, serif"
-const F_CODE = "'JetBrains Mono', 'Fira Code', monospace"
-
-// ─── Link wrapper ─────────────────────────────────────────────────────────────
+const PAIN_POINTS = [
+  {
+    title: 'Stuck at the prototype.',
+    body: 'It demos well in a Loom video. But it never hits the App Store, never gets real users, never becomes a product.',
+  },
+  {
+    title: 'Building alone is brutal.',
+    body: 'Design, code, deploy, market — every hat on one head. Most solo builders burn out before v1.',
+  },
+  {
+    title: 'Shipped the wrong thing.',
+    body: 'Months of work on a tool that solved your problem, not your users\'. Fast to build, slow to find traction.',
+  },
+]
 
 function ProjectLink({ project, children }: { project: Project; children: React.ReactNode }) {
-  const base: React.CSSProperties = {
+  const style: React.CSSProperties = {
     display: 'block',
     textDecoration: 'none',
-    border: '1px solid rgba(255,255,255,0.08)',
-    transition: 'border-color 0.2s ease, background 0.2s ease',
-    cursor: 'pointer',
+    color: 'inherit',
+    height: '100%',
   }
   if (project.external) {
     return (
-      <a
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={base}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.22)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.025)' }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}
-      >
+      <a href={project.href} target="_blank" rel="noopener noreferrer" style={style}>
         {children}
       </a>
     )
   }
-  return (
-    <Link
-      to={project.href}
-      style={base}
-      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.22)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.025)' }}
-      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}
-    >
-      {children}
-    </Link>
-  )
+  return <Link to={project.href} style={style}>{children}</Link>
 }
-
-// ─── Project Card ─────────────────────────────────────────────────────────────
 
 function ProjectCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false)
@@ -154,7 +146,6 @@ function ProjectCard({ project }: { project: Project }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* iframe thumbnail tooltip */}
       {showThumb && (
         <div
           style={{
@@ -164,17 +155,18 @@ function ProjectCard({ project }: { project: Project }) {
             transform: hovered ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(8px)',
             width: `${DISPLAY_W}px`,
             overflow: 'hidden',
-            border: '1px solid rgba(255,255,255,0.1)',
-            boxShadow: '0 24px 64px rgba(0,0,0,0.85)',
+            borderRadius: '12px',
+            border: '1px solid rgba(90,85,80,0.12)',
+            boxShadow: '0 24px 64px rgba(28,25,23,0.18)',
             zIndex: 200,
             pointerEvents: 'none',
             opacity: hovered ? 1 : 0,
             transition: 'opacity 0.2s ease, transform 0.2s ease',
           }}
         >
-          <div style={{ width: DISPLAY_W, height: DISPLAY_H, position: 'relative', overflow: 'hidden', background: '#080808' }}>
-            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#080808', zIndex: 1, opacity: iframeLoaded ? 0 : 1, transition: 'opacity 0.3s ease', pointerEvents: 'none' }}>
-              <Spinner size="md" style={{ color: 'rgba(255,255,255,0.25)' }} />
+          <div style={{ width: DISPLAY_W, height: DISPLAY_H, position: 'relative', overflow: 'hidden', background: '#fcf9f3' }}>
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1, opacity: iframeLoaded ? 0 : 1, transition: 'opacity 0.3s ease' }}>
+              <Spinner size="md" style={{ color: 'rgba(90,85,80,0.3)' }} />
             </div>
             <iframe
               src={hovered ? project.href : undefined}
@@ -184,40 +176,39 @@ function ProjectCard({ project }: { project: Project }) {
               onLoad={() => setIframeLoaded(true)}
             />
           </div>
-          <div style={{ padding: '5px 8px', background: '#050505', fontFamily: F_CODE, fontSize: '0.57rem', color: 'rgba(255,255,255,0.2)', borderTop: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {project.href.replace(/https?:\/\//, '').replace(/\/$/, '')}
-          </div>
         </div>
       )}
 
       <ProjectLink project={project}>
-        <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-          {/* Icon + badge */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+        <div
+          style={{
+            background: 'var(--cream-card)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-card)',
+            padding: '1.5rem',
+            height: '100%',
+            transition: 'border-color 0.15s, box-shadow 0.15s',
+            boxShadow: hovered ? '0 8px 32px rgba(28,25,23,0.06)' : 'none',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1rem' }}>
             {isImageIcon ? (
-              <img
-                src={(project.icon as { src: string }).src}
-                alt={project.name}
-                style={{ width: '2.25rem', height: '2.25rem', objectFit: 'cover', flexShrink: 0 }}
-              />
+              <img src={(project.icon as { src: string }).src} alt={project.name} style={{ width: '2.5rem', height: '2.5rem', objectFit: 'cover', borderRadius: '8px' }} />
             ) : (
-              <span style={{ fontSize: '1.6rem', lineHeight: 1, flexShrink: 0 }}>{project.icon as string}</span>
+              <span style={{ fontSize: '1.75rem', lineHeight: 1 }}>{project.icon as string}</span>
             )}
-            <span style={{ fontFamily: F_CODE, fontSize: '0.57rem', letterSpacing: '0.12em', padding: '2px 6px', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.25)', flexShrink: 0 }}>
+            <span style={{ fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '3px 8px', borderRadius: '999px', border: '1px solid var(--border-strong)', color: 'var(--text-faint)' }}>
               {BADGE_LABEL[project.category]}
             </span>
           </div>
-          {/* Name */}
-          <p style={{ fontFamily: F_DISPLAY, fontWeight: 400, fontSize: '0.9rem', color: 'rgba(255,255,255,0.88)', lineHeight: 1.25, margin: 0 }}>
+          <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', color: 'var(--text-muted)', margin: '0 0 0.5rem', lineHeight: 1.25 }}>
             {project.name}
           </p>
-          {/* Description */}
-          <p style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '0.78rem', color: 'rgba(255,255,255,0.38)', lineHeight: 1.55, flex: 1, margin: 0 }}>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-faint)', lineHeight: 1.55, margin: '0 0 1rem' }}>
             {project.description}
           </p>
-          {/* CTA */}
-          <span style={{ fontFamily: F_CODE, fontSize: '0.62rem', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.28)' }}>
-            {project.external ? 'VISIT →' : 'VIEW →'}
+          <span style={{ fontSize: '0.8125rem', fontWeight: 500, color: 'var(--text-muted)' }}>
+            {project.external ? 'Visit →' : 'View →'}
           </span>
         </div>
       </ProjectLink>
@@ -225,30 +216,43 @@ function ProjectCard({ project }: { project: Project }) {
   )
 }
 
-// ─── Section Header ───────────────────────────────────────────────────────────
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return <p className="section-label" style={{ textAlign: 'center', marginBottom: '1rem' }}>{children}</p>
+}
 
-function SectionHeader({ label, heading, italic, sub }: { label: string; heading: string; italic: string; sub: string }) {
+function SectionHeading({ children, italic }: { children: React.ReactNode; italic?: string }) {
   return (
-    <div style={{ marginBottom: '3.5rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-        <span style={{ display: 'inline-block', width: '2rem', height: '1px', background: 'rgba(255,255,255,0.2)' }} />
-        <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>
-          {label}
-        </span>
-      </div>
-      <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '1.5rem' }} />
-      <h2 style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: 'clamp(2.25rem, 5vw, 3.75rem)', color: '#ffffff', lineHeight: 1.06, letterSpacing: '-0.025em', margin: '0 0 0.5rem 0' }}>
-        {heading}{' '}
-        <em style={{ fontFamily: F_EDITORIAL, fontStyle: 'italic', fontWeight: 400 }}>{italic}</em>
-      </h2>
-      <p style={{ fontFamily: F_EDITORIAL, fontStyle: 'italic', fontSize: '0.95rem', color: 'rgba(255,255,255,0.38)', margin: 0 }}>
-        {sub}
-      </p>
-    </div>
+    <h2 style={{
+      fontFamily: 'var(--font-heading)',
+      fontSize: 'clamp(1.75rem, 4vw, 3.25rem)',
+      fontWeight: 400,
+      letterSpacing: '-0.02em',
+      lineHeight: 1.12,
+      color: 'var(--text-muted)',
+      textAlign: 'center',
+      maxWidth: '640px',
+      margin: '0 auto 1rem',
+    }}>
+      {children}
+      {italic && <> <em style={{ fontStyle: 'italic' }}>{italic}</em></>}
+    </h2>
   )
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+function SectionLead({ children }: { children: React.ReactNode }) {
+  return (
+    <p style={{
+      textAlign: 'center',
+      color: 'var(--text-faint)',
+      maxWidth: '520px',
+      margin: '0 auto 3rem',
+      fontSize: '0.9375rem',
+      lineHeight: 1.65,
+    }}>
+      {children}
+    </p>
+  )
+}
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<Category>('all')
@@ -265,127 +269,214 @@ export default function Portfolio() {
 
   const filteredProjects = activeTab === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === activeTab)
 
-  const sectionStyle: React.CSSProperties = {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    padding: '5rem 1.5rem',
-    borderTop: '1px solid rgba(255,255,255,0.07)',
-  }
+  const navLinks = [
+    { label: 'Builds', href: '#builds' },
+    { label: 'Notes', href: '#notes' },
+    { label: 'Activity', href: '#activity' },
+    { label: 'GitHub', href: 'https://github.com/nerdynikhil', external: true },
+  ]
 
   return (
-    <div style={{ minHeight: '100vh', color: '#fff', fontFamily: F_DISPLAY }}>
-      <SpotlightCursor />
-
-      {/* ── Nav ── */}
-      <nav style={{ position: 'sticky', top: 0, zIndex: 50, borderBottom: '1px solid rgba(255,255,255,0.08)', background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem', height: '52px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontFamily: F_CODE, fontSize: '0.8rem', color: 'rgba(255,255,255,0.75)', fontWeight: 500, letterSpacing: '0.02em' }}>
-            nerdynikhil
-          </span>
-          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-            {[
-              { label: 'builds', href: '#builds', external: false },
-              { label: 'notes', href: '#notes', external: false },
-              { label: 'activity', href: '#activity', external: false },
-              { label: 'github', href: 'https://github.com/nerdynikhil', external: true },
-              { label: 'connect', href: '#connect', external: false },
-            ].map(link =>
-              link.external ? (
-                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                  style={{ fontFamily: F_CODE, fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)', textDecoration: 'none', transition: 'color 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.3)')}
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <a key={link.label} href={link.href}
-                  style={{ fontFamily: F_CODE, fontSize: '0.72rem', color: 'rgba(255,255,255,0.3)', textDecoration: 'none', transition: 'color 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.3)')}
-                >
-                  {link.label}
-                </a>
-              )
-            )}
-          </div>
-        </div>
-      </nav>
+    <div style={{ minHeight: '100vh', background: 'var(--cream)', color: 'var(--text)' }}>
 
       {/* ── Hero ── */}
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
-      <DottedSurface className="!absolute" />
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '4.5rem 1.5rem 5rem', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '3rem', alignItems: 'flex-start' }}>
+      <section style={{
+        position: 'relative',
+        minHeight: '100svh',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+      }}>
+        {/* Colorful terrain hero background */}
+        <img
+          src="/images/hero-terrain.jpg"
+          alt=""
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 40%',
+          }}
+        />
 
-          {/* Left */}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-              <span style={{ display: 'inline-block', width: '2rem', height: '1px', background: 'rgba(255,255,255,0.2)' }} />
-              <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
-                Developer · Builder · Creator
-              </span>
-            </div>
+        {/* Readability overlay for hero text */}
+        <div aria-hidden style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'linear-gradient(rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0) 65%)',
+        }} />
+        <div aria-hidden style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 45%)',
+        }} />
+        {/* Fade into cream content below */}
+        <div aria-hidden style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '120px',
+          pointerEvents: 'none',
+          background: 'linear-gradient(to bottom, transparent, var(--cream))',
+        }} />
 
-            <h1 style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: 'clamp(3.5rem, 9vw, 7rem)', lineHeight: 0.92, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 1.5rem 0' }}>
-              Nikhil<br />
-              <em style={{ fontFamily: F_EDITORIAL, fontStyle: 'italic', fontWeight: 400 }}>Barik</em>
-            </h1>
-
-            <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', maxWidth: '380px', marginBottom: '1.5rem' }} />
-
-            <div style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '1rem', color: 'rgba(255,255,255,0.48)', lineHeight: 1.7, maxWidth: '440px', margin: '0 0 2rem 0', position: 'relative' }}>
-              I build
-              <FlipWords
-                words={["iOS apps,", "web tools,", "Chrome extensions,", "AI utilities,"]}
-                duration={2500}
-                className="!px-2 font-light text-white/80"
-              />
-              that people actually use.
-            </div>
-
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {[
-                { label: 'GitHub', href: 'https://github.com/nerdynikhil' },
-                { label: 'LinkedIn', href: 'https://linkedin.com/in/nerdynikhil' },
-                { label: 'Twitter', href: 'https://twitter.com/nerdynikhil' },
-                { label: 'Instagram', href: 'https://www.instagram.com/thehustlerdev/' },
-              ].map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', padding: '0.4rem 0.9rem', fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.1)', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.75)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.4)' }}
-                >
-                  {link.label} ↗
-                </a>
+        {/* Nav */}
+        <nav style={{ position: 'relative', zIndex: 10, padding: '0 1.5rem' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'rgba(255,255,255,0.95)', textShadow: '0 1px 8px rgba(0,0,0,0.25)' }}>
+              nerdynikhil
+            </span>
+            <div className="portfolio-nav-links" style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }}>
+              {navLinks.map(link => (
+                link.external ? (
+                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="nav-link-item"
+                    style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.75)', textDecoration: 'none', transition: 'color 0.15s', textShadow: '0 1px 4px rgba(0,0,0,0.2)' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,1)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
+                  >{link.label}</a>
+                ) : (
+                  <a key={link.label} href={link.href} className="nav-link-item"
+                    style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.75)', textDecoration: 'none', transition: 'color 0.15s', textShadow: '0 1px 4px rgba(0,0,0,0.2)' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,1)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
+                  >{link.label}</a>
+                )
               ))}
+              <a href="#connect" style={{
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                color: '#fff',
+                background: 'rgba(0,0,0,0.35)',
+                border: '1px solid rgba(255,255,255,0.35)',
+                padding: '0.5rem 1rem',
+                borderRadius: 'var(--radius-btn)',
+                textDecoration: 'none',
+                backdropFilter: 'blur(8px)',
+              }}>
+                Get in touch
+              </a>
             </div>
           </div>
+        </nav>
 
-          {/* Right — profile photo */}
-          <div style={{ flexShrink: 0 }}>
-            <div style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
-              <img
-                src="/images/profilepic.png"
-                alt="Nikhil Barik"
-                style={{ width: '160px', height: '160px', objectFit: 'cover', display: 'block' }}
-              />
-            </div>
+        {/* Hero content */}
+        <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem 1.5rem 6rem' }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.625rem',
+            marginBottom: '2rem',
+            fontSize: '0.8125rem',
+            color: 'rgba(255,255,255,0.85)',
+            background: 'rgba(0,0,0,0.3)',
+            border: '1px solid rgba(255,255,255,0.15)',
+            borderRadius: '999px',
+            padding: '0.4rem 1rem',
+            backdropFilter: 'blur(8px)',
+          }}>
+            <span>18+ products shipped · iOS, web &amp; AI</span>
+          </div>
+
+          <h1 className="hero-headline">
+            I Build Things{' '}
+            <em>People Use</em>
+          </h1>
+
+          <p style={{
+            fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+            color: 'rgba(255,255,255,0.85)',
+            maxWidth: '520px',
+            margin: '0 auto 2rem',
+            lineHeight: 1.65,
+            textShadow: '0 1px 12px rgba(0,0,0,0.25)',
+          }}>
+            Nikhil Barik — solo builder of iOS apps, developer tools, and AI utilities.
+            <br />
+            From first commit to the App Store. No team required.
+          </p>
+
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <a href="#builds" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.375rem',
+              background: '#fff',
+              color: 'var(--text-muted)',
+              padding: '0.75rem 1.5rem',
+              borderRadius: 'var(--radius-btn)',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              textDecoration: 'none',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+            }}>
+              See the work <span>→</span>
+            </a>
+            <a href="#connect" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.375rem',
+              background: 'rgba(255,255,255,0.12)',
+              color: 'rgba(255,255,255,0.95)',
+              padding: '0.75rem 1.5rem',
+              borderRadius: 'var(--radius-btn)',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              textDecoration: 'none',
+              border: '1px solid rgba(255,255,255,0.35)',
+              backdropFilter: 'blur(12px)',
+            }}>
+              Start a conversation <span>→</span>
+            </a>
           </div>
         </div>
       </section>
-      </div>
 
-      {/* ── Build Log ── */}
-      <section id="builds" style={sectionStyle}>
-        <SectionHeader label="Build Log" heading="Build" italic="Log" sub="The full archive. Everything shipped." />
+      {/* ── What's Broken ── */}
+      <section style={{ padding: '5rem 1.5rem', maxWidth: '960px', margin: '0 auto' }}>
+        <SectionLabel>The Builder's Gap</SectionLabel>
+        <SectionHeading italic="leave the notebook.">Most ideas never</SectionHeading>
+        <SectionLead>
+          Not because they're bad ideas. Because building solo is hard —
+          <em style={{ fontStyle: 'italic', color: 'var(--text-muted)' }}> and most people stop at the prototype.</em>
+        </SectionLead>
 
-        {/* Filter tabs */}
-        <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+          {PAIN_POINTS.map(point => (
+            <article key={point.title} style={{
+              background: 'var(--cream-card)',
+              border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-card)',
+              padding: '1.5rem',
+            }}>
+              <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.0625rem', fontWeight: 400, color: 'var(--text-muted)', margin: '0 0 0.5rem' }}>
+                {point.title}
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-faint)', margin: 0, lineHeight: 1.55 }}>
+                {point.body}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ── The Solution / Builds ── */}
+      <section id="builds" style={{ padding: '5rem 1.5rem', maxWidth: '1100px', margin: '0 auto' }}>
+        <SectionLabel>The Work</SectionLabel>
+        <SectionHeading italic="not promises.">Proof,</SectionHeading>
+        <SectionLead>
+          {activeTab === 'all'
+            ? 'Every product below started as an idea and shipped to real users.'
+            : `${TABS.find(t => t.id === activeTab)?.label} — built solo, shipped live.`}{' '}
+          SaaS, App Store, Chrome Web Store, and beyond.
+        </SectionLead>
+
+        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           {TABS.map(tab => {
             const isActive = activeTab === tab.id
             return (
@@ -393,16 +484,15 @@ export default function Portfolio() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 style={{
-                  padding: '0.35rem 0.85rem',
-                  fontFamily: F_CODE,
-                  fontSize: '0.65rem',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  border: isActive ? '1px solid rgba(255,255,255,0.4)' : '1px solid rgba(255,255,255,0.1)',
-                  background: isActive ? 'rgba(255,255,255,0.06)' : 'transparent',
-                  color: isActive ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)',
+                  padding: '0.4rem 1rem',
+                  fontSize: '0.8125rem',
+                  fontWeight: 500,
+                  borderRadius: '999px',
+                  border: isActive ? '1px solid var(--text-muted)' : '1px solid var(--border-strong)',
+                  background: isActive ? 'var(--text-muted)' : 'transparent',
+                  color: isActive ? '#fff' : 'var(--text-faint)',
                   cursor: 'pointer',
-                  transition: 'all 0.15s ease',
+                  transition: 'all 0.15s',
                 }}
               >
                 {tab.label}
@@ -411,21 +501,22 @@ export default function Portfolio() {
           })}
         </div>
 
-        {/* Grid — gap-px technique from theaibuildrs */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
           {filteredProjects.map(project => (
-            <div key={project.name} style={{ background: '#000' }}>
-              <ProjectCard project={project} />
-            </div>
+            <ProjectCard key={project.name} project={project} />
           ))}
         </div>
       </section>
 
       {/* ── Field Notes ── */}
-      <section id="notes" style={sectionStyle}>
-        <SectionHeader label="Field Notes" heading="Field" italic="Notes" sub="Product thinking. Teardowns. Strategy." />
+      <section id="notes" style={{ padding: '5rem 1.5rem', maxWidth: '720px', margin: '0 auto' }}>
+        <SectionLabel>Field Notes</SectionLabel>
+        <SectionHeading italic="actually work.">How products</SectionHeading>
+        <SectionLead>
+          Teardowns and strategy from Swiggy, Zomato, and Blinkit — the thinking behind products that win.
+        </SectionLead>
 
-        <div style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius-card)', overflow: 'hidden', background: 'var(--cream-card)' }}>
           {BLOG_POSTS.map((post, i) => (
             <Link
               key={post.href}
@@ -434,101 +525,136 @@ export default function Portfolio() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1rem',
-                padding: '0.875rem 1.25rem',
-                borderBottom: i < BLOG_POSTS.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                padding: '1rem 1.25rem',
+                borderBottom: i < BLOG_POSTS.length - 1 ? '1px solid var(--border)' : 'none',
                 textDecoration: 'none',
-                transition: 'background 0.15s ease',
-                background: 'transparent',
+                color: 'inherit',
+                transition: 'background 0.15s',
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.025)')}
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(90,85,80,0.03)')}
               onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
             >
-              <span style={{ fontFamily: F_CODE, fontSize: '0.57rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '3px 7px', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.22)', flexShrink: 0, minWidth: '5.5rem', textAlign: 'center' }}>
+              <span style={{ fontSize: '0.6875rem', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '3px 8px', borderRadius: '999px', border: '1px solid var(--border-strong)', color: 'var(--text-faint)', flexShrink: 0, minWidth: '5rem', textAlign: 'center' }}>
                 {post.type}
               </span>
-              <span style={{ fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '0.88rem', color: 'rgba(255,255,255,0.58)', flex: 1 }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--text-muted)', flex: 1 }}>
                 {post.title}
               </span>
-              <span style={{ fontFamily: F_CODE, fontSize: '0.7rem', color: 'rgba(255,255,255,0.2)', flexShrink: 0 }}>→</span>
+              <span style={{ color: 'var(--text-faint)', flexShrink: 0 }}>→</span>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* ── Activity Feed ── */}
-      <section id="activity" style={sectionStyle}>
-        <SectionHeader label="Activity Feed" heading="Activity" italic="Feed" sub="Recent updates, thoughts, and behind-the-scenes." />
+      {/* ── Impact ── */}
+      <div style={{ textAlign: 'center', padding: '4rem 1.5rem', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+        <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 400, letterSpacing: '-0.03em', lineHeight: 1, color: 'var(--text-muted)', margin: 0 }}>
+          18+ products
+        </p>
+        <p style={{ color: 'var(--text-faint)', fontSize: '0.9375rem', marginTop: '0.75rem', maxWidth: '360px', marginLeft: 'auto', marginRight: 'auto' }}>
+          Shipped solo — App Store launches, SaaS tools, Chrome extensions, and AI utilities.
+        </p>
+      </div>
+
+      {/* ── Activity ── */}
+      <section id="activity" style={{ padding: '5rem 1.5rem', maxWidth: '1100px', margin: '0 auto' }}>
+        <SectionLabel>Build in Public</SectionLabel>
+        <SectionHeading italic="the workbench.">From</SectionHeading>
+        <SectionLead>
+          Unfiltered updates on what's shipping, what's breaking, and what's next.
+        </SectionLead>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'start' }}>
-          {/* Twitter / X */}
           <div>
-            <p style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '1.25rem' }}>
-              Latest on X
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '700px', overflowY: 'auto', paddingRight: '8px' }}>
-              {[
-                '2033295611467034829',
-                '2007933833954652456',
-                '2035759121442721831',
-                '2035752805512946139',
-                '2035344623405854958',
-                '2034294493055447054',
-                '2033453219964150260',
-                '2030392612050645145',
-              ].map(id => (
+            <p className="section-label" style={{ marginBottom: '1.25rem' }}>Latest on X</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxHeight: '700px', overflowY: 'auto' }}>
+              {['2033295611467034829', '2007933833954652456', '2035759121442721831', '2035752805512946139', '2035344623405854958', '2034294493055447054', '2033453219964150260', '2030392612050645145'].map(id => (
                 <TweetErrorBoundary key={id}>
-                  <div className="dark">
+                  <div className="light">
                     <Tweet id={id} />
                   </div>
                 </TweetErrorBoundary>
               ))}
             </div>
           </div>
-
-          {/* Instagram (Behold.so) */}
           <div>
-            <p style={{ fontFamily: F_CODE, fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '1.25rem' }}>
-              Instagram Feed
-            </p>
+            <p className="section-label" style={{ marginBottom: '1.25rem' }}>Instagram</p>
             <figure data-behold-id="tmMPJq7BrnHtNOTFTouD"></figure>
           </div>
         </div>
       </section>
 
-      {/* ── Connect ── */}
-      <section id="connect" style={{ ...sectionStyle, paddingBottom: '8rem' }}>
-        <SectionHeader label="Connect" heading="Let's" italic="Connect" sub="Find me on the internet." />
-
-        <div style={{ display: 'flex', gap: '0.625rem', flexWrap: 'wrap' }}>
-          {[
-            { label: 'GitHub', href: 'https://github.com/nerdynikhil' },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/nerdynikhil' },
-            { label: 'Twitter', href: 'https://twitter.com/nerdynikhil' },
-            { label: 'Instagram', href: 'https://www.instagram.com/thehustlerdev/' },
-          ].map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.6rem 1.5rem', fontFamily: F_DISPLAY, fontWeight: 300, fontSize: '0.85rem', color: 'rgba(255,255,255,0.55)', border: '1px solid rgba(255,255,255,0.1)', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.85)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.55)' }}
-            >
-              {link.label} ↗
-            </a>
+      {/* ── FAQ ── */}
+      <section style={{ padding: '5rem 1.5rem', maxWidth: '640px', margin: '0 auto' }}>
+        <SectionLabel>Before You Reach Out</SectionLabel>
+        <SectionHeading italic="you might ask">Questions</SectionHeading>
+        <ul style={{ listStyle: 'none', padding: 0, margin: '2rem 0 0' }}>
+          {FAQ.map(item => (
+            <li key={item.q} style={{ borderBottom: '1px solid var(--border)', padding: '1.25rem 0' }}>
+              <strong style={{ display: 'block', fontWeight: 500, fontSize: '0.9375rem', color: 'var(--text)', marginBottom: '0.375rem' }}>{item.q}</strong>
+              <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-faint)', lineHeight: 1.55 }}>{item.a}</p>
+            </li>
           ))}
+        </ul>
+      </section>
+
+      {/* ── Connect CTA ── */}
+      <section id="connect" style={{ padding: '3rem 1.5rem 6rem', maxWidth: '640px', margin: '0 auto' }}>
+        <div style={{
+          background: 'var(--cream-card)',
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--radius-card)',
+          padding: '2.5rem 2rem',
+          textAlign: 'center',
+        }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.75rem, 4vw, 2.25rem)', fontWeight: 400, color: 'var(--text-muted)', margin: '0 0 0.75rem', lineHeight: 1.15 }}>
+            Got something worth building?<br /><em style={{ fontStyle: 'italic' }}>Let's talk.</em>
+          </h2>
+          <p style={{ color: 'var(--text-faint)', fontSize: '0.9375rem', margin: '0 0 1.5rem' }}>
+            Whether you're a founder with an idea or a team that needs a builder — one message starts it.
+          </p>
+          <div style={{ display: 'flex', gap: '0.625rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {[
+              { label: 'LinkedIn', href: 'https://linkedin.com/in/nerdynikhil' },
+              { label: 'GitHub', href: 'https://github.com/nerdynikhil' },
+              { label: 'Twitter', href: 'https://twitter.com/nerdynikhil' },
+              { label: 'Email', href: 'mailto:nerdynikhil@outlook.com' },
+            ].map(link => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.label === 'Email' ? undefined : '_blank'}
+                rel={link.label === 'Email' ? undefined : 'noopener noreferrer'}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '0.625rem 1.25rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: 'var(--text-muted)',
+                  background: '#fff',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-btn)',
+                  textDecoration: 'none',
+                  transition: 'border-color 0.15s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--text-muted)')}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border-strong)')}
+              >
+                {link.label} ↗
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── Footer ── */}
-      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', color: 'rgba(255,255,255,0.15)', letterSpacing: '0.08em' }}>nerdynikhil.com</span>
-          <span style={{ fontFamily: F_CODE, fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)', letterSpacing: '0.08em' }}>built with ♥ + claude</span>
+      <footer style={{ borderTop: '1px solid var(--border)', padding: '2rem 1.5rem' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--text-faint)' }}>nerdynikhil</span>
+          <span style={{ fontSize: '0.8125rem', color: 'var(--text-faint)' }}>Built solo · © {new Date().getFullYear()} Nikhil Barik</span>
         </div>
       </footer>
-
     </div>
   )
 }

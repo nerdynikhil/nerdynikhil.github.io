@@ -14,16 +14,16 @@ const personJsonLd = {
     'https://twitter.com/nerdynikhil',
     'https://www.instagram.com/i.know.nothing_/',
   ],
-  jobTitle: 'Developer',
-  description: 'Developer, Builder, Creator. Shipping iOS apps, web tools, Chrome extensions, and AI utilities.',
+  jobTitle: 'Product Builder',
+  description: 'Solo builder of iOS apps, developer tools, and AI utilities. 18+ products shipped from idea to App Store.',
 }
 
 export default function Home() {
   return (
     <>
       <SEO
-        title="Nikhil Barik — Developer, Builder, Creator"
-        description="Portfolio of Nikhil Barik (nerdynikhil) — Developer, Builder, Creator. iOS apps, Chrome extensions, SaaS products, and AI tools."
+        title="Nikhil Barik — Builder of Products People Use"
+        description="Nikhil Barik (nerdynikhil) builds and ships iOS apps, SaaS tools, Chrome extensions, and AI utilities — solo, end to end. 18+ products and counting."
         url="https://www.nerdynikhil.com/"
         jsonLd={personJsonLd}
       />
