@@ -67,6 +67,9 @@ export default function Behance2PDF() {
           <video
             src="/images/behance2pdf/install-steps.mp4"
             controls
+            autoPlay
+            muted
+            loop
             playsInline
             className="w-full rounded-xl shadow-lg"
           />
