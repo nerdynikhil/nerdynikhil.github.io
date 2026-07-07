@@ -53,7 +53,7 @@ export default function Behance2PDF() {
 
         {/* CTA Button */}
         <a
-          href="https://chromewebstore.google.com/detail/behance2pdf/pagnlaabjkkhpfmgoaabjnmcbdfpmoli"
+          href="https://github.com/nerdynikhil/Behance2PDF"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-white text-[#0066ff] font-semibold text-lg px-10 py-4 rounded-full hover:bg-white/90 transition-colors shadow-lg mb-12"
@@ -67,10 +67,10 @@ export default function Behance2PDF() {
           <p className="text-white/80">
             Have a suggestion or found a bug? Feel free to reach out at{' '}
             <a
-              href="mailto:nickhil.sethi@icloud.com"
+              href="mailto:nerdynikhil@hotmail.com"
               className="underline hover:text-white transition-colors"
             >
-              nickhil.sethi@icloud.com
+              nerdynikhil@hotmail.com
             </a>
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function Behance2PDF() {
               Privacy Policy
             </a>
           </p>
-          <p>Made by Nikhil Sethi</p>
+          <p>Made by Nikhil Barik</p>
         </footer>
       </div>
     </div>
