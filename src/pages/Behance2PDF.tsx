@@ -61,6 +61,17 @@ export default function Behance2PDF() {
           Add to Chrome
         </a>
 
+        {/* Install walkthrough */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-10">
+          <h2 className="text-2xl font-semibold mb-4">Installation Walkthrough</h2>
+          <video
+            src="/images/behance2pdf/install-steps.mp4"
+            controls
+            playsInline
+            className="w-full rounded-xl shadow-lg"
+          />
+        </div>
+
         {/* Feedback */}
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-12">
           <h2 className="text-2xl font-semibold mb-3">Feedback</h2>
