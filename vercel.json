@@ -1,5 +1,152 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/behance2pdf",
+      "destination": "/behance2pdf/index.html"
+    },
+    {
+      "source": "/behance2pdf/privacy",
+      "destination": "/behance2pdf/privacy/index.html"
+    },
+    {
+      "source": "/chattercards",
+      "destination": "/chattercards/index.html"
+    },
+    {
+      "source": "/chattercards/privacy",
+      "destination": "/chattercards/privacy/index.html"
+    },
+    {
+      "source": "/claude-narrator",
+      "destination": "/claude-narrator/index.html"
+    },
+    {
+      "source": "/eta-tube",
+      "destination": "/eta-tube/index.html"
+    },
+    {
+      "source": "/eta-tube/privacy",
+      "destination": "/eta-tube/privacy/index.html"
+    },
+    {
+      "source": "/faster-udemy",
+      "destination": "/faster-udemy/index.html"
+    },
+    {
+      "source": "/faster-udemy/privacy",
+      "destination": "/faster-udemy/privacy/index.html"
+    },
+    {
+      "source": "/lingoduel",
+      "destination": "/lingoduel/index.html"
+    },
+    {
+      "source": "/lingoduel/privacy",
+      "destination": "/lingoduel/privacy/index.html"
+    },
+    {
+      "source": "/serenight",
+      "destination": "/serenight/index.html"
+    },
+    {
+      "source": "/serenight/privacy",
+      "destination": "/serenight/privacy/index.html"
+    },
+    {
+      "source": "/subscriptionly",
+      "destination": "/subscriptionly/index.html"
+    },
+    {
+      "source": "/subscriptionly/privacy",
+      "destination": "/subscriptionly/privacy/index.html"
+    },
+    {
+      "source": "/truehue",
+      "destination": "/truehue/index.html"
+    },
+    {
+      "source": "/truehue/privacy",
+      "destination": "/truehue/privacy/index.html"
+    },
+    {
+      "source": "/wdtg",
+      "destination": "/wdtg/index.html"
+    },
+    {
+      "source": "/wdtg/privacy",
+      "destination": "/wdtg/privacy/index.html"
+    },
+    {
+      "source": "/wdtg/support",
+      "destination": "/wdtg/support/index.html"
+    },
+    {
+      "source": "/wdtg/terms",
+      "destination": "/wdtg/terms/index.html"
+    },
+    {
+      "source": "/thehustlerdev",
+      "destination": "/thehustlerdev/index.html"
+    },
+    {
+      "source": "/thehustlerdev/resources/tech-stack-picker-2025",
+      "destination": "/thehustlerdev/resources/tech-stack-picker-2025/index.html"
+    },
+    {
+      "source": "/thehustlerdev/resources/5-essential-leetcode-patterns",
+      "destination": "/thehustlerdev/resources/5-essential-leetcode-patterns/index.html"
+    },
+    {
+      "source": "/thehustlerdev/resources/5-design-patterns-that-changed-my-code-quality",
+      "destination": "/thehustlerdev/resources/5-design-patterns-that-changed-my-code-quality/index.html"
+    },
+    {
+      "source": "/thehustlerdev/resources/ai-productivity-toolkit",
+      "destination": "/thehustlerdev/resources/ai-productivity-toolkit/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/blinkit-app-notification-product-teardown",
+      "destination": "/blog/blinkit-app-notification-product-teardown/index.html"
+    },
+    {
+      "source": "/blog/case-study-growing-zomato-quality-reviews",
+      "destination": "/blog/case-study-growing-zomato-quality-reviews/index.html"
+    },
+    {
+      "source": "/blog/google-smart-shoes-product-metrics-goals",
+      "destination": "/blog/google-smart-shoes-product-metrics-goals/index.html"
+    },
+    {
+      "source": "/blog/prd-increasing-zomato-text-reviews",
+      "destination": "/blog/prd-increasing-zomato-text-reviews/index.html"
+    },
+    {
+      "source": "/blog/secondary-research-food-delivery-industry-india",
+      "destination": "/blog/secondary-research-food-delivery-industry-india/index.html"
+    },
+    {
+      "source": "/blog/smytten-referral-program-teardown",
+      "destination": "/blog/smytten-referral-program-teardown/index.html"
+    },
+    {
+      "source": "/blog/swiggy-dabba-customized-meal-plans",
+      "destination": "/blog/swiggy-dabba-customized-meal-plans/index.html"
+    },
+    {
+      "source": "/blog/swiggy-enhancing-customer-loyalty-retention",
+      "destination": "/blog/swiggy-enhancing-customer-loyalty-retention/index.html"
+    },
+    {
+      "source": "/blog/swiggy-root-cause-analysis-play-store-rating-drop",
+      "destination": "/blog/swiggy-root-cause-analysis-play-store-rating-drop/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
