@@ -52,6 +52,7 @@ const PROJECTS: Project[] = [
   { name: 'Meme Sounds', description: 'Play meme sounds while coding', category: 'claude', icon: { src: '/images/meme-sounds.png' }, href: 'https://marketplace.visualstudio.com/items?itemName=nerdynikhil.meme-sounds', external: true },
   { name: 'claude-ping-me', description: 'Notify when Claude is waiting', category: 'claude', icon: '🔔', href: 'https://skills.sh/nerdynikhil/claude-ping-me/claude-ping-me', external: true },
   { name: 'Claude Narrator', description: 'Hear what Claude Code is doing — out loud', category: 'claude', icon: '🎙️', href: '/claude-narrator', external: false },
+  { name: 'ClaudeScore', description: 'Score and compare your Claude usage', category: 'claude', icon: '📊', href: 'https://claudescore.wtf/', external: true },
 ]
 
 const BLOG_POSTS: BlogPost[] = [

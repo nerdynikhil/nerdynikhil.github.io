@@ -209,6 +209,14 @@ const ITEMS: PortfolioItem[] = [
     action: "navigate",
     target: "/claude-narrator",
   },
+  {
+    name: "ClaudeScore",
+    description: "Score and compare your Claude usage",
+    category: "vscode-claude",
+    icon: "\uD83D\uDCCA",
+    action: "external",
+    target: "https://claudescore.wtf/",
+  },
 
   // Blog
   {
