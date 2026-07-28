@@ -116,24 +116,34 @@ export default function Behance2PDF() {
           </ul>
         </div>
 
-        {/* CTA Button */}
-        <a
-          href="https://github.com/nerdynikhil/Behance2PDF"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-white text-[#0066ff] font-semibold text-lg px-10 py-4 rounded-full hover:bg-white/90 transition-colors shadow-lg mb-2"
-        >
-          Get on GitHub
-        </a>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+          <a
+            href="https://chromewebstore.google.com/detail/behance2pdf/njmohlbacnpeglflbcfikkkmdpabeoil"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-[#0066ff] font-semibold text-lg px-10 py-4 rounded-full hover:bg-white/90 transition-colors shadow-lg"
+          >
+            Add to Chrome
+          </a>
+          <a
+            href="https://github.com/nerdynikhil/Behance2PDF"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block border border-white/40 text-white font-semibold text-lg px-10 py-4 rounded-full hover:bg-white/10 transition-colors"
+          >
+            View on GitHub
+          </a>
+        </div>
         <p className="text-white/60 text-sm mb-12">
-          Not yet on the Chrome Web Store — install directly from GitHub (see steps below).
+          Free to install — no account or sign-up required.
         </p>
 
         {/* How it works */}
         <div className="text-left bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-10">
           <h2 className="text-2xl font-semibold mb-4">How it works</h2>
           <ol className="space-y-3 text-white/90 list-decimal list-inside">
-            <li>Install the Behance2PDF extension from GitHub (steps below).</li>
+            <li>Install the Behance2PDF extension from the Chrome Web Store (or load it from GitHub).</li>
             <li>Open any project on behance.net.</li>
             <li>Click the floating "Save as PDF" or "Download Images" button — your file downloads instantly.</li>
           </ol>
