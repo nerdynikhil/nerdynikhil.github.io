@@ -49,140 +49,177 @@ export default function WDTG() {
         url="https://www.nerdynikhil.com/wdtg"
       />
 
-      <div className="min-h-screen bg-white font-['-apple-system',BlinkMacSystemFont,'SF_Pro_Display','Segoe_UI',sans-serif] leading-relaxed text-[#1a1a1a]">
+      <div style={{ minHeight: '100vh', background: 'var(--cream)', color: 'var(--text)' }}>
         {/* Navigation */}
-        <nav className="border-b border-[#e5e5e5] px-10 py-5">
-          <div className="mx-auto flex max-w-[1200px] items-center justify-between">
-            <div className="text-2xl font-semibold text-[#6366F1]">WDTG</div>
-            <div className="hidden md:block">
-              <a
-                href="#features"
-                className="ml-8 font-medium text-[#666] no-underline hover:text-[#6366F1]"
-              >
+        <nav style={{ borderBottom: '1px solid var(--border)', padding: '1.25rem 1.5rem' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: 'var(--text-muted)' }}>WDTG</span>
+            <div style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }} className="portfolio-nav-links">
+              <a href="#features" className="nav-link-item" style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-faint)', textDecoration: 'none' }}>
                 Features
               </a>
-              <a
-                href="#privacy"
-                className="ml-8 font-medium text-[#666] no-underline hover:text-[#6366F1]"
-              >
+              <a href="#privacy" className="nav-link-item" style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-faint)', textDecoration: 'none' }}>
                 Privacy
               </a>
-              <Link
-                to="/wdtg/support"
-                className="ml-8 font-medium text-[#666] no-underline hover:text-[#6366F1]"
-              >
+              <Link to="/wdtg/support" className="nav-link-item" style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-faint)', textDecoration: 'none' }}>
                 Support
               </Link>
-              <Link
-                to="/wdtg/privacy"
-                className="ml-8 font-medium text-[#666] no-underline hover:text-[#6366F1]"
-              >
-                Privacy Policy
+              <Link to="/" style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)', textDecoration: 'none', border: '1px solid var(--border-strong)', borderRadius: 'var(--radius-btn)', padding: '0.5rem 1rem' }}>
+                nerdynikhil.com
               </Link>
             </div>
           </div>
         </nav>
 
         {/* Hero Section */}
-        <section className="mx-auto max-w-[1200px] px-10 py-20 text-center">
-          <h1 className="mb-5 text-4xl font-bold text-[#1a1a1a] md:text-[56px]">
-            Where Did The Time Go?
+        <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '5rem 1.5rem', textAlign: 'center' }}>
+          <p className="section-label" style={{ marginBottom: '1rem' }}>iOS App</p>
+          <h1 style={{
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 400,
+            fontSize: 'clamp(2.25rem, 6vw, 3.75rem)',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
+            color: 'var(--text-muted)',
+            margin: '0 0 1.25rem',
+          }}>
+            Where Did The <em style={{ fontStyle: 'italic' }}>Time Go?</em>
           </h1>
-          <p className="mb-10 text-lg text-[#666] md:text-2xl">
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)', color: 'var(--text-faint)', maxWidth: '480px', margin: '0 auto 2.5rem', lineHeight: 1.65 }}>
             Track your time. Visualize your life. Understand your patterns.
           </p>
           <a
             href="https://apps.apple.com/us/app/wdtg-where-did-the-time-go/id6756418835"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-xl bg-[#6366F1] px-10 py-4 text-lg font-semibold text-white no-underline transition-transform duration-200 hover:-translate-y-0.5"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              background: 'var(--text-muted)',
+              color: '#fff',
+              padding: '0.875rem 1.75rem',
+              borderRadius: 'var(--radius-btn)',
+              fontWeight: 500,
+              fontSize: '0.9375rem',
+              textDecoration: 'none',
+              boxShadow: '0 4px 20px rgba(28,25,23,0.12)',
+            }}
           >
-            📱 Download on App Store
+            📱 Download on the App Store
           </a>
-          <p className="mt-5 text-[#999]">Available now on iPhone</p>
+          <p style={{ marginTop: '1.25rem', color: 'var(--text-faint)', fontSize: '0.875rem' }}>Available now on iPhone</p>
         </section>
 
         {/* Features Section */}
-        <section id="features" className="bg-[#f9f9f9] px-10 py-20">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-15 text-center text-3xl font-bold md:text-[42px]">
-              Simple. Beautiful. Powerful.
-            </h2>
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {features.map((feature) => (
-                <div
-                  key={feature.title}
-                  className="rounded-2xl border border-[#e5e5e5] bg-white p-8"
-                >
-                  <div className="mb-4 text-[40px]">{feature.icon}</div>
-                  <h3 className="mb-2.5 text-[22px] font-semibold text-[#1a1a1a]">
-                    {feature.title}
-                  </h3>
-                  <p className="leading-relaxed text-[#666]">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+        <section id="features" style={{ padding: '5rem 1.5rem', maxWidth: '1100px', margin: '0 auto' }}>
+          <p className="section-label" style={{ textAlign: 'center', marginBottom: '1rem' }}>What It Does</p>
+          <h2 style={{
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 400,
+            fontSize: 'clamp(1.75rem, 4vw, 3rem)',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.15,
+            color: 'var(--text-muted)',
+            textAlign: 'center',
+            margin: '0 auto 3rem',
+            maxWidth: '600px',
+          }}>
+            Simple. Beautiful. <em style={{ fontStyle: 'italic' }}>Powerful.</em>
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                style={{
+                  background: 'var(--cream-card)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 'var(--radius-card)',
+                  padding: '1.75rem',
+                }}
+              >
+                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{feature.icon}</div>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, fontSize: '1.125rem', color: 'var(--text-muted)', margin: '0 0 0.5rem' }}>
+                  {feature.title}
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: 'var(--text-faint)', lineHeight: 1.6, margin: 0 }}>
+                  {feature.description}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* Privacy Section */}
-        <section
-          id="privacy"
-          className="mx-auto max-w-[1200px] px-10 py-20 text-center"
-        >
-          <h2 className="mb-5 text-3xl font-bold md:text-[42px]">
-            Your Data, Your Control
-          </h2>
-          <p className="mb-8 text-lg text-[#666]">
-            All your time entries are stored securely in your private iCloud. We
-            never see, collect, or share your data.
-          </p>
-          <p className="mb-8 text-lg text-[#666]">
-            No accounts. No tracking. No analytics. Just simple, private time
-            tracking.
-          </p>
-          <div className="mt-10">
-            <Link
-              to="/wdtg/privacy"
-              className="mx-4 font-medium text-[#6366F1] no-underline hover:underline"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/wdtg/terms"
-              className="mx-4 font-medium text-[#6366F1] no-underline hover:underline"
-            >
-              Terms of Service
-            </Link>
+        <section id="privacy" style={{ padding: '3rem 1.5rem 6rem', maxWidth: '640px', margin: '0 auto' }}>
+          <div style={{
+            background: 'var(--cream-card)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-card)',
+            padding: '2.5rem 2rem',
+            textAlign: 'center',
+          }}>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--text-muted)', margin: '0 0 0.75rem' }}>
+              Your Data, <em style={{ fontStyle: 'italic' }}>Your Control</em>
+            </h2>
+            <p style={{ color: 'var(--text-faint)', fontSize: '0.9375rem', lineHeight: 1.6, margin: '0 0 0.75rem' }}>
+              All your time entries are stored securely in your private iCloud. We never see, collect, or share your data.
+            </p>
+            <p style={{ color: 'var(--text-faint)', fontSize: '0.9375rem', lineHeight: 1.6, margin: '0 0 1.5rem' }}>
+              No accounts. No tracking. No analytics. Just simple, private time tracking.
+            </p>
+            <div style={{ display: 'flex', gap: '0.625rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <Link
+                to="/wdtg/privacy"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '0.625rem 1.25rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: 'var(--text-muted)',
+                  background: '#fff',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-btn)',
+                  textDecoration: 'none',
+                }}
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/wdtg/terms"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '0.625rem 1.25rem',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: 'var(--text-muted)',
+                  background: '#fff',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-btn)',
+                  textDecoration: 'none',
+                }}
+              >
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="bg-[#1a1a1a] px-10 py-10 text-center text-white">
-          <p>
-            Made with ❤️ by{' '}
-            <a
-              href="https://nerdynikhil.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#6366F1] no-underline hover:underline"
-            >
-              Nikhil Barik
-            </a>
-          </p>
-          <p className="mt-2.5 text-sm text-[#999]">
-            &copy; 2024 Nikhil Barik. All rights reserved.
-          </p>
-          <p className="mt-5">
-            <a
-              href="mailto:hello@nerdynikhil.com"
-              className="text-[#6366F1] no-underline hover:underline"
-            >
+        <footer style={{ borderTop: '1px solid var(--border)', padding: '2rem 1.5rem' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--text-faint)' }}>
+              Made by{' '}
+              <a href="https://nerdynikhil.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-muted)' }}>
+                Nikhil Barik
+              </a>
+            </span>
+            <a href="mailto:hello@nerdynikhil.com" style={{ fontSize: '0.8125rem', color: 'var(--text-faint)', textDecoration: 'none' }}>
               Contact
             </a>
-          </p>
+          </div>
         </footer>
       </div>
     </>
