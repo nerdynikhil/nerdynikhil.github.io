@@ -121,7 +121,7 @@ export default function Serenight() {
   const isVisible = (id: string) => animatedElements.has(id)
 
   return (
-    <div className="min-h-screen bg-white text-[#1a1a1a] font-['Inter',system-ui,'-apple-system','BlinkMacSystemFont','Segoe_UI',sans-serif] leading-relaxed font-normal">
+    <div style={{ minHeight: '100vh', background: 'var(--cream)', color: 'var(--text)' }}>
       <SEO
         title="Serenight - Your Sleep Tracking Companion"
         description="Transform your sleep with intelligent tracking and insights. Analyze patterns, track quality, and unlock better rest with Apple Health integration."
@@ -130,19 +130,20 @@ export default function Serenight() {
       />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-b border-gray-200 z-50">
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, background: 'rgba(254,252,248,0.9)', backdropFilter: 'blur(16px)', borderBottom: '1px solid var(--border)', zIndex: 50 }}>
         <div className="max-w-5xl mx-auto px-6 flex items-center justify-between h-16">
-          <div className="flex items-center gap-2 font-semibold text-lg text-[#1a1a1a]">
+          <div style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-muted)' }} className="flex items-center gap-2 text-lg">
             <img src="/images/serenight/logo.png" alt="Serenight Logo" className="w-8 h-8 rounded-lg object-cover" />
             <span>Serenight</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-medium text-gray-500 no-underline hover:text-[#1a1a1a] transition-colors">Features</a>
-            <a href="#screenshots" className="text-sm font-medium text-gray-500 no-underline hover:text-[#1a1a1a] transition-colors">Screenshots</a>
-            <a href="#privacy" className="text-sm font-medium text-gray-500 no-underline hover:text-[#1a1a1a] transition-colors">Privacy</a>
+            <a href="#features" style={{ color: 'var(--text-faint)' }} className="text-sm font-medium no-underline">Features</a>
+            <a href="#screenshots" style={{ color: 'var(--text-faint)' }} className="text-sm font-medium no-underline">Screenshots</a>
+            <a href="#privacy" style={{ color: 'var(--text-faint)' }} className="text-sm font-medium no-underline">Privacy</a>
             <a
               href="#download"
-              className="text-sm font-semibold text-white no-underline bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 hover:-translate-y-px transition-all"
+              style={{ background: 'var(--text-muted)', borderRadius: 'var(--radius-btn)' }}
+              className="text-sm font-semibold text-white no-underline px-4 py-2 hover:-translate-y-px transition-all"
             >
               Download
             </a>
@@ -151,17 +152,17 @@ export default function Serenight() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 to-slate-100">
+      <section style={{ paddingTop: '8rem' }} className="pb-20">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-6 text-[#1a1a1a]">
-              <span className="bg-gradient-to-br from-blue-500 to-violet-500 bg-clip-text text-transparent">Sleep smart,</span>
-              <br />
-              live bright with
-              <br />
-              <span className="text-blue-600">Serenight</span>
+            <p className="section-label mb-4">iOS App</p>
+            <h1
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }}
+              className="text-4xl sm:text-5xl leading-tight mb-6"
+            >
+              Sleep smart, live bright with <em className="italic">Serenight</em>
             </h1>
-            <p className="text-xl text-gray-500 mb-10 leading-relaxed">
+            <p style={{ color: 'var(--text-faint)' }} className="text-xl mb-10 leading-relaxed">
               Transform your sleep with intelligent tracking and personalized insights.
               Analyze your patterns, understand your quality, and unlock the secrets
               to better rest using your Apple Health data.
@@ -171,31 +172,33 @@ export default function Serenight() {
                 href="https://apps.apple.com/in/app/images/serenight/id6752668596"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-4 rounded-xl no-underline font-semibold text-base hover:bg-blue-700 hover:-translate-y-0.5 transition-all shadow-[0_4px_12px_rgba(37,99,235,0.2)]"
+                style={{ background: 'var(--text-muted)', borderRadius: 'var(--radius-btn)', boxShadow: '0 4px 20px rgba(28,25,23,0.12)' }}
+                className="inline-flex items-center gap-2 text-white px-6 py-4 no-underline font-semibold text-base hover:-translate-y-0.5 transition-all"
               >
                 <span className="text-lg">{'\u{1F4F1}'}</span>
                 Download on App Store
               </a>
               <a
                 href="#features"
-                className="inline-flex items-center gap-2 bg-white text-gray-500 px-6 py-4 rounded-xl no-underline font-semibold text-base border border-gray-200 hover:bg-gray-50 hover:text-[#1a1a1a] hover:-translate-y-0.5 transition-all"
+                style={{ background: '#fff', color: 'var(--text-muted)', border: '1px solid var(--border-strong)', borderRadius: 'var(--radius-btn)' }}
+                className="inline-flex items-center gap-2 px-6 py-4 no-underline font-semibold text-base hover:-translate-y-0.5 transition-all"
               >
-                <span className="text-lg">{'\u2728'}</span>
+                <span className="text-lg">{'✨'}</span>
                 Explore Features
               </a>
             </div>
             <div className="flex gap-10 justify-center lg:justify-start">
               <div className="text-left">
-                <div className="text-2xl font-bold text-[#1a1a1a] mb-1">24/7</div>
-                <div className="text-sm text-gray-500 font-medium">Sleep Monitoring</div>
+                <div style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-heading)' }} className="text-2xl mb-1">24/7</div>
+                <div style={{ color: 'var(--text-faint)' }} className="text-sm font-medium">Sleep Monitoring</div>
               </div>
               <div className="text-left">
-                <div className="text-2xl font-bold text-[#1a1a1a] mb-1">AI</div>
-                <div className="text-sm text-gray-500 font-medium">Powered Insights</div>
+                <div style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-heading)' }} className="text-2xl mb-1">AI</div>
+                <div style={{ color: 'var(--text-faint)' }} className="text-sm font-medium">Powered Insights</div>
               </div>
               <div className="text-left">
-                <div className="text-2xl font-bold text-[#1a1a1a] mb-1">100%</div>
-                <div className="text-sm text-gray-500 font-medium">Privacy First</div>
+                <div style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-heading)' }} className="text-2xl mb-1">100%</div>
+                <div style={{ color: 'var(--text-faint)' }} className="text-sm font-medium">Privacy First</div>
               </div>
             </div>
           </div>
@@ -204,26 +207,26 @@ export default function Serenight() {
               <img
                 src="/images/serenight/hero-image.png"
                 alt="Serenight App Welcome Screen"
-                className={`max-w-[280px] h-auto rounded-3xl shadow-[0_25px_50px_rgba(0,0,0,0.15)] transition-all duration-700 ease-out ${
+                className={`max-w-[280px] h-auto rounded-3xl shadow-[0_25px_50px_rgba(28,25,23,0.15)] transition-all duration-700 ease-out ${
                   isVisible('hero-phone')
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
                 }`}
               />
-              <div className="absolute -inset-5 bg-gradient-to-br from-blue-500 to-violet-500 rounded-[44px] opacity-10 -z-10 animate-pulse" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 bg-white">
+      <section id="features" className="py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] mb-4 leading-snug">
-              Everything you need for better sleep
+            <p className="section-label mb-4">What It Does</p>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-4 leading-snug">
+              Everything you need for <em className="italic">better sleep</em>
             </h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
+            <p style={{ color: 'var(--text-faint)' }} className="text-lg max-w-xl mx-auto leading-relaxed">
               Serenight combines advanced analytics with beautiful design to give you
               unprecedented insights into your sleep patterns.
             </p>
@@ -234,19 +237,23 @@ export default function Serenight() {
               <div
                 key={index}
                 ref={addRef(`feature-${index}`)}
-                className={`bg-slate-50 p-8 rounded-2xl border border-slate-200 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:border-slate-300 transition-all duration-300 ${
+                style={{ background: 'var(--cream-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-card)' }}
+                className={`p-8 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(28,25,23,0.08)] transition-all duration-300 ${
                   isVisible(`feature-${index}`)
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
                 }`}
-                style={{ transitionDelay: isVisible(`feature-${index}`) ? `${(index % 3) * 100}ms` : '0ms' }}
               >
                 <span className="text-3xl block mb-5">{feature.icon}</span>
-                <h3 className="text-xl font-semibold text-[#1a1a1a] mb-3">{feature.title}</h3>
-                <p className="text-base text-gray-500 leading-relaxed mb-5">{feature.description}</p>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-xl mb-3">{feature.title}</h3>
+                <p style={{ color: 'var(--text-faint)' }} className="text-base leading-relaxed mb-5">{feature.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {feature.highlights.map((h, i) => (
-                    <span key={i} className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-medium">
+                    <span
+                      key={i}
+                      style={{ border: '1px solid var(--border-strong)', color: 'var(--text-faint)' }}
+                      className="px-3 py-1 rounded-full text-xs font-medium"
+                    >
                       {h}
                     </span>
                   ))}
@@ -258,13 +265,14 @@ export default function Serenight() {
       </section>
 
       {/* Screenshots Section */}
-      <section id="screenshots" className="py-24 bg-slate-50">
+      <section id="screenshots" style={{ background: 'var(--cream-dark)' }} className="py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] mb-4 leading-snug">
-              See your sleep like never before
+            <p className="section-label mb-4">A Closer Look</p>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-4 leading-snug">
+              See your sleep <em className="italic">like never before</em>
             </h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
+            <p style={{ color: 'var(--text-faint)' }} className="text-lg max-w-xl mx-auto leading-relaxed">
               From comprehensive dashboards to detailed analytics, every screen is
               designed to help you understand and improve your sleep.
             </p>
@@ -275,7 +283,8 @@ export default function Serenight() {
               <div
                 key={index}
                 ref={addRef(`screenshot-${index}`)}
-                className={`bg-white rounded-2xl p-8 sm:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-700 ease-out ${
+                style={{ background: 'var(--cream-card)', borderRadius: 'var(--radius-card)', border: '1px solid var(--border)' }}
+                className={`p-8 sm:p-10 transition-all duration-700 ease-out ${
                   isVisible(`screenshot-${index}`)
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
@@ -285,12 +294,12 @@ export default function Serenight() {
                   shot.reverse ? 'lg:grid-cols-[300px_1fr]' : ''
                 }`}>
                   <div className={shot.reverse ? 'lg:order-2 text-center lg:text-left' : 'text-center lg:text-left'}>
-                    <h3 className="text-2xl font-semibold text-[#1a1a1a] mb-4">{shot.title}</h3>
-                    <p className="text-base text-gray-500 leading-relaxed mb-5">{shot.description}</p>
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-2xl mb-4">{shot.title}</h3>
+                    <p style={{ color: 'var(--text-faint)' }} className="text-base leading-relaxed mb-5">{shot.description}</p>
                     <ul className="list-none p-0">
                       {shot.bullets.map((bullet, i) => (
-                        <li key={i} className="text-sm text-gray-500 py-2 border-b border-slate-100 relative pl-5">
-                          <span className="absolute left-0 text-emerald-500 font-semibold">{'\u2713'}</span>
+                        <li key={i} style={{ color: 'var(--text-faint)', borderBottom: '1px solid var(--border)' }} className="text-sm py-2 relative pl-5">
+                          <span style={{ position: 'absolute', left: 0, color: 'var(--text-muted)', fontWeight: 600 }}>{'✓'}</span>
                           {bullet}
                         </li>
                       ))}
@@ -301,7 +310,7 @@ export default function Serenight() {
                       src={shot.image}
                       alt={shot.alt}
                       loading="lazy"
-                      className="max-w-full h-auto rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+                      className="max-w-full h-auto rounded-2xl shadow-[0_8px_30px_rgba(28,25,23,0.12)]"
                     />
                   </div>
                 </div>
@@ -312,13 +321,14 @@ export default function Serenight() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] mb-4 leading-snug">
-              How Serenight works
+            <p className="section-label mb-4">How It Works</p>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-4 leading-snug">
+              How <em className="italic">Serenight</em> works
             </h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
+            <p style={{ color: 'var(--text-faint)' }} className="text-lg max-w-xl mx-auto leading-relaxed">
               Getting started is simple. Serenight works with your existing Apple Health data
               to provide instant insights without any setup required.
             </p>
@@ -336,11 +346,11 @@ export default function Serenight() {
                 }`}
                 style={{ transitionDelay: isVisible(`step-${index}`) ? `${index * 150}ms` : '0ms' }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-violet-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-[0_4px_20px_rgba(59,130,246,0.3)]">
+                <div style={{ background: 'var(--text-muted)', fontFamily: 'var(--font-heading)' }} className="w-16 h-16 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-6">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-semibold text-[#1a1a1a] mb-3">{step.title}</h3>
-                <p className="text-base text-gray-500 leading-relaxed">{step.description}</p>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-xl mb-3">{step.title}</h3>
+                <p style={{ color: 'var(--text-faint)' }} className="text-base leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
@@ -348,14 +358,15 @@ export default function Serenight() {
       </section>
 
       {/* Privacy Section */}
-      <section id="privacy" className="py-24 bg-slate-50">
+      <section id="privacy" style={{ background: 'var(--cream-dark)' }} className="py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="text-center lg:text-left">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] mb-4 leading-snug">
-                Your data, your device
+              <p className="section-label mb-4">Privacy</p>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-4 leading-snug">
+                Your data, <em className="italic">your device</em>
               </h2>
-              <p className="text-lg text-gray-500 leading-relaxed mb-10">
+              <p style={{ color: 'var(--text-faint)' }} className="text-lg leading-relaxed mb-10">
                 Privacy isn&apos;t just a feature&mdash;it&apos;s fundamental to how Serenight works.
                 Your sleep data is analyzed locally on your device and never transmitted
                 to external servers.
@@ -365,36 +376,34 @@ export default function Serenight() {
                 <div className="flex items-start gap-4">
                   <span className="text-2xl mt-1">{'\u{1F4F1}'}</span>
                   <div>
-                    <h4 className="text-lg font-semibold text-[#1a1a1a] mb-2">Local Processing</h4>
-                    <p className="text-sm text-gray-500 leading-normal">All analysis happens on your device using on-device AI processing.</p>
+                    <h4 style={{ color: 'var(--text-muted)' }} className="text-lg font-semibold mb-2">Local Processing</h4>
+                    <p style={{ color: 'var(--text-faint)' }} className="text-sm leading-normal">All analysis happens on your device using on-device AI processing.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="text-2xl mt-1">{'\u{1F510}'}</span>
                   <div>
-                    <h4 className="text-lg font-semibold text-[#1a1a1a] mb-2">No Data Collection</h4>
-                    <p className="text-sm text-gray-500 leading-normal">We don&apos;t collect, store, or transmit your personal sleep information.</p>
+                    <h4 style={{ color: 'var(--text-muted)' }} className="text-lg font-semibold mb-2">No Data Collection</h4>
+                    <p style={{ color: 'var(--text-faint)' }} className="text-sm leading-normal">We don&apos;t collect, store, or transmit your personal sleep information.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <span className="text-2xl mt-1">{'\u26A1'}</span>
+                  <span className="text-2xl mt-1">{'⚡'}</span>
                   <div>
-                    <h4 className="text-lg font-semibold text-[#1a1a1a] mb-2">HealthKit Integration</h4>
-                    <p className="text-sm text-gray-500 leading-normal">Secure access to your data through Apple&apos;s privacy-first HealthKit framework.</p>
+                    <h4 style={{ color: 'var(--text-muted)' }} className="text-lg font-semibold mb-2">HealthKit Integration</h4>
+                    <p style={{ color: 'var(--text-faint)' }} className="text-sm leading-normal">Secure access to your data through Apple&apos;s privacy-first HealthKit framework.</p>
                   </div>
                 </div>
               </div>
 
-              <Link to="/serenight/privacy" className="text-blue-600 no-underline font-semibold text-base hover:text-blue-700 transition-colors">
+              <Link to="/serenight/privacy" style={{ color: 'var(--text-muted)' }} className="no-underline font-semibold text-base hover:underline">
                 Read our full Privacy Policy &rarr;
               </Link>
             </div>
 
             <div className="flex justify-center items-center">
-              <div className="relative">
-                <div className="w-48 h-72 border-[3px] border-slate-200 rounded-2xl bg-white flex items-center justify-center shadow-[0_8px_30px_rgba(0,0,0,0.1)]">
-                  <span className="text-5xl animate-bounce">{'\u{1F6E1}\uFE0F'}</span>
-                </div>
+              <div style={{ border: '3px solid var(--border-strong)', background: 'var(--cream-card)', borderRadius: 'var(--radius-card)' }} className="w-48 h-72 flex items-center justify-center">
+                <span className="text-5xl">{'\u{1F6E1}️'}</span>
               </div>
             </div>
           </div>
@@ -402,12 +411,12 @@ export default function Serenight() {
       </section>
 
       {/* Download Section */}
-      <section id="download" className="py-24 bg-gradient-to-br from-slate-800 to-slate-600 text-white text-center">
+      <section id="download" className="py-24 text-center">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 leading-snug">
-            Ready to transform your sleep?
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-4 leading-snug">
+            Ready to transform <em className="italic">your sleep?</em>
           </h2>
-          <p className="text-lg text-slate-300 max-w-xl mx-auto leading-relaxed mb-10">
+          <p style={{ color: 'var(--text-faint)' }} className="text-lg max-w-xl mx-auto leading-relaxed mb-10">
             Join thousands of users who have discovered the power of intelligent sleep tracking.
             Download Serenight and start your journey to better rest tonight.
           </p>
@@ -417,38 +426,39 @@ export default function Serenight() {
               href="https://apps.apple.com/in/app/images/serenight/id6752668596"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-5 rounded-xl no-underline font-semibold text-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all shadow-[0_8px_25px_rgba(37,99,235,0.3)]"
+              style={{ background: 'var(--text-muted)', borderRadius: 'var(--radius-btn)', boxShadow: '0 4px 20px rgba(28,25,23,0.15)' }}
+              className="inline-flex items-center gap-2 text-white px-8 py-5 no-underline font-semibold text-lg hover:-translate-y-0.5 transition-all"
             >
               <span className="text-lg">{'\u{1F34E}'}</span>
               Download on App Store
             </a>
           </div>
 
-          <p className="text-sm text-slate-400 mt-8">
+          <p style={{ color: 'var(--text-faint)' }} className="text-sm mt-8">
             Requires iOS 15.0 or later &bull; Compatible with iPhone and iPad &bull; Apple Health integration required
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1a1a1a] text-white py-16">
+      <footer style={{ borderTop: '1px solid var(--border)' }} className="py-16">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-10 pb-10 border-b border-gray-700">
-            <div className="flex items-center gap-2 font-semibold text-lg mb-4 sm:mb-0">
+          <div style={{ borderBottom: '1px solid var(--border)' }} className="flex flex-col sm:flex-row justify-between items-center mb-10 pb-10">
+            <div style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-muted)' }} className="flex items-center gap-2 text-lg mb-4 sm:mb-0">
               <img src="/images/serenight/logo.png" alt="Serenight Logo" className="w-8 h-8 rounded-lg object-cover" />
               <span>Serenight</span>
             </div>
             <div className="flex gap-8">
-              <Link to="/serenight/privacy" className="text-gray-400 no-underline text-sm font-medium hover:text-white transition-colors">
+              <Link to="/serenight/privacy" style={{ color: 'var(--text-faint)' }} className="no-underline text-sm font-medium">
                 Privacy Policy
               </Link>
-              <a href="#features" className="text-gray-400 no-underline text-sm font-medium hover:text-white transition-colors">Features</a>
-              <a href="#screenshots" className="text-gray-400 no-underline text-sm font-medium hover:text-white transition-colors">Screenshots</a>
-              <a href="#download" className="text-gray-400 no-underline text-sm font-medium hover:text-white transition-colors">Download</a>
+              <a href="#features" style={{ color: 'var(--text-faint)' }} className="no-underline text-sm font-medium">Features</a>
+              <a href="#screenshots" style={{ color: 'var(--text-faint)' }} className="no-underline text-sm font-medium">Screenshots</a>
+              <a href="#download" style={{ color: 'var(--text-faint)' }} className="no-underline text-sm font-medium">Download</a>
             </div>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-500">&copy; 2024 Serenight. Made with love for better sleep.</p>
+            <p style={{ color: 'var(--text-faint)' }} className="text-sm">&copy; 2024 Serenight. Made with love for better sleep.</p>
           </div>
         </div>
       </footer>
