@@ -34,7 +34,7 @@ export default function Subscriptionly() {
         image="https://www.nerdynikhil.com/images/subscriptionly/360x360ia.png"
       />
 
-      <div className="min-h-screen bg-white font-['-apple-system',BlinkMacSystemFont,'SF_Pro_Display',sans-serif] text-[#1d1d1f] leading-relaxed">
+      <div style={{ minHeight: '100vh', background: 'var(--cream)', color: 'var(--text)' }}>
         <main>
           <div className="mx-auto max-w-[1200px] px-5 pt-20">
             <div className="grid min-h-[70vh] grid-cols-1 items-center md:grid-cols-2">
@@ -56,11 +56,14 @@ export default function Subscriptionly() {
                   <img
                     src="/images/subscriptionly/360x360ia.png"
                     alt="Subscriptionly Logo"
-                    className="h-16 w-16 opacity-90 transition-opacity duration-300 hover:opacity-100"
+                    className="h-16 w-16 rounded-lg opacity-90 transition-opacity duration-300 hover:opacity-100"
                   />
                 </div>
 
-                <h1 className="mb-6 text-[42px] font-normal tracking-tight text-[#1d1d1f] sm:text-[56px] md:text-[72px]">
+                <h1
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }}
+                  className="mb-6 text-[42px] tracking-tight sm:text-[56px] md:text-[64px]"
+                >
                   {['Manage', 'your', 'subscriptions', 'effortlessly'].map(
                     (word, index) => (
                       <span
@@ -72,7 +75,7 @@ export default function Subscriptionly() {
                         }`}
                       >
                         {word === 'subscriptions' ? (
-                          <em className="italic text-[#007aff]">{word}</em>
+                          <em className="italic">{word}</em>
                         ) : (
                           word
                         )}
@@ -82,7 +85,8 @@ export default function Subscriptionly() {
                 </h1>
 
                 <p
-                  className={`mx-auto mb-2.5 max-w-[500px] text-base font-normal text-[#6e6e73] transition-all duration-[800ms] ease-out sm:text-lg md:mx-0 md:text-xl ${
+                  style={{ color: 'var(--text-faint)' }}
+                  className={`mx-auto mb-2.5 max-w-[500px] text-base font-normal transition-all duration-[800ms] ease-out sm:text-lg md:mx-0 md:text-xl ${
                     showSubtitle
                       ? 'translate-y-0 opacity-100'
                       : 'translate-y-5 opacity-0'
@@ -97,7 +101,8 @@ export default function Subscriptionly() {
                   href="https://apps.apple.com/in/app/subscriptionly/id6752491328"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-10 inline-block rounded-full bg-[#007aff] px-8 py-4 text-base font-semibold text-white no-underline transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#0056cc] hover:shadow-[0_15px_35px_rgba(0,122,255,0.3)] sm:text-lg ${
+                  style={{ background: 'var(--text-muted)', borderRadius: 'var(--radius-btn)' }}
+                  className={`mt-10 inline-block px-8 py-4 text-base font-semibold text-white no-underline transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(28,25,23,0.18)] sm:text-lg ${
                     showButton
                       ? 'translate-y-0 opacity-100'
                       : 'translate-y-5 opacity-0'
@@ -125,8 +130,8 @@ export default function Subscriptionly() {
           </div>
         </main>
 
-        <footer className="border-t border-[#e5e5e7] bg-white px-5 py-15 text-center">
-          <p className="mx-auto max-w-[600px] text-xs leading-snug text-[#6e6e73]">
+        <footer style={{ borderTop: '1px solid var(--border)' }} className="px-5 py-15 text-center">
+          <p style={{ color: 'var(--text-faint)' }} className="mx-auto max-w-[600px] text-xs leading-snug">
             A clean and simple subscription management app for iOS. Features
             include tracking recurring subscriptions, viewing monthly spending
             totals, managing existing subscriptions, and pausing/resuming
@@ -135,7 +140,8 @@ export default function Subscriptionly() {
           <p className="mt-5 text-xs">
             <Link
               to="/subscriptionly/privacy"
-              className="text-[#007aff] no-underline hover:underline"
+              style={{ color: 'var(--text-muted)' }}
+              className="no-underline hover:underline"
             >
               Privacy Policy
             </Link>
