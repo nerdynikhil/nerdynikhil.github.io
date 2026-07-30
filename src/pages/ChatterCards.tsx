@@ -15,7 +15,7 @@ export default function ChatterCards() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-[system-ui,'-apple-system','SF_Pro_Display','SF_Pro_Text','Helvetica_Neue',sans-serif]">
+    <div style={{ minHeight: '100vh', background: 'var(--cream)', color: 'var(--text)' }}>
       <SEO
         title="ChatterCards - Master your IELTS Speaking"
         description="Practice IELTS speaking with smart flashcards. Build confidence and fluency for your IELTS exam."
@@ -25,7 +25,10 @@ export default function ChatterCards() {
 
       <div className="max-w-3xl mx-auto px-6 py-20 text-center">
         {/* Animated Title */}
-        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6 flex flex-wrap justify-center gap-x-4">
+        <h1
+          style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }}
+          className="text-5xl sm:text-6xl tracking-tight mb-6 flex flex-wrap justify-center gap-x-4"
+        >
           {words.map((word, index) => (
             <span
               key={index}
@@ -35,13 +38,13 @@ export default function ChatterCards() {
                   : 'opacity-0 blur-sm translate-y-5'
               }`}
             >
-              {word}
+              {word === 'IELTS' ? <em className="italic">{word}</em> : word}
             </span>
           ))}
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl text-gray-500 max-w-lg mx-auto mb-12">
+        <p style={{ color: 'var(--text-faint)' }} className="text-xl max-w-lg mx-auto mb-12">
           Practice IELTS speaking with smart flashcards. Build confidence and
           fluency for your exam.
         </p>
@@ -60,13 +63,14 @@ export default function ChatterCards() {
           href="https://apps.apple.com/app/chattercards-ielts-speaking/id6740497874"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block bg-gray-900 text-white font-semibold text-lg px-10 py-4 rounded-full hover:bg-gray-800 transition-colors shadow-lg mb-20"
+          style={{ background: 'var(--text-muted)', borderRadius: 'var(--radius-btn)', boxShadow: '0 4px 20px rgba(28,25,23,0.12)' }}
+          className="inline-block text-white font-semibold text-lg px-10 py-4 hover:-translate-y-0.5 transition-transform mb-20"
         >
           Download on the App Store
         </a>
 
         {/* Footer */}
-        <footer className="border-t border-gray-200 pt-8 text-sm text-gray-400 space-y-2">
+        <footer style={{ borderTop: '1px solid var(--border)', color: 'var(--text-faint)' }} className="pt-8 text-sm space-y-2">
           <p>
             IELTS is a registered trademark of University of Cambridge ESOL, the
             British Council, and IDP Education Australia. This app is not
@@ -75,12 +79,13 @@ export default function ChatterCards() {
           <p>
             <a
               href="/chattercards/privacy"
-              className="text-gray-500 underline hover:text-gray-700 transition-colors"
+              style={{ color: 'var(--text-muted)' }}
+              className="underline"
             >
               Privacy Policy
             </a>
           </p>
-          <p className="text-gray-400">Made by Nikhil Sethi</p>
+          <p>Made by Nikhil Barik</p>
         </footer>
       </div>
     </div>
