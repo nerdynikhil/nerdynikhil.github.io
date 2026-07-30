@@ -144,7 +144,7 @@ const ITEMS: PortfolioItem[] = [
   },
   {
     name: "WDTG",
-    description: "What Did That Guy say?",
+    description: "Where Did The Time Go?",
     category: "ios",
     icon: "\u23F0",
     action: "navigate",

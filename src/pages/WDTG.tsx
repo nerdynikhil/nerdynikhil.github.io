@@ -92,12 +92,14 @@ export default function WDTG() {
             Track your time. Visualize your life. Understand your patterns.
           </p>
           <a
-            href="#"
+            href="https://apps.apple.com/us/app/wdtg-where-did-the-time-go/id6756418835"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block rounded-xl bg-[#6366F1] px-10 py-4 text-lg font-semibold text-white no-underline transition-transform duration-200 hover:-translate-y-0.5"
           >
             📱 Download on App Store
           </a>
-          <p className="mt-5 text-[#999]">Coming Soon</p>
+          <p className="mt-5 text-[#999]">Available now on iPhone</p>
         </section>
 
         {/* Features Section */}
