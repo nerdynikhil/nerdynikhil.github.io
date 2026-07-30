@@ -78,7 +78,7 @@ export default function LingoDuel() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-[#1d1d1f] font-[system-ui,'-apple-system','BlinkMacSystemFont','SF_Pro_Display',sans-serif] leading-normal">
+    <div style={{ minHeight: '100vh', background: 'var(--cream)', color: 'var(--text)' }}>
       <SEO
         title="LingoDuel - Master languages through AI-powered conversations"
         description="Practice real-world language scenarios with AI. Restaurant visits, job interviews, shopping - master conversations that matter. Featured in IndieHub Hackathon."
@@ -89,7 +89,7 @@ export default function LingoDuel() {
       <main>
         <div className="max-w-3xl mx-auto px-5 py-20 text-center">
           {/* Animated Title */}
-          <h1 className="text-5xl sm:text-7xl font-normal tracking-tight mb-6 text-[#1d1d1f]">
+          <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-5xl sm:text-7xl tracking-tight mb-6">
             {titleWords.map((word, index) => (
               <span
                 key={index}
@@ -100,7 +100,7 @@ export default function LingoDuel() {
                 }`}
               >
                 {word.italic ? (
-                  <em className="italic text-[#007aff]">{word.text}</em>
+                  <em className="italic">{word.text}</em>
                 ) : (
                   word.text
                 )}
@@ -109,7 +109,7 @@ export default function LingoDuel() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl text-[#6e6e73] mb-20 max-w-xl mx-auto font-normal">
+          <p style={{ color: 'var(--text-faint)' }} className="text-xl mb-20 max-w-xl mx-auto font-normal">
             Practice real-world scenarios like restaurant visits, job interviews, and shopping with intelligent AI that adapts to your skill level.
           </p>
 
@@ -118,7 +118,7 @@ export default function LingoDuel() {
             <img
               src="/images/lingoduel/hero-image.png"
               alt="LingoDuel App Interface"
-              className={`max-w-full h-auto max-h-[600px] mx-auto rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-1000 ease-out ${
+              className={`max-w-full h-auto max-h-[600px] mx-auto rounded-2xl shadow-[0_20px_60px_rgba(28,25,23,0.1)] transition-all duration-1000 ease-out ${
                 heroVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-12'
@@ -130,13 +130,13 @@ export default function LingoDuel() {
           <div className={`flex justify-center gap-8 my-16 flex-wrap transition-all duration-600 ease-out ${
             badgesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#e5e5e7]">
+            <div style={{ background: 'var(--cream-card)', border: '1px solid var(--border)' }} className="flex items-center gap-3 px-6 py-4 rounded-2xl">
               <img src="/images/lingoduel/IHlogo.png" alt="IndieHub" className="w-8 h-8 rounded-md" />
-              <span className="text-sm font-medium text-[#1d1d1f]">Featured in IndieHub Hackathon</span>
+              <span style={{ color: 'var(--text-muted)' }} className="text-sm font-medium">Featured in IndieHub Hackathon</span>
             </div>
-            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#e5e5e7]">
+            <div style={{ background: 'var(--cream-card)', border: '1px solid var(--border)' }} className="flex items-center gap-3 px-6 py-4 rounded-2xl">
               <img src="/images/lingoduel/swiftdelhi-logo.png" alt="Swift Delhi" className="w-8 h-8 rounded-md" />
-              <span className="text-sm font-medium text-[#1d1d1f]">Regional Winner - Swift Delhi</span>
+              <span style={{ color: 'var(--text-muted)' }} className="text-sm font-medium">Regional Winner - Swift Delhi</span>
             </div>
           </div>
 
@@ -147,10 +147,10 @@ export default function LingoDuel() {
               videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1d1d1f] mb-10 tracking-tight">
-              See LingoDuel in Action
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-10 tracking-tight">
+              See LingoDuel <em className="italic">in action</em>
             </h2>
-            <div className="relative w-full pb-[56.25%] rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] bg-black">
+            <div className="relative w-full pb-[56.25%] rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(28,25,23,0.15)] bg-black">
               <iframe
                 src="https://www.youtube.com/embed/sBkrGFva0lM?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1"
                 title="LingoDuel Demo Video"
@@ -169,23 +169,28 @@ export default function LingoDuel() {
               featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1d1d1f] mb-16 tracking-tight">
-              Why Choose LingoDuel?
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-16 tracking-tight">
+              Why choose <em className="italic">LingoDuel?</em>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className={`bg-white p-8 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#e5e5e7] text-center transition-all duration-600 ease-out ${
+                  style={{
+                    background: 'var(--cream-card)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 'var(--radius-card)',
+                    transitionDelay: featuresVisible ? `${index * 100}ms` : '0ms',
+                  }}
+                  className={`p-8 text-center transition-all duration-600 ease-out ${
                     featuresVisible
                       ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-8'
                   }`}
-                  style={{ transitionDelay: featuresVisible ? `${index * 100}ms` : '0ms' }}
                 >
                   <div className="text-3xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold text-[#1d1d1f] mb-3">{feature.title}</h3>
-                  <p className="text-base text-[#6e6e73] leading-snug">{feature.description}</p>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-xl mb-3">{feature.title}</h3>
+                  <p style={{ color: 'var(--text-faint)' }} className="text-base leading-snug">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -198,8 +203,8 @@ export default function LingoDuel() {
               techVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1d1d1f] mb-10 tracking-tight">
-              Built with Cutting-Edge Technology
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--text-muted)' }} className="text-3xl sm:text-4xl mb-10 tracking-tight">
+              Built with <em className="italic">cutting-edge tech</em>
             </h2>
             <div className="grid grid-cols-4 sm:grid-cols-7 gap-6 max-w-xl mx-auto">
               {techLogos.map((logo, index) => (
@@ -222,7 +227,8 @@ export default function LingoDuel() {
           {/* Download Button */}
           <a
             href="#"
-            className={`inline-block bg-[#007aff] text-white px-8 py-4 rounded-full no-underline text-lg font-semibold mt-16 hover:bg-[#0056cc] hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(0,122,255,0.3)] transition-all duration-200 ease-out ${
+            style={{ background: 'var(--text-muted)', color: '#fff', borderRadius: 'var(--radius-btn)' }}
+            className={`inline-block px-8 py-4 no-underline text-lg font-semibold mt-16 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(28,25,23,0.18)] transition-all duration-200 ease-out ${
               downloadVisible
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-5'
@@ -234,23 +240,23 @@ export default function LingoDuel() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white px-5 py-16 text-center border-t border-[#e5e5e7]">
+      <footer style={{ borderTop: '1px solid var(--border)' }} className="px-5 py-16 text-center">
         <div className="max-w-xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-6">
             <img src="/images/lingoduel/lingoduel-logo.png" alt="LingoDuel Logo" className="w-8 h-8 rounded-lg" />
-            <span className="text-xl font-semibold text-[#1d1d1f]">LingoDuel</span>
+            <span style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-muted)' }} className="text-xl">LingoDuel</span>
           </div>
 
           <div className="my-6 space-y-2">
-            <p className="text-sm text-[#6e6e73]"><strong>Nikhil Barik</strong> - Software Engineer @Deutsche Telekom</p>
-            <p className="text-sm text-[#6e6e73]"><strong>Saanica Gupta</strong> - Software Engineer @Gojek</p>
+            <p style={{ color: 'var(--text-faint)' }} className="text-sm"><strong>Nikhil Barik</strong> - Software Engineer @Deutsche Telekom</p>
+            <p style={{ color: 'var(--text-faint)' }} className="text-sm"><strong>Saanica Gupta</strong> - Software Engineer @Gojek</p>
           </div>
 
-          <p className="text-xs text-[#6e6e73] max-w-xl mx-auto leading-snug">
+          <p style={{ color: 'var(--text-faint)' }} className="text-xs max-w-xl mx-auto leading-snug">
             Master languages through AI-powered conversations in realistic scenarios.
           </p>
           <p className="mt-5 text-xs">
-            <Link to="/lingoduel/privacy" className="text-[#007aff] no-underline hover:underline">
+            <Link to="/lingoduel/privacy" style={{ color: 'var(--text-muted)' }} className="no-underline hover:underline">
               Privacy Policy
             </Link>
           </p>
