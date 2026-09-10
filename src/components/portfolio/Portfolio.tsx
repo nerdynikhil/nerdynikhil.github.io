@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Spinner } from '@/components/ui/spinner'
 import { Tweet } from 'react-tweet'
+import ProductShowcase from './ProductShowcase'
 
 class TweetErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -476,6 +477,8 @@ export default function Portfolio() {
             : `${TABS.find(t => t.id === activeTab)?.label} — built solo, shipped live.`}{' '}
           SaaS, App Store, Chrome Web Store, and beyond.
         </SectionLead>
+
+        <ProductShowcase />
 
         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           {TABS.map(tab => {

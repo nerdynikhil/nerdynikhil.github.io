@@ -186,3 +186,24 @@ body {
     display: none;
   }
 }
+
+/* ── Product showcase marquee ── */
+@keyframes showcase-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.625rem)); } /* half the track + half the gap */
+}
+
+@media (max-width: 640px) {
+  .showcase-card {
+    width: 300px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-track {
+    animation: none !important;
+  }
+  .showcase-viewport {
+    overflow-x: auto !important;
+  }
+}
