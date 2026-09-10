@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import { Spinner } from '@/components/ui/spinner'
 import { Tweet } from 'react-tweet'
 import ProductShowcase from './ProductShowcase'
+import {
+  Wrench, Workflow, Search, Car, Image as ImageIcon, Ruler, Eraser,
+  Clock, Bell, Mic, BarChart3,
+  type LucideIcon,
+} from 'lucide-react'
 
 class TweetErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
@@ -22,7 +27,7 @@ interface Project {
   name: string
   description: string
   category: Exclude<Category, 'all'>
-  icon: string | { src: string }
+  icon: LucideIcon | { src: string }
   href: string
   external: boolean
 }
@@ -34,26 +39,26 @@ interface BlogPost {
 }
 
 const PROJECTS: Project[] = [
-  { name: 'QuickDevTools', description: 'Free dev utilities — no signup, no nonsense', category: 'saas', icon: '🔧', href: 'https://quickdevtools.online/', external: true },
-  { name: 'EasyN8N', description: 'Self-host n8n workflows in one click', category: 'saas', icon: '💻', href: 'https://easyn8n.online/', external: true },
-  { name: 'EasyClaw', description: 'Track YC companies and open roles in real time', category: 'saas', icon: '🔍', href: 'https://easyyclaw.cloud/', external: true },
-  { name: 'PetrolheadX', description: 'Car enthusiast community', category: 'saas', icon: '🚗', href: 'http://petrolheadx.autos/', external: true },
-  { name: 'Postrr', description: 'Social media post generator', category: 'saas', icon: '🖼️', href: 'https://postrr.online/', external: true },
-  { name: 'ResizeForForms', description: 'Resize images for forms', category: 'saas', icon: '📐', href: 'https://resizeforforms.online/', external: true },
-  { name: 'EraseMyBackground', description: 'Remove image backgrounds', category: 'saas', icon: '🎨', href: 'https://erasemybackground.online/', external: true },
+  { name: 'QuickDevTools', description: 'Free dev utilities — no signup, no nonsense', category: 'saas', icon: Wrench, href: 'https://quickdevtools.online/', external: true },
+  { name: 'EasyN8N', description: 'Self-host n8n workflows in one click', category: 'saas', icon: Workflow, href: 'https://easyn8n.online/', external: true },
+  { name: 'EasyClaw', description: 'Track YC companies and open roles in real time', category: 'saas', icon: Search, href: 'https://easyyclaw.cloud/', external: true },
+  { name: 'PetrolheadX', description: 'Car enthusiast community', category: 'saas', icon: Car, href: 'http://petrolheadx.autos/', external: true },
+  { name: 'Postrr', description: 'Social media post generator', category: 'saas', icon: ImageIcon, href: 'https://postrr.online/', external: true },
+  { name: 'ResizeForForms', description: 'Resize images for forms', category: 'saas', icon: Ruler, href: 'https://resizeforforms.online/', external: true },
+  { name: 'EraseMyBackground', description: 'Remove image backgrounds', category: 'saas', icon: Eraser, href: 'https://erasemybackground.online/', external: true },
   { name: 'ChatterCards', description: 'AI-powered cards that kill awkward silences', category: 'ios', icon: { src: '/images/chattercards/app-icon.webp' }, href: '/chattercards', external: false },
   { name: 'LingoDuel', description: 'Language learning, but make it competitive', category: 'ios', icon: { src: '/images/lingoduel/lingoduel-logo.png' }, href: '/lingoduel', external: false },
   { name: 'Serenight', description: 'Calm mind with ambient sounds', category: 'ios', icon: { src: '/images/serenight/logo.png' }, href: '/serenight', external: false },
   { name: 'TrueHue', description: 'Test your color perception', category: 'ios', icon: { src: '/images/truehue/TrueHue.png' }, href: '/truehue', external: false },
   { name: 'Subscriptionly', description: 'Track all your subscriptions', category: 'ios', icon: { src: '/images/subscriptionly/360x360ia.png' }, href: '/subscriptionly', external: false },
-  { name: 'WDTG', description: "Where Did The Time Go?", category: 'ios', icon: '⏰', href: '/wdtg', external: false },
+  { name: 'WDTG', description: "Where Did The Time Go?", category: 'ios', icon: Clock, href: '/wdtg', external: false },
   { name: 'Behance2PDF', description: 'Export Behance projects as PDF', category: 'chrome', icon: { src: 'https://github.com/nerdynikhil/Behance2PDF/blob/main/assets/icons/icon1024.png?raw=true' }, href: '/behance2pdf', external: false },
   { name: 'Faster Udemy', description: 'Speed up Udemy videos beyond 2x', category: 'chrome', icon: { src: 'https://github.com/nerdynikhil/faster-udemy/blob/main/faster-udemy-128.png?raw=true' }, href: '/faster-udemy', external: false },
   { name: 'ETA Tube', description: 'YouTube playlist time remaining', category: 'chrome', icon: { src: '/images/eta-tube/store-icon-128x128.png' }, href: '/eta-tube', external: false },
   { name: 'Meme Sounds', description: 'Play meme sounds while coding', category: 'claude', icon: { src: '/images/meme-sounds.png' }, href: 'https://marketplace.visualstudio.com/items?itemName=nerdynikhil.meme-sounds', external: true },
-  { name: 'claude-ping-me', description: 'Notify when Claude is waiting', category: 'claude', icon: '🔔', href: 'https://skills.sh/nerdynikhil/claude-ping-me/claude-ping-me', external: true },
-  { name: 'Claude Narrator', description: 'Hear what Claude Code is doing — out loud', category: 'claude', icon: '🎙️', href: '/claude-narrator', external: false },
-  { name: 'ClaudeScore', description: 'Score and compare your Claude usage', category: 'claude', icon: '📊', href: 'https://claudescore.wtf/', external: true },
+  { name: 'claude-ping-me', description: 'Notify when Claude is waiting', category: 'claude', icon: Bell, href: 'https://skills.sh/nerdynikhil/claude-ping-me/claude-ping-me', external: true },
+  { name: 'Claude Narrator', description: 'Hear what Claude Code is doing — out loud', category: 'claude', icon: Mic, href: '/claude-narrator', external: false },
+  { name: 'ClaudeScore', description: 'Score and compare your Claude usage', category: 'claude', icon: BarChart3, href: 'https://claudescore.wtf/', external: true },
 ]
 
 const BLOG_POSTS: BlogPost[] = [
@@ -197,7 +202,21 @@ function ProjectCard({ project }: { project: Project }) {
             {isImageIcon ? (
               <img src={(project.icon as { src: string }).src} alt={project.name} style={{ width: '2.5rem', height: '2.5rem', objectFit: 'cover', borderRadius: '8px' }} />
             ) : (
-              <span style={{ fontSize: '1.75rem', lineHeight: 1 }}>{project.icon as string}</span>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '2.5rem',
+                height: '2.5rem',
+                borderRadius: '8px',
+                background: 'rgba(90,85,80,0.05)',
+                border: '1px solid var(--border)',
+              }}>
+                {(() => {
+                  const Icon = project.icon as LucideIcon
+                  return <Icon size={20} strokeWidth={1.5} color="var(--text-muted)" />
+                })()}
+              </span>
             )}
             <span style={{ fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '3px 8px', borderRadius: '999px', border: '1px solid var(--border-strong)', color: 'var(--text-faint)' }}>
               {BADGE_LABEL[project.category]}
