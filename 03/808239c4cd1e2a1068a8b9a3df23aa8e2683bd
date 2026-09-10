@@ -1,0 +1,24 @@
+src/index.css
+  s_c5189aa1990ab2::t_ea528f306da42a 189-209
+src/components/portfolio/Portfolio.tsx
+  s_c5189aa1990ab2::t_fbfc68b8b4ad36 5
+  s_c5189aa1990ab2::t_22ec2d0d7614e1 481-482
+src/components/portfolio/ProductShowcase.tsx
+  s_c5189aa1990ab2::t_2895d01f12685e 1-144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "03808239c4cd1e2a1068a8b9a3df23aa8e2683bd",
+  "prompts": {},
+  "sessions": {
+    "s_c5189aa1990ab2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ea2d2faa-0a43-4f6a-b10c-b5d993eec078",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Nikhil Barik <nikhil.barik@telekom-digital.com>"
+    }
+  }
+}
