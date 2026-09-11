@@ -13,6 +13,7 @@ const SHOWCASES: Showcase[] = [
   { name: 'QuickDevTools', tagline: '47 dev tools · no signup', href: 'https://quickdevtools.online/', img: '/images/showcase/quickdevtools.jpeg' },
   { name: 'EasyN8N', tagline: 'Plain English → n8n workflows', href: 'https://easyn8n.online/', img: '/images/showcase/easyn8n.jpeg' },
   { name: 'EasyClaw', tagline: 'Track YC roles in real time', href: 'https://easyyclaw.cloud/', img: '/images/showcase/easyclaw.jpeg' },
+  { name: 'Postrr', tagline: 'AI-powered Twitter content assistant', href: 'https://postrr.online/', img: '/images/showcase/postrr.jpeg' },
   { name: 'ClaudeScore', tagline: 'How much of your code is Claude?', href: 'https://claudescore.wtf/', img: '/images/showcase/claudescore.jpeg' },
   { name: 'ResizeForForms', tagline: 'Resize for 130+ Indian forms', href: 'https://resizeforforms.online/', img: '/images/showcase/resizeforforms.jpeg' },
   { name: 'EraseMyBackground', tagline: 'Remove image backgrounds free', href: 'https://erasemybackground.online/', img: '/images/showcase/erasemybackground.jpeg' },
