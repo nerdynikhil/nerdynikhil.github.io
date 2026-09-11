@@ -32,12 +32,6 @@ interface Project {
   external: boolean
 }
 
-interface BlogPost {
-  title: string
-  type: string
-  href: string
-}
-
 const PROJECTS: Project[] = [
   { name: 'QuickDevTools', description: 'Free dev utilities — no signup, no nonsense', category: 'saas', icon: Wrench, href: 'https://quickdevtools.online/', external: true },
   { name: 'EasyN8N', description: 'Self-host n8n workflows in one click', category: 'saas', icon: Workflow, href: 'https://easyn8n.online/', external: true },
@@ -59,18 +53,6 @@ const PROJECTS: Project[] = [
   { name: 'claude-ping-me', description: 'Notify when Claude is waiting', category: 'claude', icon: Bell, href: 'https://skills.sh/nerdynikhil/claude-ping-me/claude-ping-me', external: true },
   { name: 'Claude Narrator', description: 'Hear what Claude Code is doing — out loud', category: 'claude', icon: Mic, href: '/claude-narrator', external: false },
   { name: 'ClaudeScore', description: 'Score and compare your Claude usage', category: 'claude', icon: BarChart3, href: 'https://claudescore.wtf/', external: true },
-]
-
-const BLOG_POSTS: BlogPost[] = [
-  { title: 'PRD: Increasing Zomato Text Reviews', type: 'PRD', href: '/blog/prd-increasing-zomato-text-reviews' },
-  { title: 'Growing Zomato with Quality Reviews', type: 'Case Study', href: '/blog/case-study-growing-zomato-quality-reviews' },
-  { title: 'Smytten Referral Teardown', type: 'Teardown', href: '/blog/smytten-referral-program-teardown' },
-  { title: 'Blinkit Notification Teardown', type: 'Teardown', href: '/blog/blinkit-app-notification-product-teardown' },
-  { title: 'Swiggy Play Store Rating Drop', type: 'Root Cause', href: '/blog/swiggy-root-cause-analysis-play-store-rating-drop' },
-  { title: 'Swiggy Customer Loyalty', type: 'Strategy', href: '/blog/swiggy-enhancing-customer-loyalty-retention' },
-  { title: 'Food Delivery Industry Research', type: 'Research', href: '/blog/secondary-research-food-delivery-industry-india' },
-  { title: 'Google Smart Shoes Metrics', type: 'Metrics', href: '/blog/google-smart-shoes-product-metrics-goals' },
-  { title: 'Swiggy Dabba Meal Plans', type: 'Feature', href: '/blog/swiggy-dabba-customized-meal-plans' },
 ]
 
 const TABS: { id: Category; label: string }[] = [
@@ -292,7 +274,6 @@ export default function Portfolio() {
 
   const navLinks = [
     { label: 'Builds', href: '#builds' },
-    { label: 'Notes', href: '#notes' },
     { label: 'Activity', href: '#activity' },
     { label: 'GitHub', href: 'https://github.com/nerdynikhil', external: true },
   ]
@@ -527,44 +508,6 @@ export default function Portfolio() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
           {filteredProjects.map(project => (
             <ProjectCard key={project.name} project={project} />
-          ))}
-        </div>
-      </section>
-
-      {/* ── Field Notes ── */}
-      <section id="notes" style={{ padding: '5rem 1.5rem', maxWidth: '720px', margin: '0 auto' }}>
-        <SectionLabel>Field Notes</SectionLabel>
-        <SectionHeading italic="actually work.">How products</SectionHeading>
-        <SectionLead>
-          Teardowns and strategy from Swiggy, Zomato, and Blinkit — the thinking behind products that win.
-        </SectionLead>
-
-        <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius-card)', overflow: 'hidden', background: 'var(--cream-card)' }}>
-          {BLOG_POSTS.map((post, i) => (
-            <Link
-              key={post.href}
-              to={post.href}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                padding: '1rem 1.25rem',
-                borderBottom: i < BLOG_POSTS.length - 1 ? '1px solid var(--border)' : 'none',
-                textDecoration: 'none',
-                color: 'inherit',
-                transition: 'background 0.15s',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(90,85,80,0.03)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-            >
-              <span style={{ fontSize: '0.6875rem', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '3px 8px', borderRadius: '999px', border: '1px solid var(--border-strong)', color: 'var(--text-faint)', flexShrink: 0, minWidth: '5rem', textAlign: 'center' }}>
-                {post.type}
-              </span>
-              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--text-muted)', flex: 1 }}>
-                {post.title}
-              </span>
-              <span style={{ color: 'var(--text-faint)', flexShrink: 0 }}>→</span>
-            </Link>
           ))}
         </div>
       </section>
