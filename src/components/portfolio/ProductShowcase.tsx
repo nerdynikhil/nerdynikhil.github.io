@@ -109,16 +109,50 @@ function BrowserFrame({ item }: { item: Showcase }) {
   )
 }
 
+const BASE_DURATION = 44 // seconds for one full loop at 1×
+const SPEEDS = [1, 2, 3] as const
+
 export default function ProductShowcase() {
   const [paused, setPaused] = useState(false)
+  const [speed, setSpeed] = useState<(typeof SPEEDS)[number]>(1)
   // Duplicate the list so the marquee loops seamlessly.
   const loop = [...SHOWCASES, ...SHOWCASES]
 
   return (
     <div style={{ marginBottom: '3rem' }}>
-      <p className="section-label" style={{ textAlign: 'center', marginBottom: '1.25rem', color: 'var(--text-faint)' }}>
-        Live now — quick view
-      </p>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.85rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+        <p className="section-label" style={{ margin: 0, color: 'var(--text-faint)' }}>
+          Live now — quick view
+        </p>
+        <div role="group" aria-label="Carousel speed" style={{ display: 'inline-flex', gap: '4px', padding: '3px', borderRadius: '999px', border: '1px solid var(--border-strong)', background: 'var(--cream-card)' }}>
+          {SPEEDS.map(s => {
+            const isActive = speed === s
+            return (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setSpeed(s)}
+                aria-pressed={isActive}
+                aria-label={`${s}× speed`}
+                style={{
+                  padding: '0.2rem 0.7rem',
+                  fontSize: '0.75rem',
+                  fontWeight: 500,
+                  lineHeight: 1,
+                  borderRadius: '999px',
+                  border: 'none',
+                  background: isActive ? 'var(--text-muted)' : 'transparent',
+                  color: isActive ? '#fff' : 'var(--text-faint)',
+                  cursor: 'pointer',
+                  transition: 'background 0.15s, color 0.15s',
+                }}
+              >
+                {s}×
+              </button>
+            )
+          })}
+        </div>
+      </div>
 
       <div
         className="showcase-viewport"
@@ -132,7 +166,7 @@ export default function ProductShowcase() {
             display: 'flex',
             gap: '1.25rem',
             width: 'max-content',
-            animation: 'showcase-scroll 44s linear infinite',
+            animation: `showcase-scroll ${BASE_DURATION / speed}s linear infinite`,
             animationPlayState: paused ? 'paused' : 'running',
             padding: '0.75rem 0',
           }}
