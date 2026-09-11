@@ -534,7 +534,7 @@ export default function Portfolio() {
           <div>
             <p className="section-label" style={{ marginBottom: '1.25rem' }}>Latest on X</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxHeight: '700px', overflowY: 'auto' }}>
-              {['2033295611467034829', '2007933833954652456', '2035759121442721831', '2035752805512946139', '2035344623405854958', '2034294493055447054', '2033453219964150260', '2030392612050645145'].map(id => (
+              {['2093718255122972977', '2033295611467034829', '2007933833954652456', '2035759121442721831', '2035752805512946139', '2035344623405854958', '2034294493055447054', '2033453219964150260', '2030392612050645145'].map(id => (
                 <TweetErrorBoundary key={id}>
                   <div className="light">
                     <Tweet id={id} />
