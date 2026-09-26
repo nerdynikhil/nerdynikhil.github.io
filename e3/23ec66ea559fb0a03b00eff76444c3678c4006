@@ -1,0 +1,27 @@
+src/components/portfolio/ProductShowcase.tsx
+  s_c89ea9869126ef::t_487b0637eea280 2
+  s_c89ea9869126ef::t_1f1705ebbd27de 9,13
+  s_c89ea9869126ef::t_3a85f73cafd9d4 100-123
+src/components/portfolio/Portfolio.tsx
+  s_c89ea9869126ef::t_4f8a36cefdb25c 33,37
+  s_c89ea9869126ef::t_808a0d78183942 8
+  s_c89ea9869126ef::t_27c7cc606fcc3b 207-209,211-214,216-217,219-220
+  s_c89ea9869126ef::t_cb9097871449d6 205-206,210,215,218,221-226
+  s_c89ea9869126ef::t_d195a7c6c7fbb6 548
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e323ec66ea559fb0a03b00eff76444c3678c4006",
+  "prompts": {},
+  "sessions": {
+    "s_c89ea9869126ef": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289d74f9-13c1-4a2e-b486-14911ffb0066",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Nikhil Barik <nikhil.barik@telekom-digital.com>"
+    }
+  }
+}
