@@ -1,13 +1,16 @@
 import { useState } from 'react'
+import { Star } from 'lucide-react'
 
 interface Showcase {
   name: string
   tagline: string
   href: string
   img: string
+  featured?: boolean
 }
 
 const SHOWCASES: Showcase[] = [
+  { name: 'OmniNotch', tagline: '20 menu bar tools · $500+ revenue', href: 'https://omninotch.app/', img: '/images/showcase/omninotch.jpeg', featured: true },
   { name: 'SlidesNow', tagline: 'AI slides on WhatsApp in 60s', href: 'https://slidesnow.app/', img: '/images/showcase/slidesnow.jpeg' },
   { name: 'Ablate', tagline: 'Measure if your CLAUDE.md works', href: 'https://ablatehq.com/', img: '/images/showcase/ablate.jpeg' },
   { name: 'QuickDevTools', tagline: '47 dev tools · no signup', href: 'https://quickdevtools.online/', img: '/images/showcase/quickdevtools.jpeg' },
@@ -94,9 +97,30 @@ function BrowserFrame({ item }: { item: Showcase }) {
       {/* Caption */}
       <div style={{ padding: '0.85rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
         <div style={{ minWidth: 0 }}>
-          <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.2 }}>
-            {item.name}
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.2 }}>
+              {item.name}
+            </p>
+            {item.featured && (
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '3px',
+                fontSize: '0.625rem',
+                fontWeight: 500,
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                color: '#9a6127',
+                padding: '2px 6px 2px 5px',
+                borderRadius: '999px',
+                border: '1px solid rgba(154,97,39,0.28)',
+                flexShrink: 0,
+              }}>
+                <Star size={9} strokeWidth={2} fill="#9a6127" />
+                Featured
+              </span>
+            )}
+          </div>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-faint)', margin: '0.15rem 0 0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {item.tagline}
           </p>

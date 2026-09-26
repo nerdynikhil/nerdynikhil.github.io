@@ -5,7 +5,7 @@ import { Tweet } from 'react-tweet'
 import ProductShowcase from './ProductShowcase'
 import {
   Wrench, Workflow, Search, Car, Image as ImageIcon, Ruler, Eraser,
-  Clock, Bell, Mic, BarChart3, Rocket, Package, Ship,
+  Clock, Bell, Mic, BarChart3, Rocket, Package, Ship, Star,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -30,9 +30,11 @@ interface Project {
   icon: LucideIcon | { src: string }
   href: string
   external: boolean
+  featured?: boolean
 }
 
 const PROJECTS: Project[] = [
+  { name: 'OmniNotch', description: '20 menu bar tools for Mac — crossed $500 in revenue', category: 'saas', icon: { src: '/images/omninotch/logo.png' }, href: 'https://omninotch.app/', external: true, featured: true },
   { name: 'QuickDevTools', description: 'Free dev utilities — no signup, no nonsense', category: 'saas', icon: Wrench, href: 'https://quickdevtools.online/', external: true },
   { name: 'EasyN8N', description: 'Self-host n8n workflows in one click', category: 'saas', icon: Workflow, href: 'https://easyn8n.online/', external: true },
   { name: 'EasyClaw', description: 'Track YC companies and open roles in real time', category: 'saas', icon: Search, href: 'https://easyyclaw.cloud/', external: true },
@@ -200,9 +202,28 @@ function ProjectCard({ project }: { project: Project }) {
                 })()}
               </span>
             )}
-            <span style={{ fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '3px 8px', borderRadius: '999px', border: '1px solid var(--border-strong)', color: 'var(--text-faint)' }}>
-              {BADGE_LABEL[project.category]}
-            </span>
+            {project.featured ? (
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '3px',
+                fontSize: '0.6875rem',
+                fontWeight: 500,
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                padding: '3px 8px 3px 7px',
+                borderRadius: '999px',
+                border: '1px solid rgba(154,97,39,0.28)',
+                color: '#9a6127',
+              }}>
+                <Star size={10} strokeWidth={2} fill="#9a6127" />
+                Featured
+              </span>
+            ) : (
+              <span style={{ fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '3px 8px', borderRadius: '999px', border: '1px solid var(--border-strong)', color: 'var(--text-faint)' }}>
+                {BADGE_LABEL[project.category]}
+              </span>
+            )}
           </div>
           <p style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', color: 'var(--text-muted)', margin: '0 0 0.5rem', lineHeight: 1.25 }}>
             {project.name}
@@ -524,7 +545,7 @@ export default function Portfolio() {
           <div>
             <p className="section-label" style={{ marginBottom: '1.25rem' }}>Latest on X</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxHeight: '700px', overflowY: 'auto' }}>
-              {['2093718255122972977', '2033295611467034829', '2007933833954652456', '2035759121442721831', '2035752805512946139', '2035344623405854958', '2034294493055447054', '2033453219964150260', '2030392612050645145'].map(id => (
+              {['2103224526641504690', '2093718255122972977', '2033295611467034829', '2007933833954652456', '2035759121442721831', '2035752805512946139', '2035344623405854958', '2034294493055447054', '2033453219964150260', '2030392612050645145'].map(id => (
                 <TweetErrorBoundary key={id}>
                   <div className="light">
                     <Tweet id={id} />
