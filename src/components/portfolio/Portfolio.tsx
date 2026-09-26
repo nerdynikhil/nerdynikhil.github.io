@@ -5,7 +5,7 @@ import { Tweet } from 'react-tweet'
 import ProductShowcase from './ProductShowcase'
 import {
   Wrench, Workflow, Search, Car, Image as ImageIcon, Ruler, Eraser,
-  Clock, Bell, Mic, BarChart3,
+  Clock, Bell, Mic, BarChart3, Rocket, Package, Ship,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -272,10 +272,10 @@ export default function Portfolio() {
 
   const filteredProjects = activeTab === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === activeTab)
 
-  const navLinks = [
+  const navLinks: { label: string; href: string; external?: boolean }[] = [
     { label: 'Builds', href: '#builds' },
     { label: 'Activity', href: '#activity' },
-    { label: 'GitHub', href: 'https://github.com/nerdynikhil', external: true },
+    { label: 'Questions', href: '#connect' },
   ]
 
   return (
@@ -291,7 +291,7 @@ export default function Portfolio() {
       }}>
         {/* Colorful terrain hero background */}
         <img
-          src="/images/hero-terrain.jpg"
+          src="/images/hero-meadow.png"
           alt=""
           aria-hidden
           style={{
@@ -300,7 +300,7 @@ export default function Portfolio() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center 40%',
+            objectPosition: 'center bottom',
           }}
         />
 
@@ -328,38 +328,37 @@ export default function Portfolio() {
           background: 'linear-gradient(to bottom, transparent, var(--cream))',
         }} />
 
-        {/* Nav */}
+        {/* Nav — Andy-style: logo left · links centered · action right */}
         <nav style={{ position: 'relative', zIndex: 10, padding: '0 1.5rem' }}>
-          <div style={{ maxWidth: '1100px', margin: '0 auto', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'rgba(255,255,255,0.95)', textShadow: '0 1px 8px rgba(0,0,0,0.25)' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto', height: '68px', display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center' }}>
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', color: 'rgba(255,255,255,0.98)', textShadow: '0 1px 10px rgba(0,0,0,0.3)', justifySelf: 'start' }}>
               nerdynikhil
             </span>
-            <div className="portfolio-nav-links" style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }}>
+            <div className="portfolio-nav-center">
               {navLinks.map(link => (
-                link.external ? (
-                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="nav-link-item"
-                    style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.75)', textDecoration: 'none', transition: 'color 0.15s', textShadow: '0 1px 4px rgba(0,0,0,0.2)' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,1)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
-                  >{link.label}</a>
-                ) : (
-                  <a key={link.label} href={link.href} className="nav-link-item"
-                    style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.75)', textDecoration: 'none', transition: 'color 0.15s', textShadow: '0 1px 4px rgba(0,0,0,0.2)' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,1)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
-                  >{link.label}</a>
-                )
+                <a
+                  key={link.label}
+                  href={link.href}
+                  {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className="nav-link-item"
+                  style={{ fontSize: '0.9375rem', fontWeight: 500, color: 'rgba(255,255,255,0.82)', textDecoration: 'none', transition: 'color 0.15s', textShadow: '0 1px 4px rgba(0,0,0,0.2)' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,1)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.82)')}
+                >{link.label}</a>
               ))}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', justifySelf: 'end' }}>
               <a href="#connect" style={{
-                fontSize: '0.875rem',
-                fontWeight: 500,
+                fontSize: '0.9375rem',
+                fontWeight: 600,
                 color: '#fff',
-                background: 'rgba(0,0,0,0.35)',
-                border: '1px solid rgba(255,255,255,0.35)',
-                padding: '0.5rem 1rem',
+                background: 'rgba(255,255,255,0.14)',
+                border: '1px solid rgba(255,255,255,0.4)',
+                padding: '0.55rem 1.15rem',
                 borderRadius: 'var(--radius-btn)',
                 textDecoration: 'none',
-                backdropFilter: 'blur(8px)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.12)',
               }}>
                 Get in touch
               </a>
@@ -367,75 +366,66 @@ export default function Portfolio() {
           </div>
         </nav>
 
-        {/* Hero content */}
-        <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem 1.5rem 6rem' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.625rem',
-            marginBottom: '2rem',
-            fontSize: '0.8125rem',
-            color: 'rgba(255,255,255,0.85)',
-            background: 'rgba(0,0,0,0.3)',
-            border: '1px solid rgba(255,255,255,0.15)',
-            borderRadius: '999px',
-            padding: '0.4rem 1rem',
-            backdropFilter: 'blur(8px)',
-          }}>
-            <span>18+ products shipped · iOS, web &amp; AI</span>
-          </div>
-
+        {/* Hero content — Andy-style headline with inline squircle icons */}
+        <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '1.5rem 1.5rem 3rem' }}>
           <h1 className="hero-headline">
-            I Build Things{' '}
-            <em>People Use</em>
+            <span className="hero-line">
+              I build
+              <span className="hero-squircle" style={{ '--squircle-glow': 'rgba(56,161,105,0.45)', background: 'linear-gradient(160deg, #48bb78, #2f9e5f)' } as React.CSSProperties}>
+                <Package size="0.5em" strokeWidth={2.4} color="#fff" style={{ width: '0.5em', height: '0.5em' }} />
+              </span>
+              products
+              <span className="hero-squircle" style={{ '--squircle-glow': 'rgba(237,137,54,0.45)', background: 'linear-gradient(160deg, #f6ad55, #ed8936)' } as React.CSSProperties}>
+                <Rocket size="0.5em" strokeWidth={2.4} color="#fff" style={{ width: '0.5em', height: '0.5em' }} />
+              </span>
+            </span>
+            <span className="hero-line">
+              <em>and ship</em>
+              <span className="hero-squircle" style={{ '--squircle-glow': 'rgba(66,133,244,0.45)', background: 'linear-gradient(160deg, #5b9df9, #3b82f6)' } as React.CSSProperties}>
+                <Ship size="0.5em" strokeWidth={2.4} color="#fff" style={{ width: '0.5em', height: '0.5em' }} />
+              </span>
+              <em>them solo.</em>
+            </span>
           </h1>
 
           <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-            color: 'rgba(255,255,255,0.85)',
-            maxWidth: '520px',
-            margin: '0 auto 2rem',
-            lineHeight: 1.65,
-            textShadow: '0 1px 12px rgba(0,0,0,0.25)',
+            fontSize: 'clamp(1rem, 2vw, 1.1875rem)',
+            color: 'rgba(255,255,255,0.9)',
+            maxWidth: '540px',
+            margin: '0.5rem auto 2.25rem',
+            lineHeight: 1.6,
+            textShadow: '0 1px 12px rgba(0,0,0,0.28)',
           }}>
-            Nikhil Barik — solo builder of iOS apps, developer tools, and AI utilities.
-            <br />
-            From first commit to the App Store. No team required.
+            Nikhil Barik designs, codes, and ships iOS apps, SaaS tools,
+            Chrome extensions, and AI utilities — solo, from idea to launch.
           </p>
 
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a href="#builds" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.375rem',
-              background: '#fff',
-              color: 'var(--text-muted)',
-              padding: '0.75rem 1.5rem',
-              borderRadius: 'var(--radius-btn)',
-              fontWeight: 500,
-              fontSize: '0.875rem',
-              textDecoration: 'none',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-            }}>
-              See the work <span>→</span>
-            </a>
-            <a href="#connect" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.375rem',
-              background: 'rgba(255,255,255,0.12)',
-              color: 'rgba(255,255,255,0.95)',
-              padding: '0.75rem 1.5rem',
-              borderRadius: 'var(--radius-btn)',
-              fontWeight: 500,
-              fontSize: '0.875rem',
-              textDecoration: 'none',
-              border: '1px solid rgba(255,255,255,0.35)',
-              backdropFilter: 'blur(12px)',
-            }}>
-              Start a conversation <span>→</span>
-            </a>
-          </div>
+          <a href="#builds" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            background: 'linear-gradient(180deg, #f6ad55, #ed8936)',
+            color: '#fff',
+            padding: '0.85rem 2rem',
+            borderRadius: 'var(--radius-btn)',
+            fontWeight: 600,
+            fontSize: '0.9375rem',
+            textDecoration: 'none',
+            boxShadow: '0 8px 24px rgba(237,137,54,0.4), inset 0 1px 0 rgba(255,255,255,0.35)',
+            transition: 'transform 0.15s, box-shadow 0.15s',
+          }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 30px rgba(237,137,54,0.5), inset 0 1px 0 rgba(255,255,255,0.35)' }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(237,137,54,0.4), inset 0 1px 0 rgba(255,255,255,0.35)' }}
+          >
+            See the Work For Free
+          </a>
+        </div>
+
+        {/* Shipped-to brand strip */}
+        <div className="hero-brands">
+          {['App Store', 'Chrome Web Store', 'Product Hunt', 'VS Code Marketplace'].map(brand => (
+            <span key={brand} className="hero-brand">{brand}</span>
+          ))}
         </div>
       </section>
 
