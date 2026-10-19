@@ -1,0 +1,16 @@
+import { Logo } from './Logo'
+
+export function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container footer-inner">
+        <span className="brand small">
+          <Logo size={18} />
+          <span>Sector9</span>
+        </span>
+        <p>Disk space, explained.</p>
+        <p className="footer-copy">© 2026 Sector9</p>
+      </div>
+    </footer>
+  )
+}
