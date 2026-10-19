@@ -45,6 +45,18 @@
       "destination": "/lingoduel/privacy/index.html"
     },
     {
+      "source": "/sector9",
+      "destination": "/sector9/index.html"
+    },
+    {
+      "source": "/sector9/privacy",
+      "destination": "/sector9/privacy/index.html"
+    },
+    {
+      "source": "/sector9/support",
+      "destination": "/sector9/support/index.html"
+    },
+    {
       "source": "/serenight",
       "destination": "/serenight/index.html"
     },
