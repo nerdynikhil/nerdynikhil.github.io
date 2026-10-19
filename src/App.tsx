@@ -17,6 +17,7 @@ const LingoDuel = lazy(() => import('./pages/LingoDuel'))
 const LingoDuelPrivacy = lazy(() => import('./pages/LingoDuelPrivacy'))
 const Sector9 = lazy(() => import('./pages/sector9/Sector9'))
 const Sector9Privacy = lazy(() => import('./pages/sector9/Sector9Privacy'))
+const Sector9Support = lazy(() => import('./pages/sector9/Sector9Support'))
 const Serenight = lazy(() => import('./pages/Serenight'))
 const SerenightPrivacy = lazy(() => import('./pages/SerenightPrivacy'))
 const Subscriptionly = lazy(() => import('./pages/Subscriptionly'))
@@ -72,6 +73,7 @@ export default function App() {
           <Route path="/lingoduel/privacy" element={<LingoDuelPrivacy />} />
           <Route path="/sector9" element={<Sector9 />} />
           <Route path="/sector9/privacy" element={<Sector9Privacy />} />
+          <Route path="/sector9/support" element={<Sector9Support />} />
           <Route path="/serenight" element={<Serenight />} />
           <Route path="/serenight/privacy" element={<SerenightPrivacy />} />
           <Route path="/subscriptionly" element={<Subscriptionly />} />
