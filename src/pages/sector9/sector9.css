@@ -878,8 +878,19 @@ html:has(.s9) {
   font-size: 15px;
 }
 
-.s9 .footer-copy {
+.s9 .footer-links {
+  display: flex;
+  gap: 20px;
   margin-left: auto;
+}
+
+.s9 .footer-links a {
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.s9 .footer-links a:hover {
+  color: var(--text);
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────── */
