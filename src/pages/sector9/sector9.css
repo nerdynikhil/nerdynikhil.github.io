@@ -1043,4 +1043,9 @@ html:has(.s9) {
     padding-top: 24px;
     padding-bottom: 24px;
   }
+
+  .s9 .footer-links {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
 }
