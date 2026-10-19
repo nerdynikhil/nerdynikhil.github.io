@@ -1,0 +1,19 @@
+src/pages/sector9/sector9.css
+  s_023cc895976287::t_218c1e998d869e 1046-1050
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9bc6b4458b364c3afd663d477f49aa8795003eae",
+  "prompts": {},
+  "sessions": {
+    "s_023cc895976287": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a75e320e-8ca8-4987-9142-8ab19fc9ab1b",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nikhil Barik <nklmarch17@gmail.com>"
+    }
+  }
+}
