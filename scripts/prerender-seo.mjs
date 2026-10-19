@@ -92,6 +92,54 @@ const behance2pdfJsonLd = {
   ],
 }
 
+const sector9Faqs = [
+  {
+    q: 'Is Sector9 safe?',
+    a: 'Sector9 never deletes anything on its own. You pick what goes into the review tray, a dry run shows exactly what would move, and pre-flight checks make sure the owning apps are closed first. Everything goes to the macOS Trash, and undo puts it back.',
+  },
+  {
+    q: 'Does Sector9 need Full Disk Access? Why?',
+    a: 'It works best with it. The biggest leftovers, like app caches, Xcode builds and Docker’s disk, live inside ~/Library and app containers that macOS hides from apps without Full Disk Access. Without it, Sector9 still scans your home folder and tells you what it could not see.',
+  },
+  {
+    q: 'Will Sector9 delete my photos?',
+    a: 'No. Your photos, footage, code and documents are marked “Yours, kept” and are never selected. Sector9 may point out things like Lightroom previews, which Lightroom rebuilds, but your originals are left alone.',
+  },
+  {
+    q: 'Is Sector9 on the Mac App Store?',
+    a: 'Not at first. Sector9 launches as a direct download. An App Store edition is planned.',
+  },
+  {
+    q: 'Is there a Windows version of Sector9?',
+    a: 'Not yet. Sector9 is macOS only for now.',
+  },
+]
+
+const sector9JsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Sector9',
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'macOS 13 or later',
+      description: 'A disk space analyzer for macOS that reads your disk the way you work and tells you what each thing costs to get back. On-device, no account, no telemetry.',
+      url: 'https://www.nerdynikhil.com/sector9',
+      image: 'https://www.nerdynikhil.com/sector9/og-image.png',
+      screenshot: 'https://www.nerdynikhil.com/sector9/shots/briefing.webp',
+      author: { '@type': 'Person', name: 'Nikhil Barik' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: sector9Faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    },
+  ],
+}
+
 // One entry per route in src/App.tsx. `path: '/'` overwrites dist/index.html directly.
 export const routes = [
   { path: '/', title: 'Nikhil Barik — Builder of Products People Use', description: 'Nikhil Barik (nerdynikhil) builds and ships iOS apps, SaaS tools, Chrome extensions, and AI utilities — solo, end to end. 18+ products and counting.', jsonLd: personJsonLd },
@@ -112,6 +160,10 @@ export const routes = [
 
   { path: '/lingoduel', title: 'LingoDuel - Master languages through AI-powered conversations', description: 'Practice real-world language scenarios with AI. Restaurant visits, job interviews, shopping - master conversations that matter. Featured in IndieHub Hackathon.', image: 'https://www.nerdynikhil.com/images/lingoduel/hero-image.png' },
   { path: '/lingoduel/privacy', title: 'Privacy Policy - LingoDuel', description: 'Privacy Policy for LingoDuel language learning app.' },
+
+  { path: '/sector9', title: 'Sector9 — Disk space, explained', description: 'Sector9 is a disk space analyzer for macOS. It reads your disk the way you work and tells you what each thing costs to get back. On-device, no account, no telemetry.', image: 'https://www.nerdynikhil.com/sector9/og-image.png', jsonLd: sector9JsonLd },
+  { path: '/sector9/privacy', title: 'Privacy Policy - Sector9', description: 'Privacy Policy for Sector9, the macOS disk space analyzer. Scans run on your Mac. No account, no analytics, and your file names never leave your Mac.', image: 'https://www.nerdynikhil.com/sector9/og-image.png' },
+  { path: '/sector9/support', title: 'Support - Sector9', description: 'Get help with Sector9, the macOS disk space analyzer. Full Disk Access, undoing a cleanup, supported macOS versions and how to report a problem.', image: 'https://www.nerdynikhil.com/sector9/og-image.png' },
 
   { path: '/serenight', title: 'Serenight - Your Sleep Tracking Companion', description: 'Transform your sleep with intelligent tracking and insights. Analyze patterns, track quality, and unlock better rest with Apple Health integration.', image: 'https://www.nerdynikhil.com/images/serenight/hero-image.png' },
   { path: '/serenight/privacy', title: 'Privacy Policy - Serenight', description: 'Privacy Policy for Serenight sleep tracking app. Your sleep data stays on your device.' },
