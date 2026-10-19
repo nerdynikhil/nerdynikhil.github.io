@@ -132,9 +132,9 @@ export default function Sector9Privacy() {
           The waitlist on this website
         </h2>
         <p className="mb-4">
-          The waitlist form on the Sector9 page does not send your email
-          address anywhere yet. It stays in your browser tab and is gone when
-          you leave the page.
+          Joining the waitlist opens an email to me in your own mail app. I
+          only use that address to tell you once when Sector9 is ready, and I
+          delete it on request.
         </p>
         <p className="mb-4">
           The Sector9 page is part of my personal website, nerdynikhil.com,
