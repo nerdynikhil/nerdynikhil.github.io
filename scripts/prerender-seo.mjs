@@ -147,6 +147,8 @@ export const routes = [
   { path: '/behance2pdf', title: 'Behance2PDF — Save Behance Projects as PDF & Download Images (Free Chrome Extension)', description: 'Free Chrome extension to save any Behance project as a high-quality PDF or download all its images in one click. No account, no tracking.', image: 'https://www.nerdynikhil.com/images/behance2pdf/og-image.png', jsonLd: behance2pdfJsonLd },
   { path: '/behance2pdf/privacy', title: 'Privacy Policy - Behance2PDF', description: 'Privacy policy for the Behance2PDF Chrome extension. We do not collect any user data.' },
 
+  { path: '/bumbu', title: 'Bumbu — A cute octopus pet that follows your cursor (Windows)', description: 'Bumbu is a tiny pink octopus that lives on your Windows desktop, follows your cursor and says cute things. Free download.' },
+
   { path: '/chattercards', title: 'ChatterCards - Master your IELTS Speaking', description: 'Practice IELTS speaking with smart flashcards. Build confidence and fluency for your IELTS exam.', image: 'https://www.nerdynikhil.com/images/chattercards/phone-hero.png' },
   { path: '/chattercards/privacy', title: 'Privacy Policy - ChatterCards', description: 'Privacy policy for ChatterCards IELTS Speaking practice app. We respect your privacy and do not collect personal data.' },
 

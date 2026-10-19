@@ -9,6 +9,10 @@
       "destination": "/behance2pdf/privacy/index.html"
     },
     {
+      "source": "/bumbu",
+      "destination": "/bumbu/index.html"
+    },
+    {
       "source": "/chattercards",
       "destination": "/chattercards/index.html"
     },

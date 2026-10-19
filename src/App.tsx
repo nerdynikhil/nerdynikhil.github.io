@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop'
 const Home = lazy(() => import('./pages/Home'))
 const Behance2PDF = lazy(() => import('./pages/Behance2PDF'))
 const Behance2PDFPrivacy = lazy(() => import('./pages/Behance2PDFPrivacy'))
+const Bumbu = lazy(() => import('./pages/Bumbu'))
 const ChatterCards = lazy(() => import('./pages/ChatterCards'))
 const ChatterCardsPrivacy = lazy(() => import('./pages/ChatterCardsPrivacy'))
 const ClaudeNarrator = lazy(() => import('./pages/ClaudeNarrator'))
@@ -64,6 +65,7 @@ export default function App() {
           <Route path="/behance2pdf/privacy" element={<Behance2PDFPrivacy />} />
           <Route path="/chattercards" element={<ChatterCards />} />
           <Route path="/chattercards/privacy" element={<ChatterCardsPrivacy />} />
+          <Route path="/bumbu" element={<Bumbu />} />
           <Route path="/claude-narrator" element={<ClaudeNarrator />} />
           <Route path="/eta-tube" element={<EtaTube />} />
           <Route path="/eta-tube/privacy" element={<EtaTubePrivacy />} />
