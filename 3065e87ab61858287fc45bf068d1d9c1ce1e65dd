@@ -1,0 +1,21 @@
+src/pages/sector9/Sector9Support.tsx
+  s_023cc895976287::t_651d3b9cc54bdf 1-204
+src/App.tsx
+  s_023cc895976287::t_62b4851884f725 20,76
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3065e87ab61858287fc45bf068d1d9c1ce1e65dd",
+  "prompts": {},
+  "sessions": {
+    "s_023cc895976287": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a75e320e-8ca8-4987-9142-8ab19fc9ab1b",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nikhil Barik <nklmarch17@gmail.com>"
+    }
+  }
+}

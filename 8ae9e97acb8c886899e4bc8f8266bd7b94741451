@@ -1,0 +1,19 @@
+src/pages/sector9/Sector9Privacy.tsx
+  s_023cc895976287::t_4aef7db1830448 135-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8ae9e97acb8c886899e4bc8f8266bd7b94741451",
+  "prompts": {},
+  "sessions": {
+    "s_023cc895976287": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a75e320e-8ca8-4987-9142-8ab19fc9ab1b",
+        "model": "unknown"
+      },
+      "human_author": "Nikhil Barik <nklmarch17@gmail.com>"
+    }
+  }
+}

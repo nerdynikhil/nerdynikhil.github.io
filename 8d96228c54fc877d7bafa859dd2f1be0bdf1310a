@@ -1,0 +1,19 @@
+src/pages/sector9/components/Download.tsx
+  s_023cc895976287::t_b6a16a9f29afc5 3,5,11-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8d96228c54fc877d7bafa859dd2f1be0bdf1310a",
+  "prompts": {},
+  "sessions": {
+    "s_023cc895976287": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a75e320e-8ca8-4987-9142-8ab19fc9ab1b",
+        "model": "unknown"
+      },
+      "human_author": "Nikhil Barik <nklmarch17@gmail.com>"
+    }
+  }
+}

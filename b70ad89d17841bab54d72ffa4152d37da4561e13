@@ -1,0 +1,31 @@
+src/index.css
+  s_8810ab3f24ff9e::t_cd6e72b013e718 150,157,160-174,191-239
+src/components/portfolio/Portfolio.tsx
+  s_8810ab3f24ff9e::t_f7bd5fc027afcd 378
+  s_8810ab3f24ff9e::t_47d11ecb3769be 382,384,386,388
+  s_8810ab3f24ff9e::t_fa9220c91130e4 294,303
+  s_8810ab3f24ff9e::t_c32313136567a6 331,333-334,337,339-347,349-350,352-353,355-357,360-361
+  s_8810ab3f24ff9e::t_87db58b8cfcde7 385
+  s_8810ab3f24ff9e::t_5c466740898423 399-400
+  s_8810ab3f24ff9e::t_4d9939552fd321 275,278
+  s_8810ab3f24ff9e::t_ed0b1542f8a0a3 375
+  s_8810ab3f24ff9e::t_4d17ce25bfd7b0 373,377,383,387
+  s_8810ab3f24ff9e::t_7908c526f1df58 8
+  s_8810ab3f24ff9e::t_0d2ac1e4a1fa8b 369-370,372,374,376,379-381,392-397,403-428
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b70ad89d17841bab54d72ffa4152d37da4561e13",
+  "prompts": {},
+  "sessions": {
+    "s_8810ab3f24ff9e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f93ddf7c-ca4f-4f1f-993b-0bffb55852e3",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Nikhil Barik <nikhil.barik@telekom-digital.com>"
+    }
+  }
+}
