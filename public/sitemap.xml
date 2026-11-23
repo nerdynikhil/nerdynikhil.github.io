@@ -114,9 +114,15 @@
   </url>
   <url>
     <loc>https://www.nerdynikhil.com/lingoduel</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.nerdynikhil.com/lingoduel/support</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.nerdynikhil.com/serenight</loc>

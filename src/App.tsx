@@ -16,6 +16,7 @@ const FasterUdemy = lazy(() => import('./pages/FasterUdemy'))
 const FasterUdemyPrivacy = lazy(() => import('./pages/FasterUdemyPrivacy'))
 const LingoDuel = lazy(() => import('./pages/LingoDuel'))
 const LingoDuelPrivacy = lazy(() => import('./pages/LingoDuelPrivacy'))
+const LingoDuelSupport = lazy(() => import('./pages/LingoDuelSupport'))
 const Sector9 = lazy(() => import('./pages/sector9/Sector9'))
 const Sector9Privacy = lazy(() => import('./pages/sector9/Sector9Privacy'))
 const Sector9Support = lazy(() => import('./pages/sector9/Sector9Support'))
@@ -73,6 +74,7 @@ export default function App() {
           <Route path="/faster-udemy/privacy" element={<FasterUdemyPrivacy />} />
           <Route path="/lingoduel" element={<LingoDuel />} />
           <Route path="/lingoduel/privacy" element={<LingoDuelPrivacy />} />
+          <Route path="/lingoduel/support" element={<LingoDuelSupport />} />
           <Route path="/sector9" element={<Sector9 />} />
           <Route path="/sector9/privacy" element={<Sector9Privacy />} />
           <Route path="/sector9/support" element={<Sector9Support />} />

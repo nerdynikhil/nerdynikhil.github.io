@@ -160,8 +160,9 @@ export const routes = [
   { path: '/faster-udemy', title: 'Faster Udemy - Chrome Extension', description: 'Speed up your Udemy video playback. Adjust playback rate from 0.25x to 5x. Because time is precious.' },
   { path: '/faster-udemy/privacy', title: 'Privacy Policy - Faster Udemy', description: 'Privacy Policy for Faster Udemy Chrome Extension - Learn how we protect your privacy with our local-first, no-tracking approach.' },
 
-  { path: '/lingoduel', title: 'LingoDuel - Master languages through AI-powered conversations', description: 'Practice real-world language scenarios with AI. Restaurant visits, job interviews, shopping - master conversations that matter. Featured in IndieHub Hackathon.', image: 'https://www.nerdynikhil.com/images/lingoduel/hero-image.png' },
+  { path: '/lingoduel', title: 'LingoDuel: Speak a language with an AI partner', description: 'Stop scrolling, start speaking. Hold real conversations in 10 languages with an AI partner who plays the other role, and get coached on every line.', image: 'https://www.nerdynikhil.com/images/lingoduel/hero-image.png' },
   { path: '/lingoduel/privacy', title: 'Privacy Policy - LingoDuel', description: 'Privacy Policy for LingoDuel language learning app.' },
+  { path: '/lingoduel/support', title: 'Support - LingoDuel', description: 'Get help with LingoDuel: duels, LingoDuel Plus, cancelling or restoring a subscription, the mic, the widget and how to contact us.' },
 
   { path: '/sector9', title: 'Sector9 — Disk space, explained', description: 'Sector9 is a disk space analyzer for macOS. It reads your disk the way you work and tells you what each thing costs to get back. On-device, no account, no telemetry.', image: 'https://www.nerdynikhil.com/sector9/og-image.png', jsonLd: sector9JsonLd },
   { path: '/sector9/privacy', title: 'Privacy Policy - Sector9', description: 'Privacy Policy for Sector9, the macOS disk space analyzer. Scans run on your Mac. No account, no analytics, and your file names never leave your Mac.', image: 'https://www.nerdynikhil.com/sector9/og-image.png' },

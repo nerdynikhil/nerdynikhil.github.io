@@ -3,7 +3,7 @@ import SEO from '../components/SEO'
 
 export default function LingoDuelPrivacy() {
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-[#1d1d1f] font-[system-ui,'-apple-system','BlinkMacSystemFont','SF_Pro_Display',sans-serif] leading-normal">
+    <div className="min-h-screen bg-[#FFFAEE] text-[#1d1d1f] font-[system-ui,'-apple-system','BlinkMacSystemFont','SF_Pro_Display',sans-serif] leading-normal">
       <SEO
         title="Privacy Policy - LingoDuel"
         description="Privacy Policy for LingoDuel - Learn how we protect your privacy while you master languages through AI-powered conversations."
@@ -28,7 +28,7 @@ export default function LingoDuelPrivacy() {
       <section className="py-28 min-h-screen">
         <div className="max-w-3xl mx-auto px-5 text-center mb-12">
           <h1 className="text-4xl font-bold text-[#1d1d1f] mb-4">Privacy Policy</h1>
-          <p className="text-[#6e6e73]">Last updated: 1 November 2026</p>
+          <p className="text-[#6e6e73]">Last updated: 23 November 2026</p>
         </div>
 
         <div className="max-w-3xl mx-auto bg-white p-12 rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.05)]">
@@ -64,6 +64,18 @@ export default function LingoDuelPrivacy() {
             process the text under their own terms and privacy policies.
           </p>
 
+          <h2 className="text-xl font-semibold text-[#1f2937] mb-4">Word of the Day widget</h2>
+          <p className="text-[#6b7280] mb-8">
+            Once a day the app asks our server for a word in the language you&apos;re practising. Only the language name is
+            sent. The word is saved on your device for the widget; the widget itself never connects to the internet.
+          </p>
+
+          <h2 className="text-xl font-semibold text-[#1f2937] mb-4">Reporting a reply</h2>
+          <p className="text-[#6b7280] mb-8">
+            If an AI reply is offensive, unsafe or wrong, you can long-press it and tap Report. This opens an email to us
+            containing that reply. Nothing is sent unless you choose to send the email.
+          </p>
+
           <h2 className="text-xl font-semibold text-[#1f2937] mb-4">Voice</h2>
           <p className="text-[#6b7280] mb-8">
             When you hold the mic, Apple&apos;s speech recognition turns your voice into text. Where your device supports it,
@@ -79,7 +91,7 @@ export default function LingoDuelPrivacy() {
 
           <h2 className="text-xl font-semibold text-[#1f2937] mb-4">Camera</h2>
           <p className="text-[#6b7280] mb-8">
-            The optional &ldquo;What&apos;s around me&rdquo; scanner uses the camera to recognise objects on your device so
+            The optional &ldquo;Point and learn&rdquo; scanner uses the camera to recognise objects on your device so
             you can learn their names. Images are not uploaded; only the recognised word is sent to our server to translate it.
           </p>
 
