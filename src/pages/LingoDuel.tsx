@@ -668,7 +668,7 @@ export default function LingoDuel() {
             </a>
           </div>
           <p className="text-[13px]" style={{ color: c.inkSoft }}>
-            © 2026 Nikhil Kumar Barik
+            © 2026 LingoDuel
           </p>
         </div>
       </footer>

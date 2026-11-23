@@ -127,7 +127,7 @@ export default function LingoDuelPrivacy() {
             </p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-[#6b7280]">&copy; 2026 Nikhil Kumar Barik. All rights reserved.</p>
+            <p className="text-sm text-[#6b7280]">&copy; 2026 LingoDuel. All rights reserved.</p>
           </div>
         </div>
       </footer>

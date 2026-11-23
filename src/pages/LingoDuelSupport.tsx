@@ -152,7 +152,7 @@ export default function LingoDuelSupport() {
 
       <footer className="bg-white border-t border-[#e5e5e7] py-12">
         <div className="max-w-3xl mx-auto px-5 text-center">
-          <p className="text-sm text-[#6b7280]">&copy; 2026 Nikhil Kumar Barik. All rights reserved.</p>
+          <p className="text-sm text-[#6b7280]">&copy; 2026 LingoDuel. All rights reserved.</p>
         </div>
       </footer>
     </div>
