@@ -1,0 +1,23 @@
+src/pages/LingoDuel.tsx
+  s_91f357a5655779::t_1441e36e7fad87 671
+src/pages/LingoDuelPrivacy.tsx
+  s_91f357a5655779::t_7e7e9503e57a33 130
+src/pages/LingoDuelSupport.tsx
+  s_91f357a5655779::t_cc84e595a4cade 155
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "033a797f082460e78ac648e8a4bf6a41f9d809bf",
+  "prompts": {},
+  "sessions": {
+    "s_91f357a5655779": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "da78ea32-4b1e-4353-b57c-a94b3a586dfe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Nikhil Barik <nikhil.barik@telekom-digital.com>"
+    }
+  }
+}
