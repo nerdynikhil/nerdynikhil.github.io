@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 
 /* LingoDuel landing page. Mirrors the app's "Playground" design: a warm cream page, ink type,
-   an orange action colour, pastel tiles and Dot the mascot. Flip APP_STORE_LIVE at launch. */
+   an orange action colour, pastel tiles and Dot the mascot. Live on the App Store since November 2026. */
 
-const APP_STORE_LIVE = false
-const APP_STORE_URL = 'https://apps.apple.com/app/id6829457902'
+const APP_STORE_LIVE = true
+const APP_STORE_URL = 'https://apps.apple.com/app/lingoduel-speak-a-language/id6829457902'
 const IMG = '/images/lingoduel/v2'
 
 const c = {
@@ -277,7 +277,7 @@ export default function LingoDuel() {
     >
       <SEO
         title="LingoDuel: Speak a language with an AI partner"
-        description="Stop scrolling, start speaking. Hold real conversations in 10 languages with an AI partner who plays the other role, and get coached on every line."
+        description="Stop scrolling, start speaking. Hold real conversations in 10 languages with an AI partner who plays the other role, and get coached on every line. Free on the App Store."
         url="https://www.nerdynikhil.com/lingoduel"
         image="https://www.nerdynikhil.com/images/lingoduel/hero-image.png"
       />
@@ -331,7 +331,7 @@ export default function LingoDuel() {
                   style={{ background: c.surface, borderColor: c.line, color: c.ink }}
                 >
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: c.grass }} />
-                  10 languages · 25 real-life scenes
+                  New on the App Store · 10 languages
                 </span>
               </Reveal>
               <Reveal delay={80}>

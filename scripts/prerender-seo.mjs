@@ -141,6 +141,20 @@ const sector9JsonLd = {
 }
 
 // One entry per route in src/App.tsx. `path: '/'` overwrites dist/index.html directly.
+const lingoduelJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: 'LingoDuel: Speak a Language',
+  operatingSystem: 'iOS 26 or later',
+  applicationCategory: 'EducationalApplication',
+  description: 'Hold real conversations in 10 languages with an AI partner who plays the other role, and get coached on every line.',
+  url: 'https://www.nerdynikhil.com/lingoduel',
+  downloadUrl: 'https://apps.apple.com/app/lingoduel-speak-a-language/id6829457902',
+  installUrl: 'https://apps.apple.com/app/lingoduel-speak-a-language/id6829457902',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  author: { '@type': 'Person', name: 'Nikhil Barik', url: 'https://www.nerdynikhil.com' },
+}
+
 export const routes = [
   { path: '/', title: 'Nikhil Barik — Builder of Products People Use', description: 'Nikhil Barik (nerdynikhil) builds and ships iOS apps, SaaS tools, Chrome extensions, and AI utilities — solo, end to end. 18+ products and counting.', jsonLd: personJsonLd },
 
@@ -160,7 +174,7 @@ export const routes = [
   { path: '/faster-udemy', title: 'Faster Udemy - Chrome Extension', description: 'Speed up your Udemy video playback. Adjust playback rate from 0.25x to 5x. Because time is precious.' },
   { path: '/faster-udemy/privacy', title: 'Privacy Policy - Faster Udemy', description: 'Privacy Policy for Faster Udemy Chrome Extension - Learn how we protect your privacy with our local-first, no-tracking approach.' },
 
-  { path: '/lingoduel', title: 'LingoDuel: Speak a language with an AI partner', description: 'Stop scrolling, start speaking. Hold real conversations in 10 languages with an AI partner who plays the other role, and get coached on every line.', image: 'https://www.nerdynikhil.com/images/lingoduel/hero-image.png' },
+  { path: '/lingoduel', title: 'LingoDuel: Speak a language with an AI partner', description: 'Stop scrolling, start speaking. Hold real conversations in 10 languages with an AI partner who plays the other role, and get coached on every line. Free on the App Store.', image: 'https://www.nerdynikhil.com/images/lingoduel/hero-image.png', appStoreId: '6829457902', jsonLd: lingoduelJsonLd },
   { path: '/lingoduel/privacy', title: 'Privacy Policy - LingoDuel', description: 'Privacy Policy for LingoDuel language learning app.' },
   { path: '/lingoduel/support', title: 'Support - LingoDuel', description: 'Get help with LingoDuel: duels, LingoDuel Plus, cancelling or restoring a subscription, the mic, the widget and how to contact us.' },
 
@@ -227,6 +241,10 @@ function buildHead(route) {
     `<meta name="twitter:description" content="${description}" />`,
     `<meta name="twitter:image" content="${image}" />`,
   ]
+
+  if (route.appStoreId) {
+    tags.push(`<meta name="apple-itunes-app" content="app-id=${route.appStoreId}" />`)
+  }
 
   if (route.jsonLd) {
     tags.push(`<script type="application/ld+json">${JSON.stringify(route.jsonLd)}</script>`)
